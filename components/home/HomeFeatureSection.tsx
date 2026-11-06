@@ -35,3 +35,4 @@ export const HomeFeatureSection: React.FC = () => {
 };
 
 export default HomeFeatureSection;
+

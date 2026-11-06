@@ -36,3 +36,4 @@ export const homeFeaturesData = {
     },
   ] as FeatureCardItem[],
 };
+

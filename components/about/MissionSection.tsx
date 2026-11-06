@@ -45,3 +45,4 @@ export const MissionSection: React.FC = () => {
 };
 
 export default MissionSection;
+

@@ -69,3 +69,4 @@ export const navbarCta = {
   label: "Get Started",
   href: "/#contact",
 };
+

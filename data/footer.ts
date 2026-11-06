@@ -42,3 +42,4 @@ export const footerData = {
   ] as FooterSection[],
   copyright: "© 2026 Pingo. All rights reserved.",
 };
+

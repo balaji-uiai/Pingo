@@ -88,3 +88,4 @@ export const WhoWeAre: React.FC = () => {
 };
 
 export default WhoWeAre;
+

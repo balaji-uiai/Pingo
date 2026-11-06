@@ -59,3 +59,4 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
 };
 
 export default FeatureCard;
+

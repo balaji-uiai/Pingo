@@ -144,3 +144,4 @@ export const aboutData = {
     cta: "Contact Us",
   },
 };
+

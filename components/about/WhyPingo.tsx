@@ -74,3 +74,4 @@ export const WhyPingo: React.FC = () => {
 };
 
 export default WhyPingo;
+

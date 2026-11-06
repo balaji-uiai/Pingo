@@ -48,3 +48,4 @@ export const VisionSection: React.FC = () => {
 };
 
 export default VisionSection;
+

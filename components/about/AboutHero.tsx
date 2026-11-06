@@ -103,3 +103,4 @@ export const AboutHero: React.FC = () => {
 };
 
 export default AboutHero;
+
