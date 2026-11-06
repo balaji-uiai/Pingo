@@ -12,7 +12,7 @@ export interface NavItem {
 
 export const navigationItems: NavItem[] = [
   {
-    label: "About Pingo",
+    label: "About",
     href: "/about",
   },
   {
