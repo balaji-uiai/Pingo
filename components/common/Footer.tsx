@@ -1,7 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Linkedin, LucideIcon } from "lucide-react";
 import { footerData } from "@/data/footer";
+
+const socialIconMap: Record<string, LucideIcon> = {
+  Linkedin,
+};
 
 export const Footer: React.FC = () => {
   return (
@@ -42,6 +47,27 @@ export const Footer: React.FC = () => {
               <span className="inline-block w-2 h-2 rounded-full bg-[#B5FF45] animate-pulse" />
               <span>AI Chat & Customer Management Platform</span>
             </div>
+
+            {/* Reusable Social Media Links */}
+            {footerData.socialLinks && footerData.socialLinks.length > 0 && (
+              <div className="pt-2 flex items-center gap-3">
+                {footerData.socialLinks.map((social) => {
+                  const Icon = socialIconMap[social.iconName] || Linkedin;
+                  return (
+                    <a
+                      key={social.platform}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={social.ariaLabel}
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/[0.04] hover:bg-[#782BFF]/25 border border-white/10 hover:border-violet-500/40 text-[#D5D0E5] hover:text-white transition-all duration-200 hover:scale-105 shadow-sm group"
+                    >
+                      <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Links Columns */}

@@ -8,12 +8,27 @@ export interface FooterSection {
   links: FooterLink[];
 }
 
+export interface SocialLink {
+  platform: string;
+  href: string;
+  iconName: "Linkedin" | string;
+  ariaLabel: string;
+}
+
 export const footerData = {
   brand: {
     name: "Pingo",
     tagline:
       "Pingo is a customizable, AI-powered live chat platform designed to help businesses connect with customers and deliver smarter communication experiences.",
   },
+  socialLinks: [
+    {
+      platform: "LinkedIn",
+      href: "https://www.linkedin.com/company/uiai/",
+      iconName: "Linkedin",
+      ariaLabel: "Follow UIAI Technologies on LinkedIn",
+    },
+  ] as SocialLink[],
   sections: [
     {
       title: "Explore",
@@ -29,7 +44,7 @@ export const footerData = {
       links: [
         { label: "Documentation", href: "#docs" },
         { label: "FAQs", href: "#faqs" },
-        { label: "Contact Us", href: "#contact" },
+        { label: "Contact Us", href: "/contact" },
       ],
     },
     {

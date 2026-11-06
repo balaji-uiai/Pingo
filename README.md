@@ -24,7 +24,8 @@ A modern, dark-themed SaaS website built for **Pingo** with Next.js (App Router)
   - Section 4: Our Mission
   - Section 5: Who We Are (UIAI Technologies background)
   - Section 6: Why Pingo? (5 value pillars)
-  - Section 7: Get in Touch (Interactive contact section)
+- **Dedicated Contact Us Page (`/contact`)**:
+  - Full interactive Get in Touch contact section with name, email, and inquiry form.
 - **Scalable UI Architecture**:
   - Centralized design tokens via CSS variables (`globals.css`).
   - Separation of content and presentation (`data/` layer for navigation, footer, features, and about content).
@@ -67,6 +68,8 @@ Pingo3/
 ├── app/
 │   ├── about/
 │   │   └── page.tsx            # Dedicated About Pingo page
+│   ├── contact/
+│   │   └── page.tsx            # Dedicated Contact Us page
 │   ├── globals.css             # Centralized design tokens and glass styles
 │   ├── layout.tsx              # Root layout with shared Navbar and Footer
 │   └── page.tsx                # Homepage (Hero + Feature Overview)
@@ -80,18 +83,21 @@ Pingo3/
 │   │   ├── FeatureCard.tsx     # Glassmorphic overview card
 │   │   ├── Hero.tsx            # Hero section with 3D mascot
 │   │   └── HomeFeatureSection.tsx # 4-card overview section
-│   └── about/
-│       ├── AboutHero.tsx       # About hero with telemetry card
+│   ├── about/
+│   │   ├── AboutHero.tsx       # About hero with telemetry card
+│   │   ├── MissionSection.tsx  # Mission statement
+│   │   ├── VisionSection.tsx   # Vision statement
+│   │   ├── WhatWeDo.tsx        # 6 core capabilities
+│   │   ├── WhoWeAre.tsx        # UIAI Technologies backing
+│   │   └── WhyPingo.tsx        # 5 value differentiators
+│   └── contact/
 │       ├── ContactSection.tsx  # Get in Touch interactive form
-│       ├── MissionSection.tsx  # Mission statement
-│       ├── VisionSection.tsx   # Vision statement
-│       ├── WhatWeDo.tsx        # 6 core capabilities
-│       ├── WhoWeAre.tsx        # UIAI Technologies backing
-│       └── WhyPingo.tsx        # 5 value differentiators
+│       └── EnquirySection.tsx  # Reusable For Enquiries company info
 ├── data/
 │   ├── about.ts                # About page content configuration
+│   ├── enquiry.ts              # For Enquiries company data configuration
 │   ├── features.ts             # Feature cards & dropdown data
-│   ├── footer.ts               # Footer links configuration
+│   ├── footer.ts               # Footer & social links configuration
 │   └── navigation.ts           # Navigation structure
 ├── public/
 │   └── images/
