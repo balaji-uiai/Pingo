@@ -91,11 +91,13 @@ Pingo3/
 │   │   ├── WhoWeAre.tsx        # UIAI Technologies backing
 │   │   └── WhyPingo.tsx        # 5 value differentiators
 │   └── contact/
-│       └── ContactSection.tsx  # Get in Touch interactive form
+│       ├── ContactSection.tsx  # Get in Touch interactive form
+│       └── EnquirySection.tsx  # Reusable For Enquiries company info
 ├── data/
 │   ├── about.ts                # About page content configuration
+│   ├── enquiry.ts              # For Enquiries company data configuration
 │   ├── features.ts             # Feature cards & dropdown data
-│   ├── footer.ts               # Footer links configuration
+│   ├── footer.ts               # Footer & social links configuration
 │   └── navigation.ts           # Navigation structure
 ├── public/
 │   └── images/

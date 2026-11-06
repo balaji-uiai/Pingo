@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import ContactSection from "@/components/contact/ContactSection";
+import EnquirySection from "@/components/contact/EnquirySection";
 
 export const metadata: Metadata = {
   title: "Contact Us – Pingo",
@@ -12,7 +13,7 @@ export default function ContactPage() {
   return (
     <div className="relative">
       <ContactSection />
+      <EnquirySection />
     </div>
   );
 }
-

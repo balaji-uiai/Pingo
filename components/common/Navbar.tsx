@@ -58,7 +58,7 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 lg:gap-10">
+        <nav className="hidden md:flex items-center gap-7 lg:gap-9">
           {navigationItems.map((item) => {
             if (item.isDropdown) {
               return (
@@ -75,7 +75,7 @@ export const Navbar: React.FC = () => {
               <Link
                 key={item.label}
                 href={item.href || "#"}
-                className={`text-sm font-normal transition-colors duration-200 ${
+                className={`text-base font-normal transition-colors duration-200 ${
                   isActive
                     ? "text-white font-medium relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#782BFF] after:rounded-full"
                     : "text-[#D5D0E5] hover:text-white"
