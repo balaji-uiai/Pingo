@@ -69,8 +69,7 @@ export const Navbar: React.FC = () => {
               );
             }
 
-            const isActive =
-              item.href === "/about" && pathname === "/about";
+            const isActive = item.href === pathname;
 
             return (
               <Link
@@ -140,8 +139,7 @@ export const Navbar: React.FC = () => {
                 );
               }
 
-              const isActive =
-                item.href === "/about" && pathname === "/about";
+              const isActive = item.href === pathname;
 
               return (
                 <Link

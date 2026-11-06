@@ -29,7 +29,7 @@ export const footerData = {
       links: [
         { label: "Documentation", href: "#docs" },
         { label: "FAQs", href: "#faqs" },
-        { label: "Contact Us", href: "#contact" },
+        { label: "Contact Us", href: "/contact" },
       ],
     },
     {

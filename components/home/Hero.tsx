@@ -35,14 +35,6 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* Left Column: Hero Copy */}
           <div className="lg:col-span-6 xl:col-span-7 space-y-6 sm:space-y-8 z-10">
-            {/* Pill Tag */}
-            <div>
-              <div className="pill-badge">
-                <span className="pill-dot" />
-                <span>A BETTER WAY TO CONNECT</span>
-              </div>
-            </div>
-
             {/* Main Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-[3.75rem] font-bold tracking-tight text-white leading-[1.12]">
               Real-time answers.{" "}
@@ -213,7 +205,7 @@ export const Hero: React.FC = () => {
                   Close
                 </button>
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   onClick={() => setDemoOpen(false)}
                   className="px-5 py-2 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-[#782BFF] to-[#4C16B8] hover:from-[#8938FF] hover:to-[#5B1DDE] transition-all shadow-md shadow-purple-900/30"
                 >

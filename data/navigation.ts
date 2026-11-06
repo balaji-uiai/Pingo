@@ -61,12 +61,12 @@ export const navigationItems: NavItem[] = [
   },
   {
     label: "Contact Us",
-    href: "/#contact",
+    href: "/contact",
   },
 ];
 
 export const navbarCta = {
   label: "Get Started",
-  href: "/#contact",
+  href: "/contact",
 };
 

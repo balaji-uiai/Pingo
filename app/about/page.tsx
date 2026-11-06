@@ -6,7 +6,6 @@ import VisionSection from "@/components/about/VisionSection";
 import MissionSection from "@/components/about/MissionSection";
 import WhoWeAre from "@/components/about/WhoWeAre";
 import WhyPingo from "@/components/about/WhyPingo";
-import ContactSection from "@/components/about/ContactSection";
 
 export const metadata: Metadata = {
   title: "About Pingo – Smarter Conversations. Better Connections.",
@@ -23,7 +22,6 @@ export default function AboutPage() {
       <MissionSection />
       <WhoWeAre />
       <WhyPingo />
-      <ContactSection />
     </div>
   );
 }
