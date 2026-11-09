@@ -11,50 +11,53 @@ export interface FooterSection {
 export interface SocialLink {
   platform: string;
   href: string;
-  iconName: "Linkedin" | string;
   ariaLabel: string;
+  iconName: "Linkedin";
 }
 
 export const footerData = {
   brand: {
     name: "Pingo",
-    tagline:
-      "Pingo is a customizable, AI-powered live chat platform designed to help businesses connect with customers and deliver smarter communication experiences.",
+    tagline: "Smart Conversations. Stronger Business.",
   },
   socialLinks: [
     {
       platform: "LinkedIn",
-      href: "https://www.linkedin.com/company/uiai/",
-      iconName: "Linkedin",
+      href: "https://www.linkedin.com/company/uiai-technologies/",
       ariaLabel: "Follow UIAI Technologies on LinkedIn",
+      iconName: "Linkedin",
     },
   ] as SocialLink[],
   sections: [
     {
-      title: "Explore",
+      title: "Navigation",
       links: [
-        { label: "About Pingo", href: "/about" },
+        { label: "Home", href: "/" },
+        { label: "About", href: "/about" },
         { label: "Features", href: "/#features" },
         { label: "Solutions", href: "/#solutions" },
-        { label: "Pricing", href: "/#pricing" },
+        { label: "Pricing", href: "/pricing" },
+        { label: "Contact", href: "/contact" },
       ],
     },
     {
       title: "Resources",
       links: [
         { label: "Documentation", href: "#docs" },
-        { label: "FAQs", href: "#faqs" },
-        { label: "Contact Us", href: "/contact" },
+        { label: "Help Center", href: "#help" },
+        { label: "FAQs", href: "/pricing#faq" },
+        { label: "Contact Support", href: "/contact" },
       ],
     },
     {
-      title: "Legal",
+      title: "Legal & Company",
       links: [
         { label: "Privacy Policy", href: "#privacy" },
-        { label: "Terms & Conditions", href: "#terms" },
+        { label: "Terms of Service", href: "#terms" },
+        { label: "Help", href: "#help" },
+        { label: "UIAI Technologies", href: "https://uiai.in" },
       ],
     },
   ] as FooterSection[],
-  copyright: "© 2026 Pingo. All rights reserved.",
+  copyright: `© ${new Date().getFullYear()} Pingo by UIAI Technologies. All rights reserved.`,
 };
-

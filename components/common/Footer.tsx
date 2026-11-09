@@ -10,13 +10,13 @@ const socialIconMap: Record<string, LucideIcon> = {
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-[#080711] border-t border-white/[0.06] pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-[#09071A] text-white border-t border-white/[0.08] pt-16 pb-12 overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#782BFF]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#4C16B8]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#782BFF]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-[#4C16B8]/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 pb-14 border-b border-white/[0.06]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 pb-14 border-b border-white/[0.08]">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4 pr-0 lg:pr-8">
             <Link
@@ -43,12 +43,12 @@ export const Footer: React.FC = () => {
               {footerData.brand.tagline}
             </p>
 
-            <div className="pt-2 flex items-center gap-2 text-xs text-[#D5D0E5]/60">
+            <div className="pt-1 flex items-center gap-2 text-xs text-[#D5D0E5]/60">
               <span className="inline-block w-2 h-2 rounded-full bg-[#B5FF45] animate-pulse" />
               <span>AI Chat & Customer Management Platform</span>
             </div>
 
-            {/* Reusable Social Media Links */}
+            {/* Social Media Icons */}
             {footerData.socialLinks && footerData.socialLinks.length > 0 && (
               <div className="pt-2 flex items-center gap-3">
                 {footerData.socialLinks.map((social) => {
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.ariaLabel}
-                      className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/[0.04] hover:bg-[#782BFF]/25 border border-white/10 hover:border-violet-500/40 text-[#D5D0E5] hover:text-white transition-all duration-200 hover:scale-105 shadow-sm group"
+                      className="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-white/[0.05] hover:bg-[#782BFF]/25 border border-white/10 hover:border-purple-400 text-[#D5D0E5] hover:text-white transition-all duration-200 hover:scale-105 shadow-sm group"
                     >
                       <Icon className="w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
                     </a>
@@ -92,15 +92,23 @@ export const Footer: React.FC = () => {
           ))}
         </div>
 
-        {/* Bottom Bar: Copyright & Subtle Status */}
+        {/* Bottom Bar: Copyright & Subtle Separators */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#D5D0E5]/70">
           <p>{footerData.copyright}</p>
-          <div className="flex items-center gap-6">
-            <span className="hover:text-white transition-colors">Privacy First</span>
-            <span>•</span>
-            <span className="hover:text-white transition-colors">Enterprise Ready</span>
-            <span>•</span>
-            <span className="hover:text-white transition-colors">UIAI Technologies</span>
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+            <Link href="#privacy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-white/20">•</span>
+            <Link href="#terms" className="hover:text-white transition-colors">
+              Terms of Service
+            </Link>
+            <span className="text-white/20">•</span>
+            <Link href="#help" className="hover:text-white transition-colors">
+              Help
+            </Link>
+            <span className="text-white/20">•</span>
+            <span className="text-[#D5D0E5]/50">UIAI Technologies</span>
           </div>
         </div>
       </div>
@@ -109,4 +117,3 @@ export const Footer: React.FC = () => {
 };
 
 export default Footer;
-

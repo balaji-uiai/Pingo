@@ -54,6 +54,10 @@ html {
   scroll-behavior: smooth;
 }
 
+html.light {
+  color-scheme: light;
+}
+
 body {
   background-color: var(--bg-midnight);
   color: var(--color-white);
@@ -92,7 +96,7 @@ body {
 /* Primary Glass Button */
 .btn-primary {
   background: linear-gradient(135deg, #782BFF 0%, #4C16B8 100%);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 4px 20px rgba(120, 43, 255, 0.45);
   transition: all var(--transition-normal);
@@ -151,7 +155,7 @@ body {
   border-radius: var(--radius-full);
   background: rgba(181, 255, 69, 0.08);
   border: 1px solid rgba(181, 255, 69, 0.28);
-  color: var(--neon-green);
+  color: var(--neon-green) !important;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -190,7 +194,7 @@ body {
   background: #393166;
 }
 
-/* Subtle Floating Animations */
+/* Floating Animations */
 @keyframes floatSlow {
   0%, 100% {
     transform: translateY(0px);
@@ -219,4 +223,96 @@ body {
   animation: pulseGlow 7s ease-in-out infinite;
 }
 
+/* ==========================================================
+   Light Mode SaaS Theme
+   ========================================================== */
+html.light body {
+  background-color: #F8F9FD !important;
+  color: #0F172A !important;
+}
 
+html.light ::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Smooth Theme Transitions */
+body,
+header,
+footer,
+section,
+nav,
+div,
+button,
+a,
+span,
+h1,
+h2,
+h3,
+p,
+input,
+textarea {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Clean Light Mode Headings and Typography */
+html.light h1 {
+  color: #0F172A;
+}
+
+html.light h2 {
+  color: #0F172A;
+}
+
+html.light h3 {
+  color: #0F172A;
+}
+
+html.light p {
+  color: #475569;
+}
+
+/* Light Mode Overrides for Dark Containers */
+html.light [class*="141126"],
+html.light [class*="100D1D"] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+html.light [class*="border-white"] {
+  border-color: #E2E8F0 !important;
+}
+
+html.light .text-white {
+  color: #0F172A;
+}
+
+/* Preserved Buttons, Pills, Badges and Gradients */
+html.light button.btn-primary,
+html.light a.btn-primary,
+html.light .btn-primary *,
+html.light [class*="bg-gradient-to-r from-[#782BFF]"],
+html.light [class*="bg-gradient-to-r from-[#782BFF]"] *,
+html.light .pill-badge,
+html.light .pill-badge * {
+  color: #FFFFFF !important;
+}
+
+/* Soften ambient glows in Light Mode */
+html.light .blur-\[140px\],
+html.light .blur-\[130px\],
+html.light .blur-\[120px\],
+html.light .blur-\[110px\],
+html.light .blur-\[100px\] {
+  opacity: 0.35 !important;
+}

@@ -57,7 +57,7 @@ export const navigationItems: NavItem[] = [
   },
   {
     label: "Pricing",
-    href: "/#pricing",
+    href: "/pricing",
   },
   {
     label: "Contact Us",
@@ -69,4 +69,3 @@ export const navbarCta = {
   label: "Get Started",
   href: "/contact",
 };
-
