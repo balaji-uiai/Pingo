@@ -3,6 +3,7 @@ import Hero from "@/components/home/Hero";
 import StatisticsSection from "@/components/home/StatisticsSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import CustomerJourneySection from "@/components/home/CustomerJourneySection";
+import ProductFeatures from "@/components/home/ProductFeatures";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <StatisticsSection />
       <HowItWorksSection />
       <CustomerJourneySection />
+      <ProductFeatures />
     </div>
   );
 }
