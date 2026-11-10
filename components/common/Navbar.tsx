@@ -60,7 +60,7 @@ export const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7 lg:gap-9">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-7 xl:gap-8">
           {navigationItems.map((item) => {
             if (item.isDropdown) {
               if (item.label === "Solutions") {

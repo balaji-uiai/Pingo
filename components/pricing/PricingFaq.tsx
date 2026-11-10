@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus, Minus } from "lucide-react";
 import { pricingFaqData, FaqSectionData } from "@/data/faq";
 
@@ -19,12 +19,38 @@ export const PricingFaq: React.FC<PricingFaqProps> = ({
     setOpenId((prev) => (prev === id ? null : id));
   };
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const scrollToPricingFaq = () => {
+      const hash = window.location.hash;
+      if (hash === "#pricing-faq" || hash === "#faq") {
+        const el =
+          document.getElementById("pricing-faq") || document.getElementById("faq");
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    };
+
+    const timer1 = setTimeout(scrollToPricingFaq, 100);
+    const timer2 = setTimeout(scrollToPricingFaq, 400);
+
+    window.addEventListener("hashchange", scrollToPricingFaq);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      window.removeEventListener("hashchange", scrollToPricingFaq);
+    };
+  }, []);
+
   return (
     <section
-      id="faq"
+      id="pricing-faq"
       aria-label="Frequently Asked Questions"
-      className={`w-full bg-[#F5F6FF] dark:bg-[#101326] border-y border-[#E5E7F0] dark:border-[#292D45] transition-colors duration-200 ${className}`}
+      className={`w-full bg-[#F5F6FF] dark:bg-[#101326] border-y border-[#E5E7F0] dark:border-[#292D45] transition-colors duration-200 scroll-mt-24 sm:scroll-mt-28 ${className}`}
     >
+      <div id="faq" className="scroll-mt-24 sm:scroll-mt-28" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28">
         {/* FAQ Header */}
         <div className="text-center mb-14 sm:mb-16 space-y-3.5">

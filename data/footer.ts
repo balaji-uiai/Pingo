@@ -34,8 +34,8 @@ export const footerData = {
       links: [
         { label: "Home", href: "/" },
         { label: "About", href: "/about" },
-        { label: "Features", href: "/#features" },
-        { label: "Solutions", href: "/#solutions" },
+        { label: "Features", href: "/features/ai-automation" },
+        { label: "Solutions", href: "/solutions/customer-support" },
         { label: "Pricing", href: "/pricing" },
         { label: "Contact", href: "/contact" },
       ],
@@ -45,7 +45,7 @@ export const footerData = {
       links: [
         { label: "Documentation", href: "#docs" },
         { label: "Help Center", href: "#help" },
-        { label: "FAQs", href: "/pricing#faq" },
+        { label: "FAQ", href: "/pricing#pricing-faq" },
         { label: "Contact Support", href: "/contact" },
       ],
     },

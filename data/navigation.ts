@@ -13,11 +13,16 @@ export interface NavItem {
 
 export const navigationItems: NavItem[] = [
   {
+    label: "Home",
+    href: "/",
+  },
+  {
     label: "About",
     href: "/about",
   },
   {
     label: "Features",
+    href: "/features/ai-automation",
     isDropdown: true,
     dropdownItems: [
       {
@@ -80,6 +85,7 @@ export const navigationItems: NavItem[] = [
   },
   {
     label: "Solutions",
+    href: "/solutions/customer-support",
     isDropdown: true,
     dropdownItems: [
       {
@@ -131,7 +137,7 @@ export const navigationItems: NavItem[] = [
     href: "/pricing",
   },
   {
-    label: "Contact Us",
+    label: "Contact",
     href: "/contact",
   },
 ];

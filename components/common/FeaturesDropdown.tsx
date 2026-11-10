@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   ChevronDown,
   Bot,
@@ -110,6 +111,9 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const pathname = usePathname();
+
+  const isFeaturesActive = pathname?.startsWith("/features") || false;
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -126,6 +130,12 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setIsOpen(false);
+    setFocusedIndex(-1);
+  }, [pathname]);
 
   // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -161,19 +171,35 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
   if (isMobile) {
     return (
       <div className="w-full">
-        <button
-          type="button"
-          onClick={() => setIsOpen((prev) => !prev)}
-          className="flex items-center justify-between w-full py-2 text-base font-medium text-[#171B2E] dark:text-[#FFFFFF] transition-colors"
-          aria-expanded={isOpen}
-        >
-          <span>Features</span>
-          <ChevronDown
-            className={`w-4 h-4 transition-transform duration-200 ${
-              isOpen ? "rotate-180 text-[#782BFF]" : "text-[#62677D] dark:text-[#B5BAD0]"
+        <div className="flex items-center justify-between w-full py-2">
+          <Link
+            href="/features/ai-automation"
+            onClick={() => {
+              setIsOpen(false);
+              if (onItemSelect) onItemSelect();
+            }}
+            className={`text-base font-medium transition-colors ${
+              isFeaturesActive
+                ? "text-[#171B2E] dark:text-[#FFFFFF] font-semibold"
+                : "text-[#62677D] hover:text-[#171B2E] dark:text-[#B5BAD0] dark:hover:text-[#FFFFFF]"
             }`}
-          />
-        </button>
+          >
+            Features
+          </Link>
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            className="p-2 text-[#62677D] dark:text-[#B5BAD0] hover:text-[#171B2E] dark:hover:text-white transition-colors"
+            aria-expanded={isOpen}
+            aria-label="Toggle Features dropdown"
+          >
+            <ChevronDown
+              className={`w-4 h-4 transition-transform duration-200 ${
+                isOpen ? "rotate-180 text-[#635BFF]" : "text-[#62677D] dark:text-[#B5BAD0]"
+              }`}
+            />
+          </button>
+        </div>
 
         {isOpen && (
           <div className="pl-2 pr-1 py-2 space-y-1 bg-[#F5F6FA] dark:bg-[#101326] rounded-xl mt-1 border border-[#E5E7F0] dark:border-[#292D45] animate-fadeIn max-h-[60vh] overflow-y-auto no-scrollbar">
@@ -242,25 +268,38 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
       }}
       onKeyDown={handleKeyDown}
     >
-      <button
-        ref={triggerRef}
-        type="button"
-        onClick={() => setIsOpen((prev) => !prev)}
-        className={`flex items-center gap-1.5 py-2 px-2 text-base font-normal rounded-lg transition-all duration-200 cursor-pointer ${
-          isOpen
-            ? "text-[#171B2E] dark:text-[#FFFFFF] font-medium"
-            : "text-[#62677D] hover:text-[#171B2E] dark:text-[#B5BAD0] dark:hover:text-[#FFFFFF]"
-        }`}
-        aria-expanded={isOpen}
-        aria-haspopup="true"
-      >
-        <span>Features</span>
-        <ChevronDown
-          className={`w-3.5 h-3.5 transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-[#782BFF]" : "text-[#62677D] dark:text-[#B5BAD0]"
+      <div className="flex items-center gap-0.5">
+        <Link
+          href="/features/ai-automation"
+          onClick={() => {
+            setIsOpen(false);
+            if (onItemSelect) onItemSelect();
+          }}
+          className={`py-2 px-1 text-base font-normal transition-colors duration-200 cursor-pointer ${
+            isFeaturesActive
+              ? "text-[#171B2E] dark:text-[#FFFFFF] font-medium relative after:content-[''] after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-[2px] after:bg-[#635BFF] after:rounded-full"
+              : isOpen
+              ? "text-[#171B2E] dark:text-[#FFFFFF] font-medium"
+              : "text-[#62677D] hover:text-[#171B2E] dark:text-[#B5BAD0] dark:hover:text-[#FFFFFF]"
           }`}
-        />
-      </button>
+        >
+          Features
+        </Link>
+        <button
+          ref={triggerRef}
+          type="button"
+          onClick={() => setIsOpen((prev) => !prev)}
+          className="p-1 rounded-md text-[#62677D] hover:text-[#171B2E] dark:text-[#B5BAD0] dark:hover:text-[#FFFFFF] transition-colors cursor-pointer"
+          aria-expanded={isOpen}
+          aria-label="Toggle Features dropdown"
+        >
+          <ChevronDown
+            className={`w-3.5 h-3.5 transition-transform duration-200 ${
+              isOpen ? "rotate-180 text-[#635BFF]" : ""
+            }`}
+          />
+        </button>
+      </div>
 
       {/* Dropdown Menu Container (2 Columns) */}
       <div
