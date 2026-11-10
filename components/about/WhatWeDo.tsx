@@ -23,7 +23,7 @@ export const WhatWeDo: React.FC = () => {
   const { whatWeDo } = aboutData;
 
   return (
-    <section className="relative py-20 bg-[#100D1D]/50 border-y border-white/[0.05]">
+    <section className="relative py-20 bg-[#F5F6FF] dark:bg-[#101326] border-y border-[#E5E7F0] dark:border-[#292D45] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-block">
@@ -33,11 +33,11 @@ export const WhatWeDo: React.FC = () => {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#171B2E] dark:text-[#FFFFFF]">
             {whatWeDo.heading}
           </h2>
 
-          <p className="text-base sm:text-lg text-[#D5D0E5]">
+          <p className="text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0]">
             {whatWeDo.subheading}
           </p>
         </div>
@@ -50,17 +50,17 @@ export const WhatWeDo: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className="group relative p-7 rounded-2xl bg-[#141126]/60 backdrop-blur-md border border-white/[0.08] hover:border-violet-500/40 hover:bg-[#181432]/75 transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:-translate-y-1"
+                className="group relative p-7 rounded-2xl bg-[#FFFFFF] dark:bg-[#171A2E] border border-[#E5E7F0] dark:border-[#292D45] hover:border-[#635BFF]/50 transition-all duration-300 shadow-sm dark:shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:-translate-y-1"
               >
-                <div className="w-12 h-12 rounded-xl bg-purple-600/15 border border-purple-500/25 flex items-center justify-center text-violet-300 group-hover:text-white group-hover:bg-[#782BFF]/30 group-hover:border-violet-400/50 transition-all duration-300 mb-5">
+                <div className="w-12 h-12 rounded-xl bg-[#635BFF]/10 text-[#635BFF] dark:bg-[#635BFF]/20 dark:text-[#20C5D8] border border-[#635BFF]/20 flex items-center justify-center transition-all duration-300 mb-5">
                   <Icon className="w-6 h-6" />
                 </div>
 
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-violet-200 transition-colors">
+                <h3 className="text-lg font-semibold text-[#171B2E] dark:text-[#FFFFFF] mb-2 group-hover:text-[#635BFF] dark:group-hover:text-[#20C5D8] transition-colors">
                   {item.title}
                 </h3>
 
-                <p className="text-sm text-[#D5D0E5] leading-relaxed">
+                <p className="text-sm text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -73,4 +73,3 @@ export const WhatWeDo: React.FC = () => {
 };
 
 export default WhatWeDo;
-

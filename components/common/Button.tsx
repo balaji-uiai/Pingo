@@ -32,7 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
   const sizeClasses = {
     sm: "px-4 py-2 text-xs",
     md: "px-5 py-2.5 text-sm",
-    lg: "px-7 py-3.5 text-base font-medium",
+    lg: "px-7 py-3.5 text-base font-semibold",
   }[size];
 
   let variantClass = "btn-primary";
@@ -40,13 +40,13 @@ export const Button: React.FC<ButtonProps> = ({
     variantClass = "btn-secondary";
   } else if (variant === "glass") {
     variantClass =
-      "bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-violet-500/40 backdrop-blur-md rounded-full transition-all duration-300";
+      "bg-[#F5F6FA]/80 dark:bg-[#171A2E]/80 text-[#171B2E] dark:text-[#FFFFFF] border border-[#E5E7F0] dark:border-[#292D45] hover:border-[#635BFF] backdrop-blur-md rounded-full transition-all duration-200";
   } else if (variant === "ghost") {
     variantClass =
-      "text-brand-muted hover:text-white hover:bg-white/[0.05] rounded-full transition-all duration-200";
+      "text-[#62677D] hover:text-[#171B2E] dark:text-[#B5BAD0] dark:hover:text-[#FFFFFF] hover:bg-[#F5F6FF] dark:hover:bg-[#101326] rounded-full transition-all duration-200";
   } else if (variant === "neon") {
     variantClass =
-      "bg-[#B5FF45] text-[#080711] font-semibold hover:bg-[#c6ff6d] shadow-[0_0_20px_rgba(181,255,69,0.4)] rounded-full transition-all duration-200";
+      "bg-[#20C5D8] text-[#0B0D19] font-semibold hover:bg-[#1AB0C2] shadow-[0_0_20px_rgba(32,197,216,0.4)] rounded-full transition-all duration-200";
   }
 
   const content = (
@@ -83,4 +83,3 @@ export const Button: React.FC<ButtonProps> = ({
 };
 
 export default Button;
-

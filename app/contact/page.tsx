@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="relative">
+    <div className="relative bg-[#FFFFFF] dark:bg-[#0B0D19] transition-colors duration-200">
       <ContactSection />
       <EnquirySection />
     </div>

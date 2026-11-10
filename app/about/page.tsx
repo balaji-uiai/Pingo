@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="relative">
+    <div className="relative bg-[#FFFFFF] dark:bg-[#0B0D19] transition-colors duration-200">
       <AboutHero />
       <WhatWeDo />
       <VisionSection />
@@ -25,4 +25,3 @@ export default function AboutPage() {
     </div>
   );
 }
-

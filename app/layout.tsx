@@ -73,7 +73,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-slate-50 text-slate-900 dark:bg-[#080711] dark:text-white min-h-screen flex flex-col selection:bg-[#782BFF]/30 selection:text-white transition-colors duration-300">
+      <body className="bg-[#FFFFFF] text-[#171B2E] dark:bg-[#0B0D19] dark:text-[#FFFFFF] min-h-screen flex flex-col selection:bg-[#635BFF]/30 selection:text-white transition-colors duration-200">
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

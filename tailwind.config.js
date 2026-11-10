@@ -10,28 +10,58 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: {
-          DEFAULT: "#080711",
-          secondary: "#100D1D",
-          card: "#141126",
-        },
+        // Shared Brand Colors
         brand: {
-          purple: "#782BFF",
-          violet: "#A855F7",
-          deep: "#4C16B8",
-          neon: "#B5FF45",
-          white: "#FFFFFF",
-          muted: "#D5D0E5",
+          violet: "#635BFF",
+          blue: "#3984FF",
+          cyan: "#20C5D8",
+          DEFAULT: "#635BFF",
+        },
+        // Theme Colors
+        theme: {
+          bg: "var(--theme-bg)",
+          section: "var(--theme-section)",
+          card: "var(--theme-card)",
+          text: "var(--theme-text-primary)",
+          secondary: "var(--theme-text-secondary)",
+          border: "var(--theme-border)",
+        },
+        // Exact Palettes
+        pingo: {
+          light: {
+            bg: "#FFFFFF",
+            section: "#F5F6FF",
+            card: "#F5F6FA",
+            text: "#171B2E",
+            secondary: "#62677D",
+            border: "#E5E7F0",
+          },
+          dark: {
+            bg: "#0B0D19",
+            section: "#101326",
+            card: "#171A2E",
+            text: "#FFFFFF",
+            secondary: "#B5BAD0",
+            border: "#292D45",
+          },
         },
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        sans: [
+          "var(--font-sans)",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
       },
       boxShadow: {
-        glass: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
-        "glass-subtle": "0 4px 20px 0 rgba(120, 43, 255, 0.12)",
-        "purple-glow": "0 0 25px -5px rgba(120, 43, 255, 0.4)",
-        "neon-glow": "0 0 15px -3px rgba(181, 255, 69, 0.35)",
+        glow: "0 0 25px -5px rgba(99, 91, 255, 0.4)",
+        "glow-cyan": "0 0 20px -3px rgba(32, 197, 216, 0.35)",
+        card: "0 10px 30px -10px rgba(0, 0, 0, 0.08)",
+        "card-dark": "0 12px 35px -10px rgba(0, 0, 0, 0.5)",
       },
       backdropBlur: {
         xs: "2px",

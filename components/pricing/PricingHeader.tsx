@@ -16,10 +16,10 @@ export const PricingHeader: React.FC<PricingHeaderProps> = ({ badge }) => {
         </span>
       </div>
 
-      {/* Main Heading with "Every Stage" highlighted in blue-purple gradient */}
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.18]">
+      {/* Main Heading with "Every Stage" highlighted in AI SaaS brand gradient */}
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] leading-[1.18]">
         The Right Plan for{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#782BFF] via-[#8F47FF] to-[#4C16B8]">
+        <span className="bg-gradient-to-r from-[#635BFF] via-[#3984FF] to-[#20C5D8] bg-clip-text text-transparent">
           Every Stage
         </span>{" "}
         of Growth

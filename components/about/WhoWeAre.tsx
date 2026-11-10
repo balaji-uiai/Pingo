@@ -6,7 +6,7 @@ export const WhoWeAre: React.FC = () => {
   const { whoWeAre } = aboutData;
 
   return (
-    <section className="relative py-20 bg-[#100D1D]/40 border-y border-white/[0.05]">
+    <section className="relative py-20 bg-[#F5F6FF] dark:bg-[#101326] border-y border-[#E5E7F0] dark:border-[#292D45] transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Heading and Details */}
@@ -18,13 +18,12 @@ export const WhoWeAre: React.FC = () => {
               </div>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#171B2E] dark:text-[#FFFFFF]">
               {whoWeAre.heading}
             </h2>
 
-            <div className="space-y-4 text-base text-[#D5D0E5] leading-relaxed">
+            <div className="space-y-4 text-base text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
               {whoWeAre.paragraphs.map((p, idx) => {
-                // Highlight UIAI Technologies
                 const parts = p.split("UIAI Technologies");
                 return (
                   <p key={idx}>
@@ -32,7 +31,7 @@ export const WhoWeAre: React.FC = () => {
                       <React.Fragment key={pIdx}>
                         {part}
                         {pIdx < parts.length - 1 && (
-                          <span className="font-semibold text-white underline decoration-violet-500/50 underline-offset-4">
+                          <span className="font-semibold text-[#171B2E] dark:text-[#FFFFFF] underline decoration-[#635BFF]/50 underline-offset-4">
                             UIAI Technologies
                           </span>
                         )}
@@ -44,40 +43,47 @@ export const WhoWeAre: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: UIAI Technologies Glass Showcase */}
+          {/* Right Column: UIAI Technologies Showcase */}
           <div className="lg:col-span-5">
-            <div className="relative p-8 rounded-3xl bg-[#141126]/80 backdrop-blur-xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] space-y-6">
-              <div className="flex items-center gap-4 pb-5 border-b border-white/10">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#782BFF]/30 to-[#4C16B8]/50 border border-violet-400/30 flex items-center justify-center text-violet-300">
+            <div className="relative p-8 rounded-3xl bg-[#FFFFFF] dark:bg-[#171A2E] border border-[#E5E7F0] dark:border-[#292D45] shadow-lg dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] space-y-6">
+              <div className="flex items-center gap-4 pb-5 border-b border-[#E5E7F0] dark:border-[#292D45]">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#635BFF]/15 to-[#3984FF]/25 border border-[#635BFF]/30 flex items-center justify-center text-[#635BFF] dark:text-[#20C5D8]">
                   <Building2 className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white tracking-wide">
+                  <h3 className="text-lg font-bold text-[#171B2E] dark:text-[#FFFFFF] tracking-wide">
                     UIAI Technologies
                   </h3>
-                  <p className="text-xs text-[#D5D0E5]/70">
+                  <p className="text-xs text-[#62677D] dark:text-[#B5BAD0]">
                     Parent Technology & Innovation Hub
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-start gap-3 text-xs text-[#D5D0E5]">
-                  <Shield className="w-4 h-4 text-[#B5FF45] mt-0.5 flex-shrink-0" />
-                  <span>
-                    Backed by institutional technical engineering, secure infrastructure, and dedicated enterprise support.
-                  </span>
+              <div className="space-y-3.5">
+                <div className="p-4 rounded-xl bg-[#F5F6FA] dark:bg-[#101326] border border-[#E5E7F0] dark:border-[#292D45] flex items-start gap-3">
+                  <Cpu className="w-5 h-5 text-[#635BFF] dark:text-[#20C5D8] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#171B2E] dark:text-[#FFFFFF]">
+                      AI Innovation
+                    </h4>
+                    <p className="text-xs text-[#62677D] dark:text-[#B5BAD0] mt-0.5">
+                      Pioneering intelligent software systems for businesses worldwide.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3 text-xs text-[#D5D0E5]">
-                  <Cpu className="w-4 h-4 text-violet-400 mt-0.5 flex-shrink-0" />
-                  <span>
-                    Deep domain research in artificial intelligence, conversational NLP, and scalable microservices.
-                  </span>
-                </div>
-              </div>
 
-              <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-500/15 text-xs text-purple-200/90 leading-relaxed">
-                Building solutions that make a meaningful difference in how businesses connect with their customers.
+                <div className="p-4 rounded-xl bg-[#F5F6FA] dark:bg-[#101326] border border-[#E5E7F0] dark:border-[#292D45] flex items-start gap-3">
+                  <Shield className="w-5 h-5 text-[#3984FF] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#171B2E] dark:text-[#FFFFFF]">
+                      Enterprise Security
+                    </h4>
+                    <p className="text-xs text-[#62677D] dark:text-[#B5BAD0] mt-0.5">
+                      Built with uncompromising data privacy and resilient infrastructure.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -88,4 +94,3 @@ export const WhoWeAre: React.FC = () => {
 };
 
 export default WhoWeAre;
-

@@ -31,7 +31,7 @@ export const EnquirySection: React.FC<EnquirySectionProps> = ({
       className={`relative py-16 sm:py-20 lg:py-24 overflow-hidden ${className}`}
     >
       {/* Background ambient radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#782BFF]/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#635BFF]/8 dark:bg-[#635BFF]/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 sm:px-8 relative z-10">
         {/* Section Header */}
@@ -45,12 +45,12 @@ export const EnquirySection: React.FC<EnquirySectionProps> = ({
             </div>
           )}
 
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] leading-tight">
             {data.heading}
           </h2>
 
           {data.subheading && (
-            <p className="text-sm sm:text-base text-slate-600 dark:text-[#D5D0E5] leading-relaxed">
+            <p className="text-sm sm:text-base text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
               {data.subheading}
             </p>
           )}
@@ -63,29 +63,29 @@ export const EnquirySection: React.FC<EnquirySectionProps> = ({
             const isClickable = Boolean(item.href);
 
             const cardContent = (
-              <div className="group relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#141126]/60 backdrop-blur-xl border border-slate-200/80 dark:border-white/[0.08] hover:border-purple-300 dark:hover:border-violet-500/40 hover:bg-slate-50 dark:hover:bg-[#181432]/75 transition-all duration-300 shadow-md dark:shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:shadow-xl dark:hover:shadow-[0_20px_45px_rgba(120,43,255,0.18)] hover:-translate-y-1 flex flex-col justify-between h-full">
+              <div className="group relative p-6 sm:p-7 rounded-2xl bg-[#F5F6FA] dark:bg-[#171A2E] border border-[#E5E7F0] dark:border-[#292D45] hover:border-[#635BFF]/50 hover:bg-[#FFFFFF] dark:hover:bg-[#1C2038] transition-all duration-300 shadow-sm dark:shadow-[0_12px_32px_rgba(0,0,0,0.45)] hover:shadow-md hover:-translate-y-1 flex flex-col justify-between h-full">
                 {/* Subtle top edge highlight */}
-                <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-purple-300/40 dark:via-white/15 to-transparent rounded-t-2xl pointer-events-none" />
+                <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#635BFF]/25 to-transparent rounded-t-2xl pointer-events-none" />
 
                 <div>
                   {/* Icon badge */}
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-[#782BFF]/15 to-[#4C16B8]/20 border border-violet-400/30 flex items-center justify-center text-purple-600 dark:text-violet-300 group-hover:text-purple-700 dark:group-hover:text-white group-hover:scale-105 transition-all duration-300 mb-4 shadow-sm">
+                  <div className="w-11 h-11 rounded-xl bg-[#635BFF]/10 text-[#635BFF] dark:bg-[#635BFF]/20 dark:text-[#20C5D8] border border-[#635BFF]/20 flex items-center justify-center group-hover:scale-105 transition-all duration-300 mb-4 shadow-sm">
                     <Icon className="w-5 h-5" />
                   </div>
 
                   {/* Field Label */}
-                  <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#D5D0E5]/70 mb-1">
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#62677D] dark:text-[#B5BAD0] mb-1">
                     {item.label}
                   </div>
 
                   {/* Value / Primary Info */}
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-violet-200 transition-colors">
+                  <h3 className="text-base font-bold text-[#171B2E] dark:text-[#FFFFFF] group-hover:text-[#635BFF] dark:group-hover:text-[#20C5D8] transition-colors">
                     {item.value}
                   </h3>
 
                   {/* Subtext */}
                   {item.subtext && (
-                    <p className="mt-1 text-xs text-slate-500 dark:text-[#D5D0E5]/70 leading-relaxed">
+                    <p className="mt-1 text-xs text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
                       {item.subtext}
                     </p>
                   )}
@@ -93,7 +93,7 @@ export const EnquirySection: React.FC<EnquirySectionProps> = ({
 
                 {/* Footer action indicator if clickable */}
                 {isClickable && (
-                  <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-xs font-medium text-purple-600 dark:text-violet-400 group-hover:text-purple-700 dark:group-hover:text-white transition-colors">
+                  <div className="mt-4 pt-3 border-t border-[#E5E7F0] dark:border-[#292D45] flex items-center justify-between text-xs font-medium text-[#635BFF] dark:text-[#20C5D8] group-hover:underline transition-colors">
                     <span>Connect directly</span>
                     <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </div>
@@ -106,7 +106,7 @@ export const EnquirySection: React.FC<EnquirySectionProps> = ({
                 <a
                   key={item.id}
                   href={item.href}
-                  className="block h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400 rounded-2xl"
+                  className="block h-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#635BFF] rounded-2xl"
                   aria-label={`${item.label}: ${item.value}`}
                 >
                   {cardContent}
