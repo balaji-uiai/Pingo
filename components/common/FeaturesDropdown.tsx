@@ -1,13 +1,17 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import {
   ChevronDown,
-  MessageSquare,
   Bot,
+  Database,
+  MessagesSquare,
+  Ticket,
+  Users,
+  BarChart3,
   Layers,
-  PhoneCall,
-  Blocks,
+  ShieldCheck,
   LucideIcon,
   Sparkles,
 } from "lucide-react";
@@ -27,43 +31,64 @@ interface FeaturesDropdownProps {
 
 const defaultItems: DropdownItem[] = [
   {
-    id: "live-chat",
-    title: "Live Chat",
-    description: "Instant real-time messaging with visitors and customers.",
-    iconName: "MessageSquare",
-  },
-  {
-    id: "ai-agents",
-    title: "AI Agents",
-    description: "Autonomous intelligence for automated, contextual answers.",
+    id: "ai-automation",
+    title: "AI Automation",
+    description: "Intelligent conversations and automated workflows.",
     iconName: "Bot",
   },
   {
-    id: "channels",
-    title: "Channels",
-    description: "Omnichannel customer engagement in a unified inbox.",
+    id: "knowledge-management",
+    title: "Knowledge Management",
+    description: "Your business knowledge, ready for every conversation.",
+    iconName: "Database",
+  },
+  {
+    id: "conversation-management",
+    title: "Conversation Management",
+    description: "Every conversation in one connected workspace.",
+    iconName: "MessagesSquare",
+  },
+  {
+    id: "helpdesk-ticketing",
+    title: "Helpdesk & Ticketing",
+    description: "Every issue tracked. Every resolution organized.",
+    iconName: "Ticket",
+  },
+  {
+    id: "customer-team-management",
+    title: "Customer & Team Management",
+    description: "The right people. The right conversations.",
+    iconName: "Users",
+  },
+  {
+    id: "analytics-intelligence",
+    title: "Analytics & Intelligence",
+    description: "Turn customer interactions into useful insights.",
+    iconName: "BarChart3",
+  },
+  {
+    id: "integrations-channels",
+    title: "Integrations & Channels",
+    description: "Connect Pingo with your existing ecosystem.",
     iconName: "Layers",
   },
   {
-    id: "voice-call",
-    title: "Voice Call",
-    description: "Seamless voice conversations right from your web interface.",
-    iconName: "PhoneCall",
-  },
-  {
-    id: "integrations",
-    title: "Integrations",
-    description: "Effortless connectivity with your CRM and tech stack.",
-    iconName: "Blocks",
+    id: "security-administration",
+    title: "Security & Administration",
+    description: "Control, protect, and manage your platform.",
+    iconName: "ShieldCheck",
   },
 ];
 
 const iconMap: Record<string, LucideIcon> = {
-  MessageSquare,
   Bot,
+  Database,
+  MessagesSquare,
+  Ticket,
+  Users,
+  BarChart3,
   Layers,
-  PhoneCall,
-  Blocks,
+  ShieldCheck,
 };
 
 export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
@@ -75,7 +100,7 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
   const [focusedIndex, setFocusedIndex] = useState<number>(-1);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -136,28 +161,29 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
           <span>Features</span>
           <ChevronDown
             className={`w-4 h-4 transition-transform duration-200 ${
-              isOpen ? "rotate-180 text-[#635BFF]" : "text-[#62677D] dark:text-[#B5BAD0]"
+              isOpen ? "rotate-180 text-[#782BFF]" : "text-[#62677D] dark:text-[#B5BAD0]"
             }`}
           />
         </button>
 
         {isOpen && (
-          <div className="pl-3 pr-1 py-2 space-y-1 bg-[#F5F6FA] dark:bg-[#101326] rounded-xl mt-1 border border-[#E5E7F0] dark:border-[#292D45] animate-fadeIn">
+          <div className="pl-2 pr-1 py-2 space-y-1 bg-[#F5F6FA] dark:bg-[#101326] rounded-xl mt-1 border border-[#E5E7F0] dark:border-[#292D45] animate-fadeIn max-h-[60vh] overflow-y-auto no-scrollbar">
             {items.map((item) => {
               const IconComponent =
                 item.iconName && iconMap[item.iconName]
                   ? iconMap[item.iconName]
                   : Sparkles;
               return (
-                <button
+                <Link
                   key={item.id}
-                  type="button"
+                  href="/#product-features"
                   onClick={() => {
+                    setIsOpen(false);
                     if (onItemSelect) onItemSelect();
                   }}
-                  className="flex items-center gap-3 w-full py-2 px-2 text-left rounded-lg hover:bg-[#F5F6FF] dark:hover:bg-[#171A2E] text-[#171B2E] dark:text-[#FFFFFF] transition-colors"
+                  className="flex items-center gap-3 w-full py-2 px-2 text-left rounded-lg hover:bg-white dark:hover:bg-[#171A2E] text-[#171B2E] dark:text-[#FFFFFF] transition-colors"
                 >
-                  <div className="w-7 h-7 rounded-md bg-[#635BFF]/10 dark:bg-[#635BFF]/20 border border-[#635BFF]/20 flex items-center justify-center text-[#635BFF] dark:text-[#20C5D8] flex-shrink-0">
+                  <div className="w-7 h-7 rounded-md bg-[#782BFF]/10 dark:bg-[#782BFF]/20 border border-[#782BFF]/20 flex items-center justify-center text-[#782BFF] dark:text-[#B5FF45] flex-shrink-0">
                     <IconComponent className="w-4 h-4" />
                   </div>
                   <div>
@@ -166,7 +192,7 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                       {item.description}
                     </div>
                   </div>
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -175,7 +201,7 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
     );
   }
 
-  // Desktop Hover + Keyboard Accessible Dropdown
+  // Desktop Hover + Keyboard Accessible 2-Column Dropdown
   return (
     <div
       ref={dropdownRef}
@@ -202,14 +228,14 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
         <span>Features</span>
         <ChevronDown
           className={`w-3.5 h-3.5 transition-transform duration-200 ${
-            isOpen ? "rotate-180 text-[#635BFF]" : "text-[#62677D] dark:text-[#B5BAD0]"
+            isOpen ? "rotate-180 text-[#782BFF]" : "text-[#62677D] dark:text-[#B5BAD0]"
           }`}
         />
       </button>
 
-      {/* Dropdown Menu Container */}
+      {/* Dropdown Menu Container (2 Columns) */}
       <div
-        className={`absolute left-0 top-full pt-2 w-72 z-50 transition-all duration-200 transform origin-top-left ${
+        className={`absolute -left-12 lg:-left-20 top-full pt-2 w-[540px] lg:w-[580px] z-50 transition-all duration-200 transform origin-top-left ${
           isOpen
             ? "opacity-100 scale-100 pointer-events-auto"
             : "opacity-0 scale-95 pointer-events-none"
@@ -217,46 +243,58 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
         role="menu"
         aria-orientation="vertical"
       >
-        <div className="p-2 rounded-2xl bg-[#FFFFFF] dark:bg-[#171A2E] border border-[#E5E7F0] dark:border-[#292D45] shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden">
-          {items.map((item, index) => {
-            const IconComponent =
-              item.iconName && iconMap[item.iconName]
-                ? iconMap[item.iconName]
-                : Sparkles;
+        <div className="p-3 rounded-2xl bg-white dark:bg-[#141126] border border-[#E5E7F0] dark:border-white/[0.08] shadow-2xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+          {/* Header Tagline */}
+          <div className="px-3 pt-1 pb-2 flex items-center justify-between border-b border-[#E5E7F0] dark:border-white/[0.06] mb-2">
+            <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#782BFF] dark:text-[#B5FF45]">
+              Pingo Core Modules
+            </span>
+            <span className="text-[11px] font-mono text-[#5E647E] dark:text-[#D5D0E5]/60">
+              8 Integrated Solutions
+            </span>
+          </div>
 
-            return (
-              <button
-                key={item.id}
-                ref={(el) => {
-                  itemRefs.current[index] = el;
-                }}
-                type="button"
-                role="menuitem"
-                tabIndex={isOpen ? 0 : -1}
-                onClick={() => {
-                  setIsOpen(false);
-                  if (onItemSelect) onItemSelect();
-                }}
-                className={`flex items-start gap-3 w-full p-2.5 rounded-xl text-left transition-all duration-200 group cursor-pointer ${
-                  focusedIndex === index
-                    ? "bg-[#F5F6FF] dark:bg-[#101326] text-[#635BFF] dark:text-white"
-                    : "hover:bg-[#F5F6FF] dark:hover:bg-[#101326] text-[#171B2E] dark:text-[#FFFFFF]"
-                }`}
-              >
-                <div className="w-8 h-8 rounded-lg bg-[#635BFF]/10 dark:bg-[#635BFF]/20 border border-[#635BFF]/20 flex items-center justify-center text-[#635BFF] dark:text-[#20C5D8] group-hover:scale-105 transition-all flex-shrink-0 mt-0.5">
-                  <IconComponent className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-[#171B2E] dark:text-[#FFFFFF] group-hover:text-[#635BFF] dark:group-hover:text-[#20C5D8] transition-colors">
-                    {item.title}
+          <div className="grid grid-cols-2 gap-1.5">
+            {items.map((item, index) => {
+              const IconComponent =
+                item.iconName && iconMap[item.iconName]
+                  ? iconMap[item.iconName]
+                  : Sparkles;
+
+              return (
+                <Link
+                  key={item.id}
+                  href="/#product-features"
+                  ref={(el) => {
+                    itemRefs.current[index] = el;
+                  }}
+                  role="menuitem"
+                  tabIndex={isOpen ? 0 : -1}
+                  onClick={() => {
+                    setIsOpen(false);
+                    if (onItemSelect) onItemSelect();
+                  }}
+                  className={`flex items-start gap-3 p-2.5 rounded-xl text-left transition-all duration-150 group cursor-pointer ${
+                    focusedIndex === index
+                      ? "bg-purple-50 dark:bg-white/[0.08] text-[#782BFF] dark:text-white"
+                      : "hover:bg-purple-50/70 dark:hover:bg-white/[0.05] text-[#171B2E] dark:text-[#FFFFFF]"
+                  }`}
+                >
+                  <div className="w-8 h-8 rounded-lg bg-[#782BFF]/10 dark:bg-[#782BFF]/20 border border-[#782BFF]/20 flex items-center justify-center text-[#782BFF] dark:text-[#B5FF45] group-hover:scale-105 transition-all flex-shrink-0 mt-0.5">
+                    <IconComponent className="w-4 h-4" />
                   </div>
-                  <div className="text-xs text-[#62677D] dark:text-[#B5BAD0] line-clamp-1 mt-0.5">
-                    {item.description}
+                  <div>
+                    <div className="text-xs sm:text-sm font-semibold text-[#171B2E] dark:text-[#FFFFFF] group-hover:text-[#782BFF] dark:group-hover:text-[#B5FF45] transition-colors leading-tight">
+                      {item.title}
+                    </div>
+                    <div className="text-[11px] text-[#5E647E] dark:text-[#D5D0E5]/70 line-clamp-1 mt-0.5">
+                      {item.description}
+                    </div>
                   </div>
-                </div>
-              </button>
-            );
-          })}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

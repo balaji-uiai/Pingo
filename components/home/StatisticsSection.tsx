@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
 import {
   statisticsContent,
   StatisticItem,
@@ -11,6 +13,94 @@ export interface StatisticsSectionProps {
   className?: string;
 }
 
+function parseStatValue(raw: string) {
+  const hasPlus = raw.includes("+");
+  const numStr = raw.replace(/[^0-9]/g, "");
+  const target = parseInt(numStr, 10);
+  if (isNaN(target)) return { target: 0, start: 0, suffix: raw, hasComma: false };
+
+  let start = 0;
+  if (target >= 1000) {
+    start = 960; // 1,000 counts from 960
+  } else if (target >= 100) {
+    start = 60; // 100 counts from 60
+  } else if (target >= 10) {
+    start = 0; // 10 counts from 0
+  } else {
+    start = 0;
+  }
+
+  return {
+    target,
+    start,
+    suffix: hasPlus ? "+" : "",
+    hasComma: target >= 1000,
+  };
+}
+
+const AnimatedStatValue: React.FC<{ value: string; isVisible: boolean }> = ({
+  value,
+  isVisible,
+}) => {
+  const { target, start, suffix, hasComma } = parseStatValue(value);
+  const [displayNumber, setDisplayNumber] = useState<number>(start);
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isVisible) return;
+    if (target === start) {
+      setIsCompleted(true);
+      return;
+    }
+
+    let animationFrameId: number;
+    const duration = 2000; // 2 seconds high-speed count
+    const startTime = performance.now();
+
+    const updateCount = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Decelerating easeOutCubic curve for fast and smooth counting
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const current = Math.round(start + (target - start) * easeProgress);
+
+      setDisplayNumber(current);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(updateCount);
+      } else {
+        setDisplayNumber(target);
+        setIsCompleted(true);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(updateCount);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isVisible, target, start]);
+
+  if (!isVisible) {
+    return (
+      <span>
+        {hasComma ? start.toLocaleString() : start}
+        {suffix}
+      </span>
+    );
+  }
+
+  if (isCompleted) {
+    return <span>{value}</span>;
+  }
+
+  return (
+    <span>
+      {hasComma ? displayNumber.toLocaleString() : displayNumber}
+      {suffix}
+    </span>
+  );
+};
+
 export const StatisticsSection: React.FC<StatisticsSectionProps> = ({
   content = statisticsContent,
   data,
@@ -18,9 +108,30 @@ export const StatisticsSection: React.FC<StatisticsSectionProps> = ({
 }) => {
   const items = data || content.items;
   const heading = content.heading;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section
+      ref={sectionRef}
       aria-label="Platform Statistics and AI Solutions"
       className={`relative py-8 sm:py-12 lg:py-14 z-10 ${className}`}
     >
@@ -50,9 +161,9 @@ export const StatisticsSection: React.FC<StatisticsSectionProps> = ({
                   index === 0 || index === 1 ? "pb-6 md:pb-0" : "pt-6 md:pt-0"
                 } ${index % 2 === 1 ? "border-l md:border-l-0 border-[#E5E7F0] dark:border-[#292D45]" : ""}`}
               >
-                {/* Metric Number */}
+                {/* Metric Number (Animated Count-Up) */}
                 <div className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-extrabold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] whitespace-nowrap">
-                  <span>{item.value}</span>
+                  <AnimatedStatValue value={item.value} isVisible={isVisible} />
                 </div>
 
                 {/* Metric Label */}

@@ -69,7 +69,7 @@ export const ProductFeatures: React.FC = () => {
       <div
         className={`grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center p-6 sm:p-8 lg:p-10 rounded-3xl transition-all duration-300 ${
           isCenter
-            ? "bg-white/95 dark:bg-gradient-to-b dark:from-[#141126]/90 dark:to-[#080711]/95 border border-[#E5E7F0] dark:border-white/[0.08] backdrop-blur-2xl shadow-xl dark:shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
+            ? "bg-white/95 dark:bg-[#141126]/95 border border-[#E5E7F0] dark:border-white/[0.08] backdrop-blur-2xl shadow-xl dark:shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
             : "bg-white/70 dark:bg-[#141126]/60 border border-[#E5E7F0]/60 dark:border-white/[0.05] pointer-events-none"
         }`}
       >
@@ -127,16 +127,16 @@ export const ProductFeatures: React.FC = () => {
             </div>
           </div>
 
-          {/* Highlighted Enterprise AI Workflows Panel (AI Automation) */}
+          {/* Highlighted Enterprise AI Workflows Panel (AI Automation) - fully optimized for dark theme */}
           {mod.enterpriseHighlight && (
-            <div className="mt-4 p-4 rounded-xl bg-purple-50/90 dark:bg-gradient-to-br dark:from-[#782BFF]/15 dark:via-[#4C16B8]/10 dark:to-[#100D1D]/60 border border-purple-200 dark:border-[#782BFF]/30 shadow-inner">
+            <div className="mt-4 p-4 rounded-xl bg-purple-50/90 dark:bg-[#100D1D] border border-purple-200 dark:border-[#782BFF]/40 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-colors duration-200">
               <div className="flex items-center gap-2 mb-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#782BFF] dark:bg-[#B5FF45] shadow-[0_0_6px_#782BFF] dark:shadow-[0_0_6px_#B5FF45]" />
-                <span className="text-[11px] font-mono font-semibold tracking-wider text-[#782BFF] dark:text-[#B5FF45] uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#782BFF] dark:bg-[#B5FF45] shadow-[0_0_8px_#782BFF] dark:shadow-[0_0_8px_#B5FF45]" />
+                <span className="text-[11px] font-mono font-bold tracking-wider text-[#782BFF] dark:text-[#B5FF45] uppercase">
                   {mod.enterpriseHighlight.badge}
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-[#5E647E] dark:text-[#D5D0E5] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#5E647E] dark:text-[#D5D0E5] leading-relaxed font-normal">
                 {mod.enterpriseHighlight.description}
               </p>
             </div>
@@ -174,7 +174,7 @@ export const ProductFeatures: React.FC = () => {
         {/* ========================================================= */}
         {/* 1. SECTION INTRO (TAWK.TO STYLE)                          */}
         {/* ========================================================= */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
           <div className="inline-block">
             <span className="pill-badge">
               <span className="pill-dot" />
@@ -195,46 +195,7 @@ export const ProductFeatures: React.FC = () => {
         </div>
 
         {/* ========================================================= */}
-        {/* 2. INTERACTIVE MODULE SELECTOR TABS (NO SCROLLBAR)        */}
-        {/* ========================================================= */}
-        <div className="mb-8 sm:mb-12 flex items-center justify-center">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto p-1.5 rounded-2xl bg-white dark:bg-[#141126]/80 border border-[#E5E7F0] dark:border-white/[0.08] backdrop-blur-xl max-w-full no-scrollbar shadow-sm dark:shadow-lg">
-            {modules.map((mod, idx) => {
-              const isSelected = activeModuleIndex === idx;
-              const MIcon = iconMap[mod.iconName] || Bot;
-
-              return (
-                <button
-                  key={mod.id}
-                  type="button"
-                  onClick={() => setActiveModuleIndex(idx)}
-                  className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
-                    isSelected
-                      ? "bg-[#782BFF] text-white shadow-[0_0_15px_rgba(120,43,255,0.4)] border border-violet-400/40 font-semibold"
-                      : "bg-transparent text-[#5E647E] dark:text-[#D5D0E5]/75 hover:text-[#171B2E] dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.05] border border-transparent"
-                  }`}
-                  aria-selected={isSelected}
-                  role="tab"
-                >
-                  <MIcon
-                    className={`w-3.5 h-3.5 ${
-                      isSelected
-                        ? "text-white dark:text-[#B5FF45]"
-                        : "text-[#782BFF] dark:text-[#A855F7]"
-                    }`}
-                  />
-                  <span className="font-mono text-xs opacity-75">
-                    {mod.moduleNumber}.
-                  </span>
-                  <span>{mod.title}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* ========================================================= */}
-        {/* 3. 3D FLOATING CAROUSEL WITH BLURRED PREV/NEXT SLIDES     */}
+        {/* 2. 3D FLOATING CAROUSEL WITH BLURRED PREV/NEXT SLIDES     */}
         {/* ========================================================= */}
         <div className="relative w-full py-4 sm:py-6 overflow-hidden">
           {/* Previous Card Flank (Blurred Peek on Left) */}
@@ -296,7 +257,7 @@ export const ProductFeatures: React.FC = () => {
         </div>
 
         {/* ========================================================= */}
-        {/* 4. CAROUSEL DOT INDICATORS                                */}
+        {/* 3. CAROUSEL DOT INDICATORS                                */}
         {/* ========================================================= */}
         <div className="mt-8 flex items-center justify-center gap-2">
           {modules.map((_, idx) => {
