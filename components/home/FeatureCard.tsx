@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   MessageSquareMore,
@@ -8,6 +10,7 @@ import {
   LucideIcon,
 } from "lucide-react";
 import { FeatureCardItem } from "@/data/features";
+import { Icon3D, Icon3DColor } from "@/components/common/Icon3D";
 
 interface FeatureCardProps {
   feature: FeatureCardItem;
@@ -21,8 +24,11 @@ const iconComponents: Record<FeatureCardItem["iconName"], LucideIcon> = {
   Settings,
 };
 
-export const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
+const colorSequence: Icon3DColor[] = ["violet", "blue", "cyan", "violet"];
+
+export const FeatureCard: React.FC<FeatureCardProps> = ({ feature, index }) => {
   const Icon = iconComponents[feature.iconName] || Info;
+  const iconColor = colorSequence[index % colorSequence.length] || "violet";
 
   return (
     <div
@@ -32,9 +38,9 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
       <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#635BFF]/20 to-transparent rounded-t-[22px] pointer-events-none" />
 
       <div>
-        {/* Icon Container with brand violet/blue */}
-        <div className="w-10 h-10 rounded-xl bg-[#635BFF]/10 dark:bg-[#635BFF]/20 border border-[#635BFF]/20 flex items-center justify-center text-[#635BFF] dark:text-[#20C5D8] group-hover:scale-105 transition-all duration-300 mb-4 shadow-sm">
-          <Icon className="w-5 h-5" />
+        {/* 3D Tactile Icon */}
+        <div className="mb-4">
+          <Icon3D icon={Icon} color={iconColor} size="md" />
         </div>
 
         {/* Title */}

@@ -8,7 +8,6 @@ import {
   Database,
   LayoutGrid,
   ArrowDown,
-  Sparkles,
 } from "lucide-react";
 import {
   knowledgeCenterContent,
@@ -64,7 +63,7 @@ export const KnowledgeCenterSection: React.FC<KnowledgeCenterSectionProps> = ({
         {/* ========================================================= */}
         {/* 2. MAIN VISUAL: Knowledge Architecture Diagram (Seamless)  */}
         {/* ========================================================= */}
-        <div className="relative mb-16 sm:mb-20">
+        <div className="relative mb-12 sm:mb-14 lg:mb-16">
           
           <div className="relative z-10">
             {/* ------------------------------------------------------- */}
@@ -311,26 +310,13 @@ export const KnowledgeCenterSection: React.FC<KnowledgeCenterSectionProps> = ({
                 );
               })}
             </div>
-
-            {/* Architecture Flow Summary Banner */}
-            <div className="mt-12 pt-6 flex items-center justify-center">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FFFFFF] dark:bg-[#171A2E] border border-[#E5E7F0] dark:border-[#292D45] text-xs font-semibold text-[#62677D] dark:text-[#B5BAD0] shadow-xs">
-                <Sparkles className="w-3.5 h-3.5 text-[#20C5D8]" />
-                <span>
-                  Independent Flow:{" "}
-                  <strong className="text-[#171B2E] dark:text-[#FFFFFF] font-bold">
-                    Product → Dedicated Knowledge Center → Separate Knowledge Base
-                  </strong>
-                </span>
-              </div>
-            </div>
           </div>
         </div>
 
         {/* ========================================================= */}
         {/* 3. BOTTOM BENEFITS: Seamless Horizontal Layout             */}
         {/* ========================================================= */}
-        <div className="border-t border-[#E5E7F0] dark:border-[#292D45] pt-10 sm:pt-14">
+        <div className="border-t border-[#E5E7F0] dark:border-[#292D45] pt-10 sm:pt-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 divide-y md:divide-y-0 md:divide-x divide-[#E5E7F0] dark:divide-[#292D45]">
             {data.benefits.map((benefit, idx) => {
               const iconStyles =

@@ -15,6 +15,7 @@ import {
   Check,
 } from "lucide-react";
 import { aiSupportData, AiSupportSectionData } from "@/data/aiSupport";
+import { Icon3D } from "@/components/common/Icon3D";
 
 export interface AiCustomerSupportSectionProps {
   data?: AiSupportSectionData;
@@ -76,12 +77,7 @@ export const AiCustomerSupportSection: React.FC<AiCustomerSupportSectionProps> =
             <div className="space-y-6 sm:space-y-8 pt-2">
               {/* Feature 1: AI-Powered Chat */}
               <div className="flex items-start gap-4 sm:gap-5 group">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#EDE9FE] dark:bg-[#25224A] text-[#635BFF] dark:text-[#A5A0FF] flex items-center justify-center flex-shrink-0 shadow-xs border border-[#635BFF]/15 group-hover:scale-105 transition-transform duration-200">
-                  <div className="relative">
-                    <MessageSquare className="w-6 h-6 sm:w-7 sm:h-7" />
-                    <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-[#635BFF] ring-2 ring-white dark:ring-[#25224A]" />
-                  </div>
-                </div>
+                <Icon3D icon={MessageSquare} color="violet" size="xl" className="mt-0.5" />
 
                 <div className="space-y-1 sm:space-y-1.5 pt-0.5">
                   <h4 className="text-lg sm:text-xl font-bold text-[#171B2E] dark:text-[#FFFFFF]">
@@ -95,9 +91,7 @@ export const AiCustomerSupportSection: React.FC<AiCustomerSupportSectionProps> =
 
               {/* Feature 2: Built-in Ticketing */}
               <div className="flex items-start gap-4 sm:gap-5 group">
-                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#E0F7FA] dark:bg-[#142A38] text-[#00A3C4] dark:text-[#20C5D8] flex items-center justify-center flex-shrink-0 shadow-xs border border-[#20C5D8]/20 group-hover:scale-105 transition-transform duration-200">
-                  <Ticket className="w-6 h-6 sm:w-7 sm:h-7" />
-                </div>
+                <Icon3D icon={Ticket} color="cyan" size="xl" className="mt-0.5" />
 
                 <div className="space-y-1 sm:space-y-1.5 pt-0.5">
                   <h4 className="text-lg sm:text-xl font-bold text-[#171B2E] dark:text-[#FFFFFF]">
