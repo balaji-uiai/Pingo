@@ -32,6 +32,7 @@ export const navigationItems: NavItem[] = [
         title: "Knowledge Management",
         description: "Your business knowledge, ready for every conversation.",
         iconName: "Database",
+        href: "/features/knowledge-management",
       },
       {
         id: "conversation-management",

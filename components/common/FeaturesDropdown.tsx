@@ -43,6 +43,7 @@ const defaultItems: DropdownItem[] = [
     title: "Knowledge Management",
     description: "Your business knowledge, ready for every conversation.",
     iconName: "Database",
+    href: "/features/knowledge-management",
   },
   {
     id: "conversation-management",
@@ -179,6 +180,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                 item.href ||
                 (item.id === "ai-automation"
                   ? "/features/ai-automation"
+                  : item.id === "knowledge-management"
+                  ? "/features/knowledge-management"
                   : "/#product-features");
 
               return (
@@ -272,6 +275,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                 item.href ||
                 (item.id === "ai-automation"
                   ? "/features/ai-automation"
+                  : item.id === "knowledge-management"
+                  ? "/features/knowledge-management"
                   : "/#product-features");
 
               return (
