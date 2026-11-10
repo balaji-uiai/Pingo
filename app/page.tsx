@@ -3,6 +3,8 @@ import Hero from "@/components/home/Hero";
 import StatisticsSection from "@/components/home/StatisticsSection";
 import HowItWorksSection from "@/components/home/HowItWorksSection";
 import CustomerJourneySection from "@/components/home/CustomerJourneySection";
+import AiCustomerSupportSection from "@/components/home/AiCustomerSupportSection";
+import KnowledgeCenterSection from "@/components/home/KnowledgeCenterSection";
 import ProductFeatures from "@/components/home/ProductFeatures";
 
 export default function HomePage() {
@@ -12,6 +14,8 @@ export default function HomePage() {
       <StatisticsSection />
       <HowItWorksSection />
       <CustomerJourneySection />
+      <AiCustomerSupportSection />
+      <KnowledgeCenterSection />
       <ProductFeatures />
     </div>
   );
