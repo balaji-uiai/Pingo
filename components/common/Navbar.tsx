@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight } from "lucide-react";
 import FeaturesDropdown from "./FeaturesDropdown";
+import SolutionsDropdown from "./SolutionsDropdown";
 import ThemeToggle from "./ThemeToggle";
 import { navigationItems, navbarCta } from "@/data/navigation";
 
@@ -62,6 +63,15 @@ export const Navbar: React.FC = () => {
         <nav className="hidden md:flex items-center gap-7 lg:gap-9">
           {navigationItems.map((item) => {
             if (item.isDropdown) {
+              if (item.label === "Solutions") {
+                return (
+                  <SolutionsDropdown
+                    key={item.label}
+                    items={item.dropdownItems}
+                  />
+                );
+              }
+
               return (
                 <FeaturesDropdown
                   key={item.label}
@@ -135,6 +145,18 @@ export const Navbar: React.FC = () => {
           <div className="flex flex-col space-y-2">
             {navigationItems.map((item) => {
               if (item.isDropdown) {
+                if (item.label === "Solutions") {
+                  return (
+                    <div key={item.label} className="py-1">
+                      <SolutionsDropdown
+                        items={item.dropdownItems}
+                        isMobile={true}
+                        onItemSelect={() => setMobileMenuOpen(false)}
+                      />
+                    </div>
+                  );
+                }
+
                 return (
                   <div key={item.label} className="py-1">
                     <FeaturesDropdown

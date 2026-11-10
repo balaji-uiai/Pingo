@@ -80,7 +80,51 @@ export const navigationItems: NavItem[] = [
   },
   {
     label: "Solutions",
-    href: "/#solutions",
+    isDropdown: true,
+    dropdownItems: [
+      {
+        id: "customer-support",
+        title: "Customer Support",
+        description: "Fast, reliable support across every customer touchpoint.",
+        iconName: "Headphones",
+        href: "/solutions/customer-support",
+      },
+      {
+        id: "product-service-guidance",
+        title: "Product & Service Guidance",
+        description: "Accurate answers, onboarding, and smart recommendations.",
+        iconName: "Compass",
+        href: "/solutions/product-service-guidance",
+      },
+      {
+        id: "website-ai-assistant",
+        title: "Website AI Assistant",
+        description: "Engage visitors and resolve questions in real time.",
+        iconName: "Globe",
+        href: "/solutions/website-ai-assistant",
+      },
+      {
+        id: "business-knowledge-access",
+        title: "Business Knowledge Access",
+        description: "Instant answers from unified business docs and data.",
+        iconName: "BookOpen",
+        href: "/solutions/business-knowledge-access",
+      },
+      {
+        id: "team-assistance",
+        title: "Team Assistance",
+        description: "Empower internal teams with shared AI context and workflows.",
+        iconName: "Users",
+        href: "/solutions/team-assistance",
+      },
+      {
+        id: "support-management",
+        title: "Support Management",
+        description: "Organize requests, track escalations, and monitor SLAs.",
+        iconName: "SlidersHorizontal",
+        href: "/solutions/support-management",
+      },
+    ],
   },
   {
     label: "Pricing",
