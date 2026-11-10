@@ -7,28 +7,58 @@ import { ArrowRight } from "lucide-react";
 
 export const Hero: React.FC = () => {
   return (
-    <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-10 sm:pb-14 overflow-hidden">
+    <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 overflow-hidden">
       {/* Background ambient radial gradients */}
       <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#635BFF]/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-10 right-0 w-[650px] h-[650px] bg-[#3984FF]/12 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-[#20C5D8]/10 rounded-full blur-[100px] pointer-events-none" />
 
+      {/* Floating animation & seamless background blending mask styles */}
+      <style>{`
+        @keyframes pingoHeroFloat {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-12px);
+          }
+        }
+        .hero-floating-robot {
+          animation: pingoHeroFloat 3.5s ease-in-out infinite;
+          will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hero-floating-robot {
+            animation: none;
+          }
+        }
+        /* Radial edge feathering mask: removes rectangular image borders completely */
+        .hero-robot-mask {
+          mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.15) 80%, transparent 94%);
+          -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.15) 80%, transparent 94%);
+        }
+        .dark .hero-robot-mask {
+          mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, #000 58%, rgba(0, 0, 0, 0.85) 74%, transparent 98%);
+          -webkit-mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, #000 58%, rgba(0, 0, 0, 0.85) 74%, transparent 98%);
+        }
+      `}</style>
+
       <div className="max-w-7xl xl:max-w-[1340px] mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left Column: Center-aligned Hero Copy */}
-          <div className="lg:col-span-8 xl:col-span-8 flex flex-col items-center text-center space-y-6 sm:space-y-8 z-10">
-            {/* Main Headline - Exactly 2 lines on desktop, center-aligned */}
-            <h1 className="w-full text-center text-3xl sm:text-4xl md:text-5xl lg:text-[2.65rem] xl:text-[3.25rem] 2xl:text-[3.75rem] font-bold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] leading-[1.14]">
-              <span className="block whitespace-normal lg:whitespace-nowrap">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
+          {/* Left Column: Responsive Hero Copy */}
+          <div className="lg:col-span-7 xl:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 sm:space-y-8 z-10">
+            {/* Main Headline */}
+            <h1 className="w-full text-center lg:text-left text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl 2xl:text-[3.25rem] font-bold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] leading-[1.16]">
+              <span className="block">
                 Smarter customer conversations.
               </span>
-              <span className="block bg-gradient-to-r from-[#635BFF] via-[#3984FF] to-[#20C5D8] bg-clip-text text-transparent whitespace-normal lg:whitespace-nowrap mt-1">
+              <span className="block bg-gradient-to-r from-[#635BFF] via-[#3984FF] to-[#20C5D8] bg-clip-text text-transparent mt-1">
                 Powered by AI. Backed by humans.
               </span>
             </h1>
 
-            {/* Supporting Content - Single continuous paragraph, center-aligned */}
-            <p className="max-w-2xl sm:max-w-3xl text-center text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0] leading-relaxed font-normal">
+            {/* Supporting Content */}
+            <p className="max-w-2xl text-center lg:text-left text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0] leading-relaxed font-normal">
               Give your customers instant answers with AI agents trained on your
               business knowledge. When a conversation needs a human touch,
               seamlessly connect customers with your support team — without
@@ -37,8 +67,8 @@ export const Hero: React.FC = () => {
               unified platform.
             </p>
 
-            {/* Single CTA Button - Center-aligned */}
-            <div className="pt-2 flex justify-center w-full">
+            {/* Single CTA Button */}
+            <div className="pt-2 flex justify-center lg:justify-start w-full">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full text-sm sm:text-base font-semibold text-white bg-gradient-to-r from-[#635BFF] to-[#3984FF] hover:from-[#5249E8] hover:to-[#2E74E6] border border-white/20 shadow-[0_0_25px_rgba(99,91,255,0.4)] hover:shadow-[0_0_35px_rgba(99,91,255,0.65)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] group cursor-pointer"
@@ -49,21 +79,26 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: 3D Pingo Robot Mascot */}
-          <div className="lg:col-span-4 xl:col-span-4 relative flex items-center justify-center mt-6 lg:mt-12 lg:translate-y-6">
-            {/* Ambient Light behind mascot */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#635BFF]/20 to-transparent rounded-full filter blur-2xl transform scale-90 pointer-events-none" />
+          {/* Right Column: Seamlessly Blended Floating Robot Mascot */}
+          <div className="lg:col-span-5 xl:col-span-5 relative flex items-center justify-center lg:justify-end mt-8 lg:mt-0 w-full">
+            {/* Subtle Cyan / Blue Ambient Glow matching Pingo brand palette */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 max-w-[420px] mx-auto bg-gradient-to-tr from-[#635BFF]/20 via-[#3984FF]/25 to-[#20C5D8]/25 rounded-full filter blur-3xl transform scale-90 pointer-events-none"
+            />
 
-            {/* Mascot Image Container with gentle floating motion */}
-            <div className="relative w-full max-w-[480px] lg:max-w-none transition-transform duration-500 animate-float">
-              <Image
-                src="/images/pingo-robot.png"
-                alt="Pingo 3D Robot Mascot with Talk, Chat, Information, and Support badges"
-                width={1280}
-                height={805}
-                className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.35)] dark:drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)]"
-                priority
-              />
+            {/* Mascot Image Container: Floating, zero card frame, zero border */}
+            <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px] hero-floating-robot">
+              <div className="relative hero-robot-mask drop-shadow-[0_15px_35px_rgba(99,91,255,0.18)] dark:drop-shadow-[0_20px_45px_rgba(32,197,216,0.22)]">
+                <Image
+                  src="/images/pingo-robot-hero.jpg"
+                  alt="Pingo 3D Robot Mascot with Talk, Chat, Information, and Support badges"
+                  width={1024}
+                  height={768}
+                  className="w-full h-auto object-contain block"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
