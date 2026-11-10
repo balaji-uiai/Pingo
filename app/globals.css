@@ -2,43 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Shared Brand Colours */
-  --brand-purple: #782BFF;
-  --brand-violet: #A855F7;
-  --brand-deep: #4C16B8;
-  --brand-neon: #10B981;
-  --brand-blue: #3984FF;
-  --brand-cyan: #20C5D8;
+:root,
+html.light {
+  /* ==========================================================
+     New Core Theme Palette - Light Theme
+     ========================================================== */
+  --background: #f7f7fd;
+  --foreground: #191a2e;
+  --surface: #ffffff;
+  --surface-secondary: #f2efff;
+  --primary: #8138f7;
+  --accent: #a855f7;
+  --secondary-accent: #6366f1;
 
-  /* Light Theme (Default) */
-  --theme-bg: #F8F9FE;
-  --theme-section: #F0F2FA;
-  --theme-card: #FFFFFF;
-  --theme-card-secondary: #F5F6FA;
-  --theme-text-primary: #171B2E;
-  --theme-text-secondary: #5E647E;
-  --theme-border: #E5E7F0;
-  --theme-border-subtle: rgba(0, 0, 0, 0.08);
-  --theme-glass: rgba(255, 255, 255, 0.85);
+  /* Semantic Aliases */
+  --card: var(--surface);
+  --card-secondary: var(--surface-secondary);
+  --text-primary: var(--foreground);
+  --text-secondary: #5c5f79;
+  --text-muted: #8b8ea6;
+  --border: #e2e0f4;
+  --border-subtle: rgba(25, 26, 46, 0.08);
+  --ring: rgba(129, 56, 247, 0.25);
+  --glass: rgba(255, 255, 255, 0.85);
 
-  /* Core transition speed */
+  /* Legacy & Theme Compatibility Aliases */
+  --theme-bg: var(--background);
+  --theme-section: var(--surface-secondary);
+  --theme-card: var(--surface);
+  --theme-card-secondary: var(--surface-secondary);
+  --theme-text-primary: var(--foreground);
+  --theme-text-secondary: var(--text-secondary);
+  --theme-border: var(--border);
+  --theme-border-subtle: var(--border-subtle);
+  --theme-glass: var(--glass);
+
+  /* Shared Brand Palette Variables */
+  --brand-purple: var(--primary);
+  --brand-violet: var(--accent);
+  --brand-deep: #4c16b8;
+  --brand-neon: #10b981;
+  --brand-blue: var(--secondary-accent);
+  --brand-cyan: #20c5d8;
+
+  /* Core Transition Speed */
   --transition-theme: 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-html.dark {
-  /* Dark Theme (Pingo Midnight) */
-  --brand-neon: #B5FF45;
-  --theme-bg: #080711;
-  --theme-section: #100D1D;
-  --theme-card: #141126;
-  --theme-card-secondary: #171A2E;
-  --theme-text-primary: #FFFFFF;
-  --theme-text-secondary: #D5D0E5;
-  --theme-border: #292D45;
-  --theme-border-subtle: rgba(255, 255, 255, 0.08);
-  --theme-glass: rgba(20, 17, 38, 0.85);
+html.dark,
+.dark {
+  /* ==========================================================
+     New Core Theme Palette - Dark Theme
+     ========================================================== */
+  --background: #080710;
+  --foreground: #f8f7ff;
+  --surface: #100d1e;
+  --surface-secondary: #171127;
+  --primary: #9333f6;
+  --accent: #b16cff;
+  --secondary-accent: #7775ff;
+
+  /* Semantic Aliases */
+  --card: var(--surface);
+  --card-secondary: var(--surface-secondary);
+  --text-primary: var(--foreground);
+  --text-secondary: #a5a1bf;
+  --text-muted: #726e8a;
+  --border: #28223d;
+  --border-subtle: rgba(248, 247, 255, 0.08);
+  --ring: rgba(147, 51, 246, 0.35);
+  --glass: rgba(16, 13, 30, 0.85);
+
+  /* Legacy & Theme Compatibility Aliases */
+  --theme-bg: var(--background);
+  --theme-section: var(--surface-secondary);
+  --theme-card: var(--surface);
+  --theme-card-secondary: var(--surface-secondary);
+  --theme-text-primary: var(--foreground);
+  --theme-text-secondary: var(--text-secondary);
+  --theme-border: var(--border);
+  --theme-border-subtle: var(--border-subtle);
+  --theme-glass: var(--glass);
+
+  /* Shared Brand Palette Variables */
+  --brand-purple: var(--primary);
+  --brand-violet: var(--accent);
+  --brand-deep: #2a0c6a;
+  --brand-neon: #b5ff45;
+  --brand-blue: var(--secondary-accent);
+  --brand-cyan: #20c5d8;
 }
+
+/* ==========================================================
+   Global Reset & Base Setup
+   ========================================================== */
 
 * {
   box-sizing: border-box;
@@ -55,29 +112,244 @@ html.light {
   color-scheme: light;
 }
 
-html.dark {
+html.dark,
+.dark {
   color-scheme: dark;
 }
 
+/* Consolidated Single Body Rule */
 body {
-  background-color: var(--theme-bg);
-  color: var(--theme-text-primary);
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: clip;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   transition: background-color var(--transition-theme), color var(--transition-theme);
 }
 
-/* Smooth Theme Transitions for Form Inputs and Interactive Controls */
+/* Global Selection Styling */
+::selection {
+  background-color: rgba(129, 56, 247, 0.22);
+  color: var(--foreground);
+}
+
+html.dark ::selection,
+.dark ::selection {
+  background-color: rgba(147, 51, 246, 0.4);
+  color: #f8f7ff;
+}
+
+/* Typography Base Improvements */
+h1, h2, h3, h4, h5, h6 {
+  color: inherit;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ==========================================================
+   Interactive Controls & Form Inputs
+   ========================================================== */
+
 input,
 textarea,
-select,
-button {
+select {
+  background-color: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
   transition-property: background-color, border-color, color, box-shadow;
   transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+button {
+  transition-property: background-color, border-color, color, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================
+   Brand Buttons, Badges & Surfaces
+   ========================================================== */
+
+/* Primary Gradient Button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary-accent) 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(129, 56, 247, 0.35);
+  transition: all 200ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #7026e6 0%, #4f52e0 100%);
+  box-shadow: 0 6px 28px rgba(129, 56, 247, 0.55);
+  transform: translateY(-1px);
+}
+
+html.dark .btn-primary,
+.dark .btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary-accent) 100%);
+  box-shadow: 0 4px 24px rgba(147, 51, 246, 0.45);
+}
+
+html.dark .btn-primary:hover,
+.dark .btn-primary:hover {
+  background: linear-gradient(135deg, #8125e3 0%, #6361f5 100%);
+  box-shadow: 0 6px 32px rgba(147, 51, 246, 0.65);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background-color: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  transition: all 200ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 500;
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  background-color: var(--surface-secondary);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* AI Pill Badge */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(129, 56, 247, 0.08);
+  border: 1px solid rgba(129, 56, 247, 0.25);
+  color: var(--primary) !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 200ms ease;
+}
+
+html.dark .pill-badge,
+.dark .pill-badge {
+  background: rgba(147, 51, 246, 0.12);
+  border: 1px solid rgba(177, 108, 255, 0.3);
+  color: var(--accent) !important;
+}
+
+.pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  box-shadow: 0 0 8px var(--primary);
+}
+
+html.dark .pill-dot,
+.dark .pill-dot {
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* Brand Text Gradient Utility */
+.text-brand-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--secondary-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.dark .text-brand-gradient,
+.dark .text-brand-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, #c49eff 50%, var(--secondary-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Global Card & Surface Utility */
+.card-surface {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px -2px rgba(25, 26, 46, 0.05);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+html.dark .card-surface,
+.dark .card-surface {
+  box-shadow: 0 8px 30px -4px rgba(0, 0, 0, 0.45);
+}
+
+/* ==========================================================
+   Scrollbar & Lenis Optimizations
+   ========================================================== */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #c9c7df;
+  border-radius: 4px;
+}
+html.dark ::-webkit-scrollbar-thumb,
+.dark ::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a9a6c4;
+}
+html.dark ::-webkit-scrollbar-thumb:hover,
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3c3459;
 }
 
 /* Lenis Smooth Scrolling Optimizations */
@@ -110,141 +382,9 @@ html.lenis body {
 }
 
 /* ==========================================================
-   Brand Buttons & Badges
+   Keyframes & Animations
    ========================================================== */
 
-/* Primary Gradient Button */
-.btn-primary {
-  background: linear-gradient(135deg, #782BFF 0%, #3984FF 100%);
-  color: #FFFFFF !important;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(120, 43, 255, 0.35);
-  transition: all 200ms ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #631fe0 0%, #2e74e6 100%);
-  box-shadow: 0 6px 28px rgba(120, 43, 255, 0.55);
-  transform: translateY(-1px);
-}
-
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-/* Secondary Button */
-.btn-secondary {
-  background-color: var(--theme-card);
-  color: var(--theme-text-primary);
-  border: 1px solid var(--theme-border);
-  transition: all 200ms ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  font-weight: 500;
-}
-
-.btn-secondary:hover {
-  border-color: #782BFF;
-  transform: translateY(-1px);
-}
-
-.btn-secondary:active {
-  transform: translateY(0);
-}
-
-/* AI Pill Badge */
-.pill-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.85rem;
-  border-radius: 9999px;
-  background: rgba(120, 43, 255, 0.08);
-  border: 1px solid rgba(120, 43, 255, 0.25);
-  color: #782BFF !important;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: all 200ms ease;
-}
-
-html.dark .pill-badge {
-  background: rgba(181, 255, 69, 0.08);
-  border: 1px solid rgba(181, 255, 69, 0.25);
-  color: #B5FF45 !important;
-}
-
-.pill-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background-color: #782BFF;
-  box-shadow: 0 0 8px #782BFF;
-}
-
-html.dark .pill-dot {
-  background-color: #B5FF45;
-  box-shadow: 0 0 8px #B5FF45;
-}
-
-/* Brand Text Gradient Utility */
-.text-brand-gradient {
-  background: linear-gradient(135deg, #782BFF 0%, #A855F7 50%, #3984FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-html.dark .text-brand-gradient {
-  background: linear-gradient(135deg, #A855F7 0%, #B57CFF 50%, #782BFF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Scrollbar utilities */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #F8F9FE;
-}
-html.dark ::-webkit-scrollbar-track {
-  background: #080711;
-}
-::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 4px;
-}
-html.dark ::-webkit-scrollbar-thumb {
-  background: #292D45;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
-}
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: #3D4366;
-}
-
-/* Floating Animations */
 @keyframes floatSlow {
   0%, 100% {
     transform: translateY(0px);
