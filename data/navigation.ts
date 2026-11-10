@@ -46,6 +46,7 @@ export const navigationItems: NavItem[] = [
         title: "Helpdesk & Ticketing",
         description: "Every issue tracked. Every resolution organized.",
         iconName: "Ticket",
+        href: "/features/helpdesk-ticketing",
       },
       {
         id: "customer-team-management",

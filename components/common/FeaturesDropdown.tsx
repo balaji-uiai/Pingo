@@ -57,6 +57,7 @@ const defaultItems: DropdownItem[] = [
     title: "Helpdesk & Ticketing",
     description: "Every issue tracked. Every resolution organized.",
     iconName: "Ticket",
+    href: "/features/helpdesk-ticketing",
   },
   {
     id: "customer-team-management",
@@ -185,6 +186,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/knowledge-management"
                   : item.id === "conversation-management"
                   ? "/features/conversation-management"
+                  : item.id === "helpdesk-ticketing"
+                  ? "/features/helpdesk-ticketing"
                   : "/#product-features");
 
               return (
@@ -282,6 +285,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/knowledge-management"
                   : item.id === "conversation-management"
                   ? "/features/conversation-management"
+                  : item.id === "helpdesk-ticketing"
+                  ? "/features/helpdesk-ticketing"
                   : "/#product-features");
 
               return (
