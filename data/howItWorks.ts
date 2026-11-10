@@ -1,69 +1,89 @@
-export interface StepItem {
-  step: string;
+export interface SetupStep {
+  id: string;
+  stepNumber: string;
   title: string;
   description: string;
-  iconName: "Globe" | "Database" | "Bot" | "Users" | "Palette" | "Rocket";
-}
-
-export interface HowItWorksData {
   badge: string;
-  heading: string;
-  supportingText?: string;
-  steps: StepItem[];
-  bottomCta: {
-    heading: string;
-    subheading: string;
-    buttonText: string;
-    buttonHref: string;
-  };
+  statusText: string;
+  step?: string;
+  iconName?: "Globe" | "Database" | "Bot" | "Users" | "Palette" | "Rocket";
 }
 
-export const howItWorksData: HowItWorksData = {
-  badge: "THE PINGO WAY",
-  heading: "Build Your AI Support Team in 6 Simple Steps",
-  supportingText: "",
+export type StepItem = SetupStep;
+export type HowItWorksData = HowItWorksSectionData;
+
+export interface HowItWorksSectionData {
+  sectionLabel: string;
+  heading: string;
+  description: string;
+  workflowLabel: string;
+  workflowHeading: string;
+  workflowDescription: string;
+  steps: SetupStep[];
+}
+
+export const howItWorksSetupData: HowItWorksSectionData = {
+  sectionLabel: "02 / HOW IT WORKS",
+  heading: "From Setup to Smarter Conversations.",
+  description:
+    "Getting started with Pingo is simple. Set up your AI-powered communication platform, connect your knowledge, and let customers experience smarter conversations.",
+  workflowLabel: "01 / SETUP",
+  workflowHeading: "Everything starts with a simple setup.",
+  workflowDescription:
+    "Connect your website, build your knowledge base, configure your AI agent, and deploy your customized Pingo widget.",
   steps: [
     {
-      step: "STEP 01",
+      id: "connect-website",
+      stepNumber: "01",
       title: "Connect Your Website",
-      description: "Import and scrape your website content automatically.",
-      iconName: "Globe",
+      description: "Connect your business website to Pingo.",
+      badge: "Discovery",
+      statusText: "Connection successful ✓",
     },
     {
-      step: "STEP 02",
-      title: "Build Your Knowledge Base",
-      description: "Add your products, services, FAQs, and business information.",
-      iconName: "Database",
+      id: "knowledge-centers",
+      stepNumber: "02",
+      title: "Build Your Knowledge Centers",
+      description:
+        "Bring your business information together to create knowledge sources for your AI agent.",
+      badge: "Knowledge",
+      statusText: "Knowledge Ready ✓",
     },
     {
-      step: "STEP 03",
-      title: "Create Your AI Agent",
-      description: "Train an AI agent to understand and support your customers.",
-      iconName: "Bot",
+      id: "develop-agent",
+      stepNumber: "03",
+      title: "Develop Your AI Agent",
+      description:
+        "Create and configure an AI agent using your business knowledge.",
+      badge: "Configuration",
+      statusText: "Status: Ready ✓",
     },
     {
-      step: "STEP 04",
-      title: "Build Your AI Team",
-      description: "Assign specialized agents to different conversations and tasks.",
-      iconName: "Users",
+      id: "support-team",
+      stepNumber: "04",
+      title: "Create Your Support Team",
+      description:
+        "Create your human support team to manage customer conversations.",
+      badge: "Team",
+      statusText: "3 Agents Online",
     },
     {
-      step: "STEP 05",
+      id: "customize-widget",
+      stepNumber: "05",
       title: "Customize Your Chat Widget",
-      description: "Match your AI chat experience to your brand identity.",
-      iconName: "Palette",
+      description:
+        "Generate a customizable chat widget that matches your brand identity.",
+      badge: "Branding",
+      statusText: "Widget Preview",
     },
     {
-      step: "STEP 06",
-      title: "Launch Your AI Team",
-      description: "Add the Pingo script to your domain and go live.",
-      iconName: "Rocket",
+      id: "deploy-pingo",
+      stepNumber: "06",
+      title: "Deploy Pingo",
+      description:
+        "Deploy Pingo on your website using its installation script.",
+      badge: "Launch",
+      statusText: "Your widget is ready!",
     },
   ],
-  bottomCta: {
-    heading: "Ready to put AI to work?",
-    subheading: "Build your AI team. Automate conversations. Grow your business.",
-    buttonText: "GET STARTED WITH PINGO",
-    buttonHref: "/contact",
-  },
 };

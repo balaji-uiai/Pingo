@@ -15,10 +15,10 @@ import { Icon3D, Icon3DColor } from "@/components/common/Icon3D";
 
 export interface StepCardProps {
   step: StepItem;
-  index: number;
+  index?: number;
 }
 
-const iconMap: Record<StepItem["iconName"], LucideIcon> = {
+const iconMap: Record<string, LucideIcon> = {
   Globe,
   Database,
   Bot,
@@ -36,9 +36,9 @@ const colorSequence: Icon3DColor[] = [
   "cyan",
 ];
 
-export const StepCard: React.FC<StepCardProps> = ({ step, index }) => {
-  const Icon = iconMap[step.iconName] || Bot;
-  const iconColor = colorSequence[index % colorSequence.length] || "violet";
+export const StepCard: React.FC<StepCardProps> = ({ step, index = 0 }) => {
+  const Icon = (step.iconName && iconMap[step.iconName]) || Bot;
+  const iconColor = colorSequence[(index || 0) % colorSequence.length] || "violet";
 
   return (
     <div className="group relative p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-[#FFFFFF] dark:bg-[#171A2E] border border-[#E5E7F0] dark:border-[#292D45] hover:border-[#635BFF]/50 dark:hover:border-[#635BFF]/50 shadow-[0_4px_20px_rgba(0,0,0,0.04)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.35)] hover:shadow-lg transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between h-full">
