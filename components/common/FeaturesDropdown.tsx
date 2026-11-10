@@ -64,6 +64,7 @@ const defaultItems: DropdownItem[] = [
     title: "Customer & Team Management",
     description: "The right people. The right conversations.",
     iconName: "Users",
+    href: "/features/customer-team-management",
   },
   {
     id: "analytics-intelligence",
@@ -188,6 +189,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/conversation-management"
                   : item.id === "helpdesk-ticketing"
                   ? "/features/helpdesk-ticketing"
+                  : item.id === "customer-team-management"
+                  ? "/features/customer-team-management"
                   : "/#product-features");
 
               return (
@@ -287,6 +290,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/conversation-management"
                   : item.id === "helpdesk-ticketing"
                   ? "/features/helpdesk-ticketing"
+                  : item.id === "customer-team-management"
+                  ? "/features/customer-team-management"
                   : "/#product-features");
 
               return (

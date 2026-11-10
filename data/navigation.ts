@@ -53,6 +53,7 @@ export const navigationItems: NavItem[] = [
         title: "Customer & Team Management",
         description: "The right people. The right conversations.",
         iconName: "Users",
+        href: "/features/customer-team-management",
       },
       {
         id: "analytics-intelligence",
