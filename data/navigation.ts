@@ -67,6 +67,7 @@ export const navigationItems: NavItem[] = [
         title: "Integrations & Channels",
         description: "Connect Pingo with your existing ecosystem.",
         iconName: "Layers",
+        href: "/features/integrations-channels",
       },
       {
         id: "security-administration",

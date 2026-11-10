@@ -78,6 +78,7 @@ const defaultItems: DropdownItem[] = [
     title: "Integrations & Channels",
     description: "Connect Pingo with your existing ecosystem.",
     iconName: "Layers",
+    href: "/features/integrations-channels",
   },
   {
     id: "security-administration",
@@ -194,6 +195,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/customer-team-management"
                   : item.id === "analytics-intelligence"
                   ? "/features/analytics-intelligence"
+                  : item.id === "integrations-channels"
+                  ? "/features/integrations-channels"
                   : "/#product-features");
 
               return (
@@ -297,6 +300,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/customer-team-management"
                   : item.id === "analytics-intelligence"
                   ? "/features/analytics-intelligence"
+                  : item.id === "integrations-channels"
+                  ? "/features/integrations-channels"
                   : "/#product-features");
 
               return (
