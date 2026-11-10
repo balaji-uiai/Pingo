@@ -22,13 +22,30 @@ import {
 
 interface CustomerJourneyPreviewProps {
   activeStage: number;
-  activePath: "ai" | "human" | "ticket";
+  activePath?: "ai" | "human" | "ticket";
 }
+
+const stageLabels: Record<number, string> = {
+  0: "Visitor Arrival",
+  1: "Live Chat",
+  2: "AI Resolution",
+  3: "Human Handoff",
+  4: "Ticket Escalation",
+  5: "Customer Feedback",
+};
 
 export const CustomerJourneyPreview: React.FC<CustomerJourneyPreviewProps> = ({
   activeStage,
   activePath,
 }) => {
+  const currentBadge =
+    activePath === "ai"
+      ? "AI Resolution Flow"
+      : activePath === "human"
+      ? "Human Handoff Flow"
+      : activePath === "ticket"
+      ? "Ticket Escalation Flow"
+      : stageLabels[activeStage] || "Live Journey";
   return (
     <div className="relative w-full rounded-2xl sm:rounded-3xl bg-[#141126]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden min-h-[460px] sm:min-h-[500px] flex flex-col justify-between">
       {/* Top Window Header */}
@@ -42,16 +59,10 @@ export const CustomerJourneyPreview: React.FC<CustomerJourneyPreviewProps> = ({
           </span>
         </div>
 
-        {/* Active Path Badge */}
+        {/* Stage Status Badge */}
         <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[11px] text-purple-300 font-mono">
           <GitBranch className="w-3 h-3 text-[#B5FF45]" />
-          <span>
-            {activePath === "ai"
-              ? "AI Resolution Path"
-              : activePath === "human"
-              ? "Human Handoff Path"
-              : "Ticket Escalation Path"}
-          </span>
+          <span>{currentBadge}</span>
         </div>
       </div>
 
@@ -436,3 +447,4 @@ export const CustomerJourneyPreview: React.FC<CustomerJourneyPreviewProps> = ({
 };
 
 export default CustomerJourneyPreview;
+
