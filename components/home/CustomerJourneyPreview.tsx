@@ -47,21 +47,21 @@ export const CustomerJourneyPreview: React.FC<CustomerJourneyPreviewProps> = ({
       ? "Ticket Escalation Flow"
       : stageLabels[activeStage] || "Live Journey";
   return (
-    <div className="relative w-full rounded-2xl sm:rounded-3xl bg-[#141126]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden min-h-[460px] sm:min-h-[500px] flex flex-col justify-between">
+    <div className="relative w-full rounded-2xl sm:rounded-3xl bg-white dark:bg-[#141126]/90 border border-[#E5E7F0] dark:border-white/[0.08] backdrop-blur-xl shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden min-h-[460px] sm:min-h-[500px] flex flex-col justify-between transition-colors duration-200">
       {/* Top Window Header */}
-      <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] bg-[#100D1D]/90">
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#E5E7F0] dark:border-white/[0.06] bg-[#F5F6FA] dark:bg-[#100D1D]/90 transition-colors duration-200">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" />
-          <span className="ml-2 text-xs font-mono text-[#D5D0E5]/60">
+          <span className="ml-2 text-xs font-mono text-[#62677D] dark:text-[#D5D0E5]/60">
             pingo.journey / stage-0{activeStage + 1}
           </span>
         </div>
 
         {/* Stage Status Badge */}
-        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-[11px] text-purple-300 font-mono">
-          <GitBranch className="w-3 h-3 text-[#B5FF45]" />
+        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 text-[11px] text-[#782BFF] dark:text-purple-300 font-mono">
+          <GitBranch className="w-3 h-3 text-[#782BFF] dark:text-[#B5FF45]" />
           <span>{currentBadge}</span>
         </div>
       </div>
@@ -425,7 +425,7 @@ export const CustomerJourneyPreview: React.FC<CustomerJourneyPreviewProps> = ({
       </div>
 
       {/* Bottom Stage Progress Bar */}
-      <div className="px-5 py-3 border-t border-white/[0.06] bg-[#100D1D]/70 flex items-center justify-between text-xs text-[#D5D0E5]/70">
+      <div className="px-5 py-3 border-t border-[#E5E7F0] dark:border-white/[0.06] bg-[#F5F6FA] dark:bg-[#100D1D]/70 flex items-center justify-between text-xs text-[#5E647E] dark:text-[#D5D0E5]/70 transition-colors duration-200">
         <span className="font-mono text-[11px]">
           Stage {activeStage + 1} of 6
         </span>
@@ -435,8 +435,8 @@ export const CustomerJourneyPreview: React.FC<CustomerJourneyPreviewProps> = ({
               key={idx}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeStage === idx
-                  ? "w-6 bg-[#B5FF45]"
-                  : "w-1.5 bg-white/20"
+                  ? "w-6 bg-[#782BFF] dark:bg-[#B5FF45]"
+                  : "w-1.5 bg-black/15 dark:bg-white/20"
               }`}
             />
           ))}

@@ -30,19 +30,19 @@ export const SetupWorkflowPreview: React.FC<SetupWorkflowPreviewProps> = ({
   activeStep,
 }) => {
   return (
-    <div className="relative w-full rounded-2xl sm:rounded-3xl bg-[#141126]/90 border border-white/[0.08] backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden min-h-[440px] sm:min-h-[480px] flex flex-col justify-between">
+    <div className="relative w-full rounded-2xl sm:rounded-3xl bg-white dark:bg-[#141126]/90 border border-[#E5E7F0] dark:border-white/[0.08] backdrop-blur-xl shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden min-h-[440px] sm:min-h-[480px] flex flex-col justify-between transition-colors duration-200">
       {/* Top OS Window Header */}
-      <div className="flex items-center justify-between px-5 py-3.5 border-b border-white/[0.06] bg-[#100D1D]/90">
+      <div className="flex items-center justify-between px-5 py-3.5 border-b border-[#E5E7F0] dark:border-white/[0.06] bg-[#F5F6FA] dark:bg-[#100D1D]/90 transition-colors duration-200">
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/80" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/80" />
           <div className="w-2.5 h-2.5 rounded-full bg-[#27C93F]/80" />
-          <span className="ml-2 text-xs font-mono text-[#D5D0E5]/60">
+          <span className="ml-2 text-xs font-mono text-[#62677D] dark:text-[#D5D0E5]/60">
             pingo.console / setup-flow / step-0{activeStep + 1}
           </span>
         </div>
-        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/5 text-[11px] text-[#B5FF45] font-mono">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#B5FF45] animate-pulse" />
+        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#782BFF]/10 dark:bg-white/[0.04] border border-[#782BFF]/20 dark:border-white/5 text-[11px] text-[#782BFF] dark:text-[#B5FF45] font-mono">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] dark:bg-[#B5FF45] animate-pulse" />
           Live Preview
         </div>
       </div>
@@ -492,7 +492,7 @@ export const SetupWorkflowPreview: React.FC<SetupWorkflowPreviewProps> = ({
       </div>
 
       {/* Bottom Step Indicator Bar */}
-      <div className="px-5 py-3 border-t border-white/[0.06] bg-[#100D1D]/70 flex items-center justify-between text-xs text-[#D5D0E5]/70">
+      <div className="px-5 py-3 border-t border-[#E5E7F0] dark:border-white/[0.06] bg-[#F5F6FA] dark:bg-[#100D1D]/70 flex items-center justify-between text-xs text-[#5E647E] dark:text-[#D5D0E5]/70 transition-colors duration-200">
         <span className="font-mono text-[11px]">
           Step {activeStep + 1} of 6
         </span>
@@ -502,8 +502,8 @@ export const SetupWorkflowPreview: React.FC<SetupWorkflowPreviewProps> = ({
               key={idx}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 activeStep === idx
-                  ? "w-6 bg-[#B5FF45]"
-                  : "w-1.5 bg-white/20"
+                  ? "w-6 bg-[#782BFF] dark:bg-[#B5FF45]"
+                  : "w-1.5 bg-black/15 dark:bg-white/20"
               }`}
             />
           ))}

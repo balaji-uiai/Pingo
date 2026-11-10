@@ -7,7 +7,7 @@ import ProductFeatures from "@/components/home/ProductFeatures";
 
 export default function HomePage() {
   return (
-    <div className="relative bg-[#080711] text-white transition-colors duration-200">
+    <div className="relative bg-[#F8F9FE] dark:bg-[#080711] text-[#171B2E] dark:text-white transition-colors duration-200">
       <Hero />
       <StatisticsSection />
       <HowItWorksSection />
