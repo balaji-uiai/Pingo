@@ -71,6 +71,7 @@ const defaultItems: DropdownItem[] = [
     title: "Analytics & Intelligence",
     description: "Turn customer interactions into useful insights.",
     iconName: "BarChart3",
+    href: "/features/analytics-intelligence",
   },
   {
     id: "integrations-channels",
@@ -191,6 +192,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/helpdesk-ticketing"
                   : item.id === "customer-team-management"
                   ? "/features/customer-team-management"
+                  : item.id === "analytics-intelligence"
+                  ? "/features/analytics-intelligence"
                   : "/#product-features");
 
               return (
@@ -292,6 +295,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/helpdesk-ticketing"
                   : item.id === "customer-team-management"
                   ? "/features/customer-team-management"
+                  : item.id === "analytics-intelligence"
+                  ? "/features/analytics-intelligence"
                   : "/#product-features");
 
               return (

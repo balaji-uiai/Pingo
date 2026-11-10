@@ -60,6 +60,7 @@ export const navigationItems: NavItem[] = [
         title: "Analytics & Intelligence",
         description: "Turn customer interactions into useful insights.",
         iconName: "BarChart3",
+        href: "/features/analytics-intelligence",
       },
       {
         id: "integrations-channels",
