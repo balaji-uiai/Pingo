@@ -85,6 +85,7 @@ const defaultItems: DropdownItem[] = [
     title: "Security & Administration",
     description: "Control, protect, and manage your platform.",
     iconName: "ShieldCheck",
+    href: "/features/security-administration",
   },
 ];
 
@@ -197,6 +198,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/analytics-intelligence"
                   : item.id === "integrations-channels"
                   ? "/features/integrations-channels"
+                  : item.id === "security-administration"
+                  ? "/features/security-administration"
                   : "/#product-features");
 
               return (
@@ -302,6 +305,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/analytics-intelligence"
                   : item.id === "integrations-channels"
                   ? "/features/integrations-channels"
+                  : item.id === "security-administration"
+                  ? "/features/security-administration"
                   : "/#product-features");
 
               return (

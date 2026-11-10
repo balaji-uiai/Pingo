@@ -74,6 +74,7 @@ export const navigationItems: NavItem[] = [
         title: "Security & Administration",
         description: "Control, protect, and manage your platform.",
         iconName: "ShieldCheck",
+        href: "/features/security-administration",
       },
     ],
   },
