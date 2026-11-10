@@ -7,6 +7,7 @@ export interface NavItem {
     title: string;
     description: string;
     iconName?: string;
+    href?: string;
   }[];
 }
 
@@ -24,6 +25,7 @@ export const navigationItems: NavItem[] = [
         title: "AI Automation",
         description: "Intelligent conversations and automated workflows.",
         iconName: "Bot",
+        href: "/features/ai-automation",
       },
       {
         id: "knowledge-management",

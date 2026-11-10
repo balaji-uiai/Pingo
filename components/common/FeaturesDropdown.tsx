@@ -21,6 +21,7 @@ interface DropdownItem {
   title: string;
   description: string;
   iconName?: string;
+  href?: string;
 }
 
 interface FeaturesDropdownProps {
@@ -35,6 +36,7 @@ const defaultItems: DropdownItem[] = [
     title: "AI Automation",
     description: "Intelligent conversations and automated workflows.",
     iconName: "Bot",
+    href: "/features/ai-automation",
   },
   {
     id: "knowledge-management",
@@ -173,10 +175,16 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                 item.iconName && iconMap[item.iconName]
                   ? iconMap[item.iconName]
                   : Sparkles;
+              const itemHref =
+                item.href ||
+                (item.id === "ai-automation"
+                  ? "/features/ai-automation"
+                  : "/#product-features");
+
               return (
                 <Link
                   key={item.id}
-                  href="/#product-features"
+                  href={itemHref}
                   onClick={() => {
                     setIsOpen(false);
                     if (onItemSelect) onItemSelect();
@@ -260,11 +268,16 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                 item.iconName && iconMap[item.iconName]
                   ? iconMap[item.iconName]
                   : Sparkles;
+              const itemHref =
+                item.href ||
+                (item.id === "ai-automation"
+                  ? "/features/ai-automation"
+                  : "/#product-features");
 
               return (
                 <Link
                   key={item.id}
-                  href="/#product-features"
+                  href={itemHref}
                   ref={(el) => {
                     itemRefs.current[index] = el;
                   }}
