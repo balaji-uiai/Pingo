@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import { ThemeProvider } from "@/components/common/ThemeProvider";
+import SmoothScrollProvider from "@/components/common/SmoothScrollProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pingo.ai"),
@@ -75,9 +76,11 @@ export default function RootLayout({
       </head>
       <body className="bg-[#FFFFFF] text-[#171B2E] dark:bg-[#0B0D19] dark:text-[#FFFFFF] min-h-screen flex flex-col selection:bg-[#635BFF]/30 selection:text-white transition-colors duration-200">
         <ThemeProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <SmoothScrollProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

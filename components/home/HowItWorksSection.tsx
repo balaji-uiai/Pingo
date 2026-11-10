@@ -10,49 +10,31 @@ export const HowItWorksSection: React.FC = () => {
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const data = howItWorksSetupData;
 
-  // Authentic tawk.to scroll detection using requestAnimationFrame and viewport center
+  // High-performance step detection via IntersectionObserver (runs off main thread, zero layout thrashing)
   useEffect(() => {
-    let ticking = false;
-
-    const updateActiveStep = () => {
-      ticking = false;
-      const targetY = window.innerHeight / 2;
-      let closestIdx = 0;
-      let minDistance = Infinity;
-
-      stepRefs.current.forEach((el, idx) => {
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const middle = (rect.top + rect.bottom) / 2;
-        const distance = Math.abs(middle - targetY);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIdx = idx;
-        }
-      });
-
-      setActiveStep(closestIdx);
-    };
-
-    const onScrollOrResize = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateActiveStep);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-step-index"));
+            if (!isNaN(index)) {
+              setActiveStep(index);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-25% 0px -35% 0px",
+        threshold: 0.15,
       }
-    };
+    );
 
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("resize", onScrollOrResize);
+    stepRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
 
-    // Initial check on mount
-    updateActiveStep();
-
-    return () => {
-      window.removeEventListener("scroll", onScrollOrResize);
-      window.removeEventListener("resize", onScrollOrResize);
-    };
-  }, []);
+    return () => observer.disconnect();
+  }, [data.steps.length]);
 
   return (
     <section
@@ -132,6 +114,7 @@ export const HowItWorksSection: React.FC = () => {
               return (
                 <div
                   key={step.id}
+                  data-step-index={idx}
                   ref={(el) => {
                     stepRefs.current[idx] = el;
                   }}

@@ -9,49 +9,31 @@ export const CustomerJourneySection: React.FC = () => {
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
   const data = customerJourneyData;
 
-  // Authentic tawk.to scroll detection using requestAnimationFrame and viewport center
+  // High-performance stage detection via IntersectionObserver (runs off main thread, zero layout thrashing)
   useEffect(() => {
-    let ticking = false;
-
-    const updateActiveStage = () => {
-      ticking = false;
-      const targetY = window.innerHeight / 2;
-      let closestIdx = 0;
-      let minDistance = Infinity;
-
-      stepRefs.current.forEach((el, idx) => {
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const middle = (rect.top + rect.bottom) / 2;
-        const distance = Math.abs(middle - targetY);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestIdx = idx;
-        }
-      });
-
-      setActiveStage(closestIdx);
-    };
-
-    const onScrollOrResize = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateActiveStage);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-stage-index"));
+            if (!isNaN(index)) {
+              setActiveStage(index);
+            }
+          }
+        });
+      },
+      {
+        rootMargin: "-25% 0px -35% 0px",
+        threshold: 0.15,
       }
-    };
+    );
 
-    window.addEventListener("scroll", onScrollOrResize, { passive: true });
-    window.addEventListener("resize", onScrollOrResize);
+    stepRefs.current.forEach((el) => {
+      if (el) observer.observe(el);
+    });
 
-    // Initial check on mount
-    updateActiveStage();
-
-    return () => {
-      window.removeEventListener("scroll", onScrollOrResize);
-      window.removeEventListener("resize", onScrollOrResize);
-    };
-  }, []);
+    return () => observer.disconnect();
+  }, [data.stages.length]);
 
   return (
     <section
@@ -113,6 +95,7 @@ export const CustomerJourneySection: React.FC = () => {
               return (
                 <div
                   key={stage.id}
+                  data-stage-index={idx}
                   ref={(el) => {
                     stepRefs.current[idx] = el;
                   }}

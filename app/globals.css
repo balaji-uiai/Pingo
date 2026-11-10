@@ -70,18 +70,43 @@ body {
   transition: background-color var(--transition-theme), color var(--transition-theme);
 }
 
-/* Smooth Theme Transitions for Backgrounds and Borders */
-body,
-header,
-footer,
-section,
-nav,
+/* Smooth Theme Transitions for Form Inputs and Interactive Controls */
 input,
 textarea,
-select {
+select,
+button {
   transition-property: background-color, border-color, color, box-shadow;
-  transition-duration: 200ms;
+  transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Lenis Smooth Scrolling Optimizations */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hardware Accelerated GPU Layer Utility */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 /* ==========================================================
@@ -249,14 +274,13 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 @keyframes pulseGlow {
   0%, 100% {
     opacity: 0.35;
-    transform: scale(1);
   }
   50% {
-    opacity: 0.6;
-    transform: scale(1.04);
+    opacity: 0.65;
   }
 }
 
 .animate-pulse-glow {
-  animation: pulseGlow 7s ease-in-out infinite;
+  animation: pulseGlow 6s ease-in-out infinite;
+  will-change: opacity;
 }
