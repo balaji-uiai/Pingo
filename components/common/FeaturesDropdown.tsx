@@ -50,6 +50,7 @@ const defaultItems: DropdownItem[] = [
     title: "Conversation Management",
     description: "Every conversation in one connected workspace.",
     iconName: "MessagesSquare",
+    href: "/features/conversation-management",
   },
   {
     id: "helpdesk-ticketing",
@@ -182,6 +183,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/ai-automation"
                   : item.id === "knowledge-management"
                   ? "/features/knowledge-management"
+                  : item.id === "conversation-management"
+                  ? "/features/conversation-management"
                   : "/#product-features");
 
               return (
@@ -277,6 +280,8 @@ export const FeaturesDropdown: React.FC<FeaturesDropdownProps> = ({
                   ? "/features/ai-automation"
                   : item.id === "knowledge-management"
                   ? "/features/knowledge-management"
+                  : item.id === "conversation-management"
+                  ? "/features/conversation-management"
                   : "/#product-features");
 
               return (

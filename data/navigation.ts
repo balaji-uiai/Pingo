@@ -39,6 +39,7 @@ export const navigationItems: NavItem[] = [
         title: "Conversation Management",
         description: "Every conversation in one connected workspace.",
         iconName: "MessagesSquare",
+        href: "/features/conversation-management",
       },
       {
         id: "helpdesk-ticketing",
