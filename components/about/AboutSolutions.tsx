@@ -96,3 +96,4 @@ export const AboutSolutions: React.FC = () => {
 };
 
 export default AboutSolutions;
+
