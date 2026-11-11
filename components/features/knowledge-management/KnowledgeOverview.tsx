@@ -10,11 +10,13 @@ import {
   ShieldCheck,
   CheckCircle2,
   Lock,
+  Layers,
+  Sparkles,
 } from "lucide-react";
 import { knowledgeManagementData } from "@/data/knowledgeManagement";
 
 export const KnowledgeOverview: React.FC = () => {
-  const { overview } = knowledgeManagementData;
+  const { hierarchy } = knowledgeManagementData;
 
   const tiers = [
     {
@@ -32,7 +34,7 @@ export const KnowledgeOverview: React.FC = () => {
       badge: "Workspace Layer",
       title: "Dedicated Knowledge Center",
       description:
-        "Curate documentation, FAQs, release notes, and troubleshooting steps in a designated, project-wise workspace.",
+        "Curate website crawls, file uploads, custom tables, and FAQs in a designated, project-wise workspace.",
       icon: FolderKanban,
       color: "blue" as const,
       tag: "Structured Content",
@@ -49,6 +51,30 @@ export const KnowledgeOverview: React.FC = () => {
     },
   ];
 
+  const exampleProducts = [
+    {
+      product: "Product A • Cloud Platform",
+      center: "Enterprise Cloud Knowledge Center",
+      kb: "Cloud_Vector_KB_01",
+      docs: "1,240 documents",
+      color: "violet",
+    },
+    {
+      product: "Product B • Mobile Banking App",
+      center: "Fintech Mobile Knowledge Center",
+      kb: "Mobile_Vector_KB_02",
+      docs: "890 documents",
+      color: "blue",
+    },
+    {
+      product: "Product C • Internal Ops Portal",
+      center: "Employee Ops Knowledge Center",
+      kb: "Internal_Vector_KB_03",
+      docs: "460 documents",
+      color: "cyan",
+    },
+  ];
+
   return (
     <section
       id="overview"
@@ -60,40 +86,38 @@ export const KnowledgeOverview: React.FC = () => {
       <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-[#20C5D8]/6 dark:bg-[#20C5D8]/10 rounded-full blur-[130px] pointer-events-none animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 lg:mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#635BFF]/30 dark:border-[#635BFF]/50 bg-[#F0EDFF] dark:bg-[#1D1B3A] text-[#635BFF] dark:text-[#A5A0FF] text-xs font-bold tracking-wider uppercase shadow-xs">
             <Boxes className="w-3.5 h-3.5 text-[#635BFF] dark:text-[#A5A0FF]" />
-            <span>{overview.badge}</span>
+            <span>{hierarchy.badge}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] leading-[1.15]">
-            {overview.heading}
+            {hierarchy.heading}
           </h2>
 
           <p className="text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0] leading-relaxed max-w-2xl mx-auto font-normal">
-            {overview.description}
+            {hierarchy.description}
           </p>
         </div>
 
         {/* 3-Tier Architecture Progression Showcase */}
-        <div className="max-w-5xl mx-auto space-y-8">
-          
+        <div className="max-w-5xl mx-auto space-y-10">
           {/* Architecture Banner */}
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 rounded-full bg-[#FFFFFF] dark:bg-[#15182E] border border-[#635BFF]/30 dark:border-[#635BFF]/40 text-xs sm:text-sm font-semibold text-[#171B2E] dark:text-[#FFFFFF] shadow-sm">
-              <span className="text-[#635BFF] font-bold">Product</span>
+            <div className="inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-7 py-2.5 rounded-full bg-[#FFFFFF] dark:bg-[#15182E] border border-[#635BFF]/30 dark:border-[#635BFF]/40 text-xs sm:text-sm font-semibold text-[#171B2E] dark:text-[#FFFFFF] shadow-sm">
+              <span className="text-[#635BFF] font-bold">1. Product</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#3984FF]" />
-              <span className="text-[#3984FF] font-bold">Dedicated Knowledge Center</span>
+              <span className="text-[#3984FF] font-bold">2. Dedicated Knowledge Center</span>
               <ArrowRight className="w-3.5 h-3.5 text-[#20C5D8]" />
-              <span className="text-[#20C5D8] font-bold">Separate Knowledge Base</span>
+              <span className="text-[#20C5D8] font-bold">3. Separate Knowledge Base</span>
             </div>
           </div>
 
           {/* 3 Tier Cards with Flow Progression */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-            {tiers.map((tier, idx) => {
+            {tiers.map((tier) => {
               const Icon = tier.icon;
               const colorStyle =
                 tier.color === "violet"
@@ -161,12 +185,58 @@ export const KnowledgeOverview: React.FC = () => {
             })}
           </div>
 
-        </div>
+          {/* Illustrative Multi-Product Domain Isolation Demonstration */}
+          <div className="rounded-3xl p-6 sm:p-8 bg-[#FFFFFF] dark:bg-[#14172B] border border-[#E2E6EF] dark:border-[#252945] shadow-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-[#EEF1F7] dark:border-[#232740]">
+              <div className="flex items-center gap-2.5">
+                <Lock className="w-4 h-4 text-[#635BFF] dark:text-[#A5A0FF]" />
+                <h4 className="text-sm font-bold text-[#171B2E] dark:text-[#FFFFFF]">
+                  Multi-Product Domain Isolation in Action
+                </h4>
+              </div>
+              <span className="text-xs px-2.5 py-1 rounded-full bg-[#10B981]/10 text-[#059669] dark:text-[#34D399] font-medium border border-[#10B981]/20">
+                100% Zero Cross-Product Data Bleed
+              </span>
+            </div>
 
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {exampleProducts.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-xl p-4 bg-[#F8FAFD] dark:bg-[#1A1D36] border border-[#E5E9F2] dark:border-[#282D4F] space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-[#171B2E] dark:text-[#FFFFFF]">
+                      {item.product}
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+                  </div>
+                  <div className="space-y-1.5 text-xs text-[#62677D] dark:text-[#A6ACCD]">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px]">Knowledge Center:</span>
+                      <span className="font-medium text-[#171B2E] dark:text-[#E2E6EF] text-right truncate max-w-[140px]">
+                        {item.center}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px]">Vector Base:</span>
+                      <span className="font-mono text-[11px] text-[#635BFF] dark:text-[#A5A0FF]">
+                        {item.kb}
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between pt-1 border-t border-[#E8ECF4] dark:border-[#252A47]">
+                      <span className="text-[11px]">Indexed Volume:</span>
+                      <span className="font-semibold text-[#10B981]">{item.docs}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
 export default KnowledgeOverview;
-

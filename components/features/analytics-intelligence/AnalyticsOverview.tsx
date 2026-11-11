@@ -2,25 +2,26 @@
 
 import React from "react";
 import {
-  BarChart3,
-  TrendingUp,
-  BookOpen,
+  Layers,
+  Users,
+  MessageSquare,
+  HelpCircle,
+  Clock,
+  Sparkles,
   ArrowRight,
   CheckCircle2,
-  Layers,
-  Sparkles,
-  PieChart,
-  Search,
+  BookOpen,
 } from "lucide-react";
 import { analyticsIntelligenceData } from "@/data/analyticsIntelligence";
 
 export const AnalyticsOverview: React.FC = () => {
-  const { overview } = analyticsIntelligenceData;
+  const { metricGlossary } = analyticsIntelligenceData;
+  const { funnelComparison, definitions } = metricGlossary;
 
   return (
     <section
-      id="overview"
-      aria-label="Analytics & Intelligence Overview"
+      id="metric-glossary"
+      aria-label="Metric Explanation and Funnel Distinction"
       className="relative py-20 sm:py-24 lg:py-28 overflow-hidden bg-[#FAFBFE] dark:bg-[#0E1022] transition-colors duration-200"
     >
       {/* Background ambient lighting */}
@@ -28,184 +29,128 @@ export const AnalyticsOverview: React.FC = () => {
       <div className="absolute bottom-10 right-0 w-[550px] h-[550px] bg-[#20C5D8]/6 dark:bg-[#20C5D8]/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
-        
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 lg:mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#635BFF]/30 dark:border-[#635BFF]/50 bg-[#F0EDFF] dark:bg-[#1D1B3A] text-[#635BFF] dark:text-[#A5A0FF] text-xs font-bold tracking-wider uppercase shadow-xs">
-            <Layers className="w-3.5 h-3.5 text-[#20C5D8]" />
-            <span>{overview.badge}</span>
+            <BookOpen className="w-3.5 h-3.5 text-[#20C5D8]" />
+            <span>{metricGlossary.badge}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] leading-[1.15]">
-            {overview.heading}
+            {metricGlossary.heading}
           </h2>
 
           <p className="text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0] leading-relaxed max-w-2xl mx-auto font-normal">
-            {overview.description}
+            {metricGlossary.subheading}
           </p>
         </div>
 
-        {/* Visual Connectivity: 3 Insight Dimensions */}
+        {/* =========================================================================
+            HIGHLIGHT SECTION: THE THREE ENGAGEMENT STAGES (VISITORS vs CHAT VISITORS vs CONVERSATIONS)
+        ========================================================================= */}
         <div className="max-w-5xl mx-auto mb-16 p-6 sm:p-8 lg:p-10 rounded-3xl bg-white dark:bg-[#15182C] border border-[#E2E6EF] dark:border-[#272B43] shadow-xl relative overflow-hidden">
-          
           <div className="text-center mb-8">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#635BFF] dark:text-[#A5A0FF]">
-              Multi-Dimensional Inquiry Analytics
-            </span>
-            <h3 className="text-xl sm:text-2xl font-bold text-[#171B2E] dark:text-[#FFFFFF] mt-1">
-              How Conversation Data Translates to Clarity
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#635BFF]/10 text-[#635BFF] dark:text-[#A5A0FF] text-xs font-bold uppercase tracking-wider mb-2">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Core Distinction</span>
+            </div>
+            <h3 className="text-xl sm:text-2xl font-bold text-[#171B2E] dark:text-[#FFFFFF]">
+              {funnelComparison.title}
             </h3>
+            <p className="text-xs sm:text-sm text-[#62677D] dark:text-[#B5BAD0] max-w-2xl mx-auto mt-2">
+              {funnelComparison.description}
+            </p>
           </div>
 
-          {/* 3 Dimension Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
-            
-            {/* Dimension 1: Volume */}
-            <div className="p-5 rounded-2xl bg-[#F8F9FD] dark:bg-[#1A1E35] border border-[#E5E9F3] dark:border-[#2C314E] flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-bold font-mono text-[#635BFF] dark:text-[#A5A0FF] bg-[#635BFF]/10 px-2 py-0.5 rounded">
-                    DIMENSION 01
-                  </span>
-                  <BarChart3 className="w-4 h-4 text-[#635BFF]" />
-                </div>
-                <h4 className="text-base font-bold text-[#171B2E] dark:text-[#FFFFFF] mb-2">
-                  Interaction Volume
-                </h4>
-                <p className="text-xs text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
-                  Analyze conversation trends across daily and monthly intervals to evaluate customer support demand.
-                </p>
-              </div>
+          {/* 3 Step Funnel Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+            {funnelComparison.stages.map((stage, idx) => {
+              const isViolet = stage.color === "violet";
+              const isBlue = stage.color === "blue";
+              const isCyan = stage.color === "cyan";
 
-              <div className="mt-4 p-3 rounded-lg bg-white dark:bg-[#14172B] border border-[#E2E6EF] dark:border-[#252945] text-[11px]">
-                <div className="text-[#8F94A8] dark:text-[#7A809C] mb-1">Engagement Signal</div>
-                <div className="font-medium text-[#171B2E] dark:text-[#FFFFFF]">
-                  Monitored Conversation Flow
-                </div>
-              </div>
-            </div>
+              return (
+                <div
+                  key={stage.number}
+                  className="rounded-2xl p-6 bg-[#F8FAFD] dark:bg-[#191D34] border border-[#E5E9F2] dark:border-[#282E50] hover:border-[#635BFF]/40 transition-all flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-xs font-mono font-bold px-2.5 py-1 rounded-md bg-white dark:bg-[#131526] text-[#635BFF] dark:text-[#A5A0FF] border border-[#E2E6EF] dark:border-[#2D3356]">
+                        Stage {stage.number}
+                      </span>
+                      <span className="text-xs font-semibold text-[#10B981]">
+                        {stage.volumeExample}
+                      </span>
+                    </div>
 
-            {/* Dimension 2: Themes */}
-            <div className="p-5 rounded-2xl bg-[#F8F9FD] dark:bg-[#1A1E35] border border-[#E5E9F3] dark:border-[#2C314E] flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-bold font-mono text-[#3984FF] dark:text-[#7EB3FF] bg-[#3984FF]/10 px-2 py-0.5 rounded">
-                    DIMENSION 02
-                  </span>
-                  <TrendingUp className="w-4 h-4 text-[#3984FF]" />
-                </div>
-                <h4 className="text-base font-bold text-[#171B2E] dark:text-[#FFFFFF] mb-2">
-                  Question Themes
-                </h4>
-                <p className="text-xs text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
-                  Identify recurring topics and frequent questions to spot areas where customer documentation can be expanded.
-                </p>
-              </div>
+                    <h4 className="text-lg font-bold text-[#171B2E] dark:text-white mb-2">
+                      {stage.name}
+                    </h4>
 
-              <div className="mt-4 p-3 rounded-lg bg-white dark:bg-[#14172B] border border-[#E2E6EF] dark:border-[#252945] text-[11px]">
-                <div className="text-[#8F94A8] dark:text-[#7A809C] mb-1">Pattern Clustering</div>
-                <div className="font-medium text-[#171B2E] dark:text-[#FFFFFF]">
-                  Recurring Inquiries Grouped
-                </div>
-              </div>
-            </div>
+                    <p className="text-xs sm:text-sm text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
+                      {stage.definition}
+                    </p>
+                  </div>
 
-            {/* Dimension 3: Knowledge Utilization */}
-            <div className="p-5 rounded-2xl bg-[#F8F9FD] dark:bg-[#1A1E35] border border-[#E5E9F3] dark:border-[#2C314E] flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[11px] font-bold font-mono text-[#20C5D8] dark:text-[#4FE3F4] bg-[#20C5D8]/10 px-2 py-0.5 rounded">
-                    DIMENSION 03
-                  </span>
-                  <BookOpen className="w-4 h-4 text-[#20C5D8]" />
+                  <div className="mt-5 pt-3 border-t border-[#E8ECF4] dark:border-[#252A47] text-[11px] font-medium text-[#635BFF] dark:text-[#A5A0FF]">
+                    {stage.conversionNote}
+                  </div>
                 </div>
-                <h4 className="text-base font-bold text-[#171B2E] dark:text-[#FFFFFF] mb-2">
-                  Knowledge Utilization
-                </h4>
-                <p className="text-xs text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
-                  Observe which knowledge articles are actively referenced in verified answers to maintain documentation quality.
-                </p>
-              </div>
-
-              <div className="mt-4 p-3 rounded-lg bg-white dark:bg-[#14172B] border border-[#E2E6EF] dark:border-[#252945] text-[11px]">
-                <div className="text-[#8F94A8] dark:text-[#7A809C] mb-1">Citation Health</div>
-                <div className="font-medium text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>Verified Knowledge Active</span>
-                </div>
-              </div>
-            </div>
-
+              );
+            })}
           </div>
-
-          {/* Bottom Summary Bar */}
-          <div className="mt-6 p-4 rounded-2xl bg-gradient-to-r from-[#635BFF]/10 via-[#3984FF]/10 to-[#20C5D8]/10 border border-[#635BFF]/30 dark:border-[#635BFF]/40 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#635BFF] to-[#20C5D8] flex items-center justify-center text-white flex-shrink-0">
-                <BarChart3 className="w-4 h-4" />
-              </div>
-              <div>
-                <span className="text-xs font-bold text-[#171B2E] dark:text-[#FFFFFF] block">
-                  Actionable Intelligence Workflow
-                </span>
-                <span className="text-[11px] text-[#62677D] dark:text-[#B5BAD0]">
-                  Observe patterns from live discussions and translate them into informed operational adjustments
-                </span>
-              </div>
-            </div>
-
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-[#1D213D] border border-[#E2E6EF] dark:border-[#2F3458] text-xs font-semibold text-[#10B981]">
-              <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-              <span>Real Customer Clarity</span>
-            </div>
-          </div>
-
         </div>
 
-        {/* 3 Detail Cards Below */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {overview.dimensions.map((dim) => {
-            const isViolet = dim.color === "violet";
-            const isBlue = dim.color === "blue";
+        {/* =========================================================================
+            DETAILED METRIC DEFINITION GLOSSARY
+        ========================================================================= */}
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#171B2E] dark:text-white">
+              Full Metric Glossary & Operational Significance
+            </h3>
+            <p className="text-xs sm:text-sm text-[#62677D] dark:text-[#A6ACCD] mt-1">
+              Definitions, calculation methodologies, and why each metric matters to your business.
+            </p>
+          </div>
 
-            return (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {definitions.map((metric) => (
               <div
-                key={dim.step}
-                className="group p-6 rounded-2xl bg-white dark:bg-[#15182C] border border-[#E2E6EF] dark:border-[#252945] hover:border-[#635BFF]/50 dark:hover:border-[#635BFF]/60 hover:shadow-lg transition-all duration-300"
+                key={metric.name}
+                className="rounded-2xl p-5 bg-white dark:bg-[#14172B] border border-[#E2E6EF] dark:border-[#252945] hover:border-[#3984FF]/40 transition-all shadow-xs flex flex-col justify-between"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono font-bold tracking-widest text-[#8F94A8] dark:text-[#6A708A]">
-                    PHASE {dim.step}
-                  </span>
-                  <span
-                    className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${
-                      isViolet
-                        ? "bg-[#635BFF]/10 text-[#635BFF] dark:text-[#A5A0FF] border-[#635BFF]/25"
-                        : isBlue
-                        ? "bg-[#3984FF]/10 text-[#3984FF] dark:text-[#7EB3FF] border-[#3984FF]/25"
-                        : "bg-[#20C5D8]/10 text-[#0E8A99] dark:text-[#4FE3F4] border-[#20C5D8]/25"
-                    }`}
-                  >
-                    {dim.tag}
-                  </span>
+                <div>
+                  <div className="flex items-center justify-between mb-2.5">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#635BFF] dark:text-[#A5A0FF]">
+                      {metric.category}
+                    </span>
+                    <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+                  </div>
+
+                  <h4 className="text-base font-bold text-[#171B2E] dark:text-white mb-2">
+                    {metric.name}
+                  </h4>
+
+                  <p className="text-xs text-[#62677D] dark:text-[#B5BAD0] leading-relaxed mb-3">
+                    {metric.definition}
+                  </p>
                 </div>
 
-                <h4 className="text-lg font-bold text-[#171B2E] dark:text-[#FFFFFF] mb-2 group-hover:text-[#635BFF] dark:group-hover:text-[#A5A0FF] transition-colors">
-                  {dim.title}
-                </h4>
-
-                <p className="text-xs sm:text-sm text-[#62677D] dark:text-[#B5BAD0] leading-relaxed">
-                  {dim.description}
-                </p>
+                <div className="pt-3 border-t border-[#EEF1F7] dark:border-[#232740]">
+                  <p className="text-[11px] text-[#8F94A8] dark:text-[#8D93AF] leading-normal">
+                    <span className="font-semibold text-[#464B63] dark:text-[#C5CAF0]">Why it matters: </span>
+                    {metric.whyItMatters}
+                  </p>
+                </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
-
       </div>
     </section>
   );
 };
 
 export default AnalyticsOverview;
-

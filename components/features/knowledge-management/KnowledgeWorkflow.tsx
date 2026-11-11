@@ -2,23 +2,26 @@
 
 import React from "react";
 import {
-  FilePlus2,
-  FolderTree,
-  Binary,
+  Globe,
+  FolderKanban,
+  Cpu,
+  Search,
   Bot,
   Workflow,
   ArrowRight,
-  CheckCircle,
   Database,
   Sparkles,
+  ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
-import { knowledgeManagementData, KnowledgeWorkflowStep } from "@/data/knowledgeManagement";
+import { knowledgeManagementData } from "@/data/knowledgeManagement";
 import { Icon3D } from "@/components/common/Icon3D";
 
-const iconMap = {
-  FilePlus2,
-  FolderTree,
-  Binary,
+const iconMap: Record<string, any> = {
+  Globe,
+  FolderKanban,
+  Cpu,
+  Search,
   Bot,
 };
 
@@ -37,7 +40,7 @@ export const KnowledgeWorkflow: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16 lg:mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#635BFF]/30 dark:border-[#635BFF]/50 bg-[#F0EDFF] dark:bg-[#1D1B3A] text-[#635BFF] dark:text-[#A5A0FF] text-xs font-bold tracking-wider uppercase shadow-xs">
             <Workflow className="w-3.5 h-3.5 text-[#635BFF] dark:text-[#A5A0FF]" />
             <span>{workflow.badge}</span>
@@ -52,52 +55,50 @@ export const KnowledgeWorkflow: React.FC = () => {
           </p>
         </div>
 
-        {/* 4-Step Structured Flow Cards */}
+        {/* 5-Step Continuous Flow Grid */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Continuous connection track across desktop */}
-          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-[3px] bg-gradient-to-r from-[#635BFF] via-[#3984FF] to-[#20C5D8] opacity-30 dark:opacity-45 -z-0" />
+          {/* Continuous connection track across large screens */}
+          <div className="hidden lg:block absolute top-[44px] left-[6%] right-[6%] h-[2px] bg-gradient-to-r from-[#635BFF] via-[#3984FF] to-[#20C5D8] opacity-35 dark:opacity-45 -z-0" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 relative z-10">
             {workflow.steps.map((step, idx) => {
-              const Icon = iconMap[step.iconName] || FilePlus2;
-              const isFirst = idx === 0;
-              const isLast = idx === workflow.steps.length - 1;
+              const Icon = iconMap[step.iconName] || Globe;
 
               return (
                 <div
                   key={step.step}
-                  className="group relative rounded-2xl p-6 sm:p-7 border border-[#E2E6EF] dark:border-[#272B43] bg-[#FFFFFF] dark:bg-[#16182C] hover:border-[#635BFF]/50 dark:hover:border-[#635BFF]/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                  className="group relative rounded-2xl p-5 sm:p-6 border border-[#E2E6EF] dark:border-[#272B43] bg-[#FFFFFF] dark:bg-[#16182C] hover:border-[#635BFF]/50 dark:hover:border-[#635BFF]/60 hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     {/* Header: Step Number & 3D Icon */}
-                    <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center justify-between mb-5">
                       <div className="relative">
                         <Icon3D
                           icon={Icon}
                           color={step.color}
-                          size="md"
+                          size="sm"
                           className="group-hover:scale-110 transition-transform duration-300 shadow-sm"
                         />
                       </div>
-                      <span className="text-xs font-mono font-bold tracking-wider px-2.5 py-1 rounded-md bg-[#F0F2F9] dark:bg-[#1F233D] text-[#635BFF] dark:text-[#A5A0FF] border border-[#E2E6EF] dark:border-[#2D3356]">
-                        STEP {step.step}
+                      <span className="text-[11px] font-mono font-bold tracking-wider px-2 py-0.5 rounded-md bg-[#F0F2F9] dark:bg-[#1F233D] text-[#635BFF] dark:text-[#A5A0FF] border border-[#E2E6EF] dark:border-[#2D3356]">
+                        {step.step}
                       </span>
                     </div>
 
                     {/* Step Title */}
-                    <h3 className="text-lg font-bold text-[#171B2E] dark:text-[#FFFFFF] mb-3 group-hover:text-[#635BFF] dark:group-hover:text-[#A5A0FF] transition-colors">
+                    <h3 className="text-base font-bold text-[#171B2E] dark:text-[#FFFFFF] mb-2.5 group-hover:text-[#635BFF] dark:group-hover:text-[#A5A0FF] transition-colors leading-snug">
                       {step.title}
                     </h3>
 
                     {/* Primary Description */}
-                    <p className="text-sm text-[#62677D] dark:text-[#B5BAD0] leading-relaxed mb-4">
+                    <p className="text-xs sm:text-sm text-[#62677D] dark:text-[#B5BAD0] leading-relaxed mb-4">
                       {step.description}
                     </p>
                   </div>
 
-                  {/* Micro Detail Pill at the bottom */}
-                  <div className="pt-4 border-t border-[#EEF1F7] dark:border-[#242842] mt-2">
-                    <p className="text-xs text-[#8288A0] dark:text-[#8D93AF] leading-normal italic">
+                  {/* Micro Detail at the bottom */}
+                  <div className="pt-3 border-t border-[#EEF1F7] dark:border-[#242842] mt-2">
+                    <p className="text-[11px] text-[#8288A0] dark:text-[#8D93AF] leading-normal italic">
                       "{step.detail}"
                     </p>
                   </div>
@@ -107,11 +108,26 @@ export const KnowledgeWorkflow: React.FC = () => {
           </div>
         </div>
 
-        {/* Under-workflow architecture reminder note */}
-        <div className="mt-12 max-w-3xl mx-auto rounded-xl p-4 sm:p-5 border border-[#635BFF]/20 dark:border-[#635BFF]/30 bg-[#635BFF]/5 dark:bg-[#635BFF]/10 text-center">
-          <p className="text-xs sm:text-sm text-[#464B63] dark:text-[#C5CAF0] leading-relaxed">
-            <span className="font-semibold text-[#635BFF] dark:text-[#A5A0FF]">Strict Data Boundary: </span>
-            Every processing and vector indexing step executes inside the product's dedicated quarantine partition.
+        {/* Workflow Summary Flow Banner */}
+        <div className="mt-12 max-w-5xl mx-auto rounded-2xl p-5 sm:p-6 border border-[#635BFF]/25 dark:border-[#635BFF]/35 bg-gradient-to-r from-[#635BFF]/5 via-[#3984FF]/5 to-[#20C5D8]/5 dark:from-[#635BFF]/10 dark:via-[#3984FF]/10 dark:to-[#20C5D8]/10 text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-[#635BFF] dark:text-[#A5A0FF]" />
+            <span className="text-xs font-bold uppercase tracking-wider text-[#635BFF] dark:text-[#A5A0FF]">
+              End-to-End Processing Flow
+            </span>
+          </div>
+          <p className="text-xs sm:text-sm md:text-base font-medium text-[#171B2E] dark:text-[#E2E6EF] leading-relaxed">
+            <span className="font-semibold text-[#635BFF]">Website / Documents / Custom Tables / FAQs</span>
+            {" "}→{" "}
+            <span className="font-semibold text-[#3984FF]">Content Extraction</span>
+            {" "}→{" "}
+            <span className="font-semibold text-[#635BFF]">Knowledge Processing</span>
+            {" "}→{" "}
+            <span className="font-semibold text-[#20C5D8]">Organized Knowledge Base</span>
+            {" "}→{" "}
+            <span className="font-semibold text-[#3984FF]">Vector Search & Retrieval</span>
+            {" "}→{" "}
+            <span className="font-semibold text-[#10B981]">Contextual AI Answers</span>
           </p>
         </div>
       </div>

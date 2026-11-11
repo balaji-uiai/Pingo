@@ -1,21 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
   Database,
   Search,
-  FolderKanban,
+  Globe,
   FileText,
-  Sparkles,
+  HelpCircle,
+  Table,
   CheckCircle2,
-  Lock,
+  Sparkles,
+  Layers,
+  ArrowUpRight,
 } from "lucide-react";
 import { knowledgeManagementData } from "@/data/knowledgeManagement";
 
 export const KnowledgeHero: React.FC = () => {
   const { hero } = knowledgeManagementData;
+  const [activeTab, setActiveTab] = useState<"crawler" | "docs" | "vector">("crawler");
 
   return (
     <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 overflow-hidden">
@@ -43,10 +47,15 @@ export const KnowledgeHero: React.FC = () => {
               </span>
             </h1>
 
-            {/* Description */}
-            <p className="max-w-xl text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0] leading-relaxed font-normal">
-              {hero.description}
-            </p>
+            {/* Description & Supporting Detail */}
+            <div className="space-y-3 max-w-xl">
+              <p className="text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0] leading-relaxed font-normal">
+                {hero.description}
+              </p>
+              <p className="text-xs sm:text-sm text-[#787E99] dark:text-[#8E95AF] leading-relaxed font-mono">
+                {hero.supportingDescription}
+              </p>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
@@ -67,138 +76,241 @@ export const KnowledgeHero: React.FC = () => {
             </div>
 
             {/* Feature Highlights */}
-            <div className="flex items-center gap-4 pt-2 text-xs text-[#62677D] dark:text-[#8E95AF]">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2 text-xs text-[#62677D] dark:text-[#8E95AF]">
               <span className="inline-flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
-                Product Isolation
+                5 Knowledge Sources
               </span>
               <span>•</span>
               <span className="inline-flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#3984FF]" />
-                Vector Indexed
+                Crawler &amp; Indexer
               </span>
               <span>•</span>
               <span className="inline-flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#20C5D8]" />
-                Granular Control
+                Product Isolation
               </span>
             </div>
           </div>
 
-          {/* Right Column: Polished Knowledge Management Interface Illustration */}
+          {/* Right Column: Realistic Knowledge Centers & Crawler Dashboard Preview */}
           <div className="lg:col-span-6 xl:col-span-6 relative flex items-center justify-center w-full">
             {/* Ambient Background Aura */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[#635BFF]/20 via-[#3984FF]/25 to-[#20C5D8]/20 rounded-full filter blur-3xl transform scale-90 pointer-events-none" />
 
-            {/* Knowledge Management Workspace Preview Window */}
-            <div className="relative w-full max-w-[520px] rounded-3xl bg-[#FFFFFF] dark:bg-[#14172B] border border-[#E5E7F0] dark:border-[#282C48] shadow-2xl dark:shadow-[0_25px_60px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300">
+            {/* Knowledge Centers & Crawler Workspace Window */}
+            <div className="relative w-full max-w-[540px] rounded-3xl bg-[#FFFFFF] dark:bg-[#14172B] border border-[#E5E7F0] dark:border-[#282C48] shadow-2xl dark:shadow-[0_25px_60px_rgba(0,0,0,0.7)] overflow-hidden transition-all duration-300">
               
-              {/* Top Search & Filter Bar */}
-              <div className="p-4 sm:p-5 border-b border-[#F0F2F8] dark:border-[#232742] bg-[#F7F8FE]/80 dark:bg-[#111324] space-y-3">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#635BFF] to-[#3984FF] text-white flex items-center justify-center font-bold text-xs">
-                      P
-                    </div>
-                    <span className="text-xs sm:text-sm font-bold text-[#171B2E] dark:text-[#FFFFFF]">
-                      Knowledge Centers
+              {/* Window Header */}
+              <div className="p-4 sm:p-5 border-b border-[#F0F2F8] dark:border-[#232742] bg-[#F7F8FE]/80 dark:bg-[#111324] flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#635BFF] to-[#3984FF] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                    <Database className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h2 className="text-sm font-bold text-[#171B2E] dark:text-[#FFFFFF] leading-tight">
+                      {hero.crawlerDashboard.title}
+                    </h2>
+                    <span className="text-[11px] font-mono text-[#62677D] dark:text-[#8E95AF]">
+                      Product Hub: Cloud Suite (Dedicated Center)
                     </span>
                   </div>
-                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] text-[10px] font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
-                    3 Active Hubs
-                  </span>
                 </div>
 
-                {/* Search Bar Simulation */}
-                <div className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-[#FFFFFF] dark:bg-[#191D38] border border-[#E5E7F0] dark:border-[#2C3154] text-xs text-[#62677D] dark:text-[#B5BAD0]">
-                  <div className="flex items-center gap-2">
-                    <Search className="w-3.5 h-3.5 text-[#3984FF]" />
-                    <span>Search across all product documentation...</span>
-                  </div>
-                  <kbd className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[10px] bg-[#F0EDFF] dark:bg-[#23274A] text-[#635BFF] dark:text-[#A5A0FF] font-mono">
-                    ⌘K
-                  </kbd>
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] border border-[#10B981]/25 text-[11px] font-mono font-medium">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
+                  <span>{hero.crawlerDashboard.kbStatus}</span>
                 </div>
               </div>
 
-              {/* Product Knowledge Center List */}
-              <div className="p-4 sm:p-5 space-y-3">
-                {hero.products.map((product) => {
-                  const colorConfig =
-                    product.color === "violet"
-                      ? {
-                          badge: "bg-[#635BFF]/10 text-[#635BFF] dark:bg-[#635BFF]/20 dark:text-[#A5A0FF]",
-                          border: "border-[#635BFF]/25 hover:border-[#635BFF]/50",
-                          iconBg: "bg-[#635BFF]",
-                        }
-                      : product.color === "blue"
-                      ? {
-                          badge: "bg-[#3984FF]/10 text-[#3984FF] dark:bg-[#3984FF]/20 dark:text-[#38BDF8]",
-                          border: "border-[#3984FF]/25 hover:border-[#3984FF]/50",
-                          iconBg: "bg-[#3984FF]",
-                        }
-                      : {
-                          badge: "bg-[#20C5D8]/10 text-[#00A3C4] dark:bg-[#20C5D8]/20 dark:text-[#20C5D8]",
-                          border: "border-[#20C5D8]/25 hover:border-[#20C5D8]/50",
-                          iconBg: "bg-[#20C5D8]",
-                        };
+              {/* View Switcher Tabs inside Preview */}
+              <div className="px-5 pt-3 border-b border-[#F0F2F8] dark:border-[#232742] flex items-center gap-2 text-xs font-medium">
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("crawler")}
+                  className={`pb-2.5 px-2.5 transition-colors border-b-2 font-semibold ${
+                    activeTab === "crawler"
+                      ? "text-[#635BFF] dark:text-[#A5A0FF] border-[#635BFF] dark:border-[#A5A0FF]"
+                      : "text-[#62677D] dark:text-[#8E95AF] border-transparent hover:text-[#171B2E] dark:hover:text-white"
+                  }`}
+                >
+                  Crawler &amp; Documents
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("docs")}
+                  className={`pb-2.5 px-2.5 transition-colors border-b-2 font-semibold ${
+                    activeTab === "docs"
+                      ? "text-[#3984FF] border-[#3984FF]"
+                      : "text-[#62677D] dark:text-[#8E95AF] border-transparent hover:text-[#171B2E] dark:hover:text-white"
+                  }`}
+                >
+                  Manual FAQ &amp; Tables
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab("vector")}
+                  className={`pb-2.5 px-2.5 transition-colors border-b-2 font-semibold ${
+                    activeTab === "vector"
+                      ? "text-[#20C5D8] border-[#20C5D8]"
+                      : "text-[#62677D] dark:text-[#8E95AF] border-transparent hover:text-[#171B2E] dark:hover:text-white"
+                  }`}
+                >
+                  Vector Search Preview
+                </button>
+              </div>
 
-                  return (
-                    <div
-                      key={product.id}
-                      className={`p-3.5 rounded-2xl bg-[#F8F9FE] dark:bg-[#181C35] border ${colorConfig.border} transition-all duration-200 hover:scale-[1.01] space-y-2`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2.5">
-                          <div
-                            className={`w-7 h-7 rounded-lg ${colorConfig.iconBg} text-white flex items-center justify-center flex-shrink-0`}
-                          >
-                            <FolderKanban className="w-3.5 h-3.5" />
-                          </div>
-                          <div>
-                            <h4 className="text-xs sm:text-sm font-bold text-[#171B2E] dark:text-[#FFFFFF]">
-                              {product.name}
-                            </h4>
-                            <span className="text-[10px] text-[#62677D] dark:text-[#8E95AF]">
-                              {product.docsCount} • {product.kbStatus}
-                            </span>
-                          </div>
-                        </div>
-
-                        <span
-                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${colorConfig.badge}`}
-                        >
-                          {product.tag}
+              {/* Tab Contents */}
+              <div className="p-5 space-y-4">
+                {activeTab === "crawler" && (
+                  <div className="space-y-3.5">
+                    {/* Website Crawler Card */}
+                    <div className="p-4 rounded-2xl bg-[#F8F9FE] dark:bg-[#181C33] border border-[#E5E7F0] dark:border-[#2D3354] space-y-2.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold text-[#171B2E] dark:text-[#FFFFFF] flex items-center gap-2">
+                          <Globe className="w-4 h-4 text-[#635BFF]" />
+                          Website Crawler
+                        </span>
+                        <span className="px-2 py-0.5 rounded-md bg-[#635BFF]/10 text-[#635BFF] dark:text-[#A5A0FF] font-mono text-[10px] font-semibold">
+                          Health: 100% (sample)
                         </span>
                       </div>
 
-                      {/* Sample Docs Chips */}
-                      <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                        {product.sampleDocs.map((doc) => (
-                          <span
-                            key={doc}
-                            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#FFFFFF] dark:bg-[#121428] border border-[#E5E7F0] dark:border-[#282C48] text-[10px] text-[#62677D] dark:text-[#B5BAD0]"
-                          >
-                            <FileText className="w-2.5 h-2.5 text-[#3984FF]" />
-                            {doc}
-                          </span>
-                        ))}
+                      <div className="flex items-center justify-between text-xs font-mono bg-white dark:bg-[#101324] px-3 py-2 rounded-xl border border-[#E5E7F0] dark:border-white/5">
+                        <span className="text-[#62677D] dark:text-[#B5BAD0] truncate max-w-[200px]">
+                          https://{hero.crawlerDashboard.websiteCrawler.source}
+                        </span>
+                        <span className="text-[#10B981] font-semibold">
+                          {hero.crawlerDashboard.websiteCrawler.pagesIndexed}
+                        </span>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
 
-              {/* Footer Status Line */}
-              <div className="px-5 py-3 border-t border-[#F0F2F8] dark:border-[#232742] bg-[#F7F8FE]/60 dark:bg-[#111324] flex items-center justify-between text-xs text-[#62677D] dark:text-[#8E95AF]">
-                <span className="flex items-center gap-1.5">
-                  <Lock className="w-3 h-3 text-[#10B981]" />
-                  Zero Cross-Product Data Bleed
-                </span>
-                <span className="text-[11px] font-semibold text-[#635BFF] dark:text-[#20C5D8]">
-                  Independent Storage Active
-                </span>
+                    {/* Document Processing Card */}
+                    <div className="p-4 rounded-2xl bg-[#F8F9FE] dark:bg-[#181C33] border border-[#E5E7F0] dark:border-[#2D3354] space-y-2.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold text-[#171B2E] dark:text-[#FFFFFF] flex items-center gap-2">
+                          <FileText className="w-4 h-4 text-[#3984FF]" />
+                          Document Processing
+                        </span>
+                        <span className="px-2 py-0.5 rounded-md bg-[#10B981]/15 text-[#10B981] font-mono text-[10px] font-semibold">
+                          Status: {hero.crawlerDashboard.docProcessing.status} ✓
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs font-mono bg-white dark:bg-[#101324] px-3 py-2 rounded-xl border border-[#E5E7F0] dark:border-white/5">
+                        <span className="text-[#171B2E] dark:text-[#FFFFFF] font-medium truncate max-w-[200px]">
+                          {hero.crawlerDashboard.docProcessing.fileName}
+                        </span>
+                        <span className="text-[#3984FF] text-[11px]">
+                          {hero.crawlerDashboard.docProcessing.pagesParsed} • {hero.crawlerDashboard.docProcessing.chunksBuilt}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "docs" && (
+                  <div className="space-y-3.5">
+                    {/* Manual FAQ Source Card */}
+                    <div className="p-4 rounded-2xl bg-[#F8F9FE] dark:bg-[#181C33] border border-[#E5E7F0] dark:border-[#2D3354] space-y-2.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold text-[#171B2E] dark:text-[#FFFFFF] flex items-center gap-2">
+                          <HelpCircle className="w-4 h-4 text-[#635BFF]" />
+                          Manual FAQ Management
+                        </span>
+                        <span className="px-2 py-0.5 rounded-md bg-[#10B981]/15 text-[#10B981] font-mono text-[10px] font-semibold">
+                          Status: {hero.crawlerDashboard.manualFaq.status} ✓
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs font-mono bg-white dark:bg-[#101324] px-3 py-2 rounded-xl border border-[#E5E7F0] dark:border-white/5">
+                        <span className="text-[#171B2E] dark:text-[#FFFFFF]">
+                          {hero.crawlerDashboard.manualFaq.sourceName}
+                        </span>
+                        <span className="text-[#635BFF] dark:text-[#A5A0FF] font-semibold">
+                          {hero.crawlerDashboard.manualFaq.faqCount}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Custom Table Ingestion Card */}
+                    <div className="p-4 rounded-2xl bg-[#F8F9FE] dark:bg-[#181C33] border border-[#E5E7F0] dark:border-[#2D3354] space-y-2.5">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-semibold text-[#171B2E] dark:text-[#FFFFFF] flex items-center gap-2">
+                          <Table className="w-4 h-4 text-[#20C5D8]" />
+                          Structured Custom Tables
+                        </span>
+                        <span className="px-2 py-0.5 rounded-md bg-[#20C5D8]/15 text-[#0EA5B7] dark:text-[#20C5D8] font-mono text-[10px] font-semibold">
+                          3 Tables Indexed
+                        </span>
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-2 text-[11px] font-mono text-center">
+                        <div className="p-2 rounded-lg bg-white dark:bg-[#101324] border border-[#E5E7F0] dark:border-white/5">
+                          <div className="text-[10px] text-[#62677D] dark:text-[#8E95AF]">Pricing_Tiers</div>
+                          <div className="text-[#171B2E] dark:text-white font-bold mt-0.5">4 Plans</div>
+                        </div>
+                        <div className="p-2 rounded-lg bg-white dark:bg-[#101324] border border-[#E5E7F0] dark:border-white/5">
+                          <div className="text-[10px] text-[#62677D] dark:text-[#8E95AF]">Feature_Matrix</div>
+                          <div className="text-[#171B2E] dark:text-white font-bold mt-0.5">24 Items</div>
+                        </div>
+                        <div className="p-2 rounded-lg bg-white dark:bg-[#101324] border border-[#E5E7F0] dark:border-white/5">
+                          <div className="text-[10px] text-[#62677D] dark:text-[#8E95AF]">SKU_Directory</div>
+                          <div className="text-[#171B2E] dark:text-white font-bold mt-0.5">85 SKUs</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === "vector" && (
+                  <div className="space-y-3.5">
+                    {/* Vector Search Live Query Preview */}
+                    <div className="p-4 rounded-2xl bg-gradient-to-br from-[#635BFF]/5 via-[#3984FF]/5 to-transparent dark:from-[#635BFF]/10 dark:via-[#3984FF]/10 border border-[#635BFF]/25 dark:border-[#635BFF]/40 space-y-3">
+                      <div className="flex items-center justify-between text-xs">
+                        <div className="flex items-center gap-2 font-semibold text-[#171B2E] dark:text-white">
+                          <Search className="w-4 h-4 text-[#635BFF]" />
+                          <span>Vector Search Retrieval</span>
+                        </div>
+                        <span className="px-2 py-0.5 rounded-full bg-[#10B981]/15 text-[#10B981] font-mono text-[10px] font-bold">
+                          {hero.crawlerDashboard.vectorSearchPreview.similarityScore}
+                        </span>
+                      </div>
+
+                      {/* Query bar */}
+                      <div className="p-2.5 rounded-xl bg-white dark:bg-[#101324] border border-[#E5E7F0] dark:border-white/10 text-xs font-mono flex items-center justify-between">
+                        <span className="text-[#62677D] dark:text-[#8E95AF]">
+                          Query: <strong className="text-[#171B2E] dark:text-white">&quot;{hero.crawlerDashboard.vectorSearchPreview.query}&quot;</strong>
+                        </span>
+                        <span className="text-[10px] text-[#3984FF] font-semibold">Semantic Match</span>
+                      </div>
+
+                      {/* Matching knowledge snippet */}
+                      <div className="p-3 rounded-xl bg-white/80 dark:bg-[#111326] border border-[#E5E7F0] dark:border-white/5 text-xs space-y-1.5">
+                        <p className="text-[#171B2E] dark:text-[#E2E8F0] leading-relaxed italic text-[11px]">
+                          &quot;{hero.crawlerDashboard.vectorSearchPreview.resultSnippet}&quot;
+                        </p>
+                        <div className="text-[10px] font-mono text-[#62677D] dark:text-[#8E95AF] flex items-center justify-between pt-1 border-t border-[#F0F2F8] dark:border-white/5">
+                          <span>Source: {hero.crawlerDashboard.vectorSearchPreview.sourceDoc}</span>
+                          <span className="text-[#10B981] font-medium">Grounding Verified ✓</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Footer Status Summary */}
+                <div className="pt-2 flex items-center justify-between text-xs text-[#62677D] dark:text-[#8E95AF] border-t border-[#F0F2F8] dark:border-[#232742]">
+                  <span className="flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#3984FF]" />
+                    <span>{hero.crawlerDashboard.activeArticles}</span>
+                  </span>
+                  <span className="font-mono text-[11px] text-[#10B981]">
+                    Zero Data Hallucinations
+                  </span>
+                </div>
               </div>
 
             </div>
@@ -211,4 +323,3 @@ export const KnowledgeHero: React.FC = () => {
 };
 
 export default KnowledgeHero;
-
