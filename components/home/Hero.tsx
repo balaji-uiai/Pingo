@@ -82,10 +82,10 @@ export const Hero: React.FC = () => {
             <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px] hero-floating-robot">
               <div className="relative drop-shadow-[0_15px_30px_rgba(99,91,255,0.12)] dark:drop-shadow-[0_20px_40px_rgba(32,197,216,0.18)]">
                 <Image
-                  src="/images/pingo-robot.png"
+                  src="/images/pingo-robot-hero.png"
                   alt="Pingo 3D Robot Mascot with Talk, Chat, Information, and Support badges"
-                  width={1310}
-                  height={820}
+                  width={1024}
+                  height={768}
                   className="w-full h-auto object-contain block"
                   priority
                 />
