@@ -13,81 +13,30 @@ import {
   Bot,
   User,
   Briefcase,
-  GitBranch,
-  Building,
-  UserCheck,
+  TrendingUp,
+  Code2,
 } from "lucide-react";
-import { teamAssistanceData } from "@/data/teamAssistance";
+import { teamAssistanceData, DepartmentWorkspaceTab } from "@/data/teamAssistance";
 
-interface TeamRoleScenario {
-  id: string;
-  roleName: string;
-  department: string;
-  avatarColor: string;
-  question: string;
-  knowledgeBase: string;
-  sourceDoc: string;
-  answer: string;
-}
-
-const teamRoleScenarios: TeamRoleScenario[] = [
-  {
-    id: "operations",
-    roleName: "Operations Lead",
-    department: "Internal Operations",
-    avatarColor: "bg-[#635BFF]",
-    question: "What is our company expense reimbursement policy for travel meals?",
-    knowledgeBase: "Operations & HR Knowledge Base",
-    sourceDoc: "Internal_Operations_Manual_2026.pdf (Section 4.2)",
-    answer:
-      "Meals during approved business travel are reimbursed up to $75/day with itemized receipts submitted within 14 business days via the finance portal.",
-  },
-  {
-    id: "engineering",
-    roleName: "Lead Developer",
-    department: "Engineering & Infra",
-    avatarColor: "bg-[#3984FF]",
-    question: "What is the timeout threshold configured for our webhook retries?",
-    knowledgeBase: "Engineering Architecture Base",
-    sourceDoc: "Platform_Architecture_API_v3.md (Section 7.3)",
-    answer:
-      "Webhooks automatically retry up to 5 times using exponential backoff intervals with a hard timeout of 10 seconds per delivery attempt.",
-  },
-  {
-    id: "sales",
-    roleName: "Account Executive",
-    department: "Sales & Client Success",
-    avatarColor: "bg-[#20C5D8]",
-    question: "What are the storage limits for the Professional plan compared to Enterprise?",
-    knowledgeBase: "Product & Service Specs Base",
-    sourceDoc: "Product_Catalog_Specifications_2026.pdf",
-    answer:
-      "The Professional plan includes 50GB of vector storage and 25 connected documents. The Enterprise plan includes unlimited storage and custom SLAs.",
-  },
-  {
-    id: "new-hire",
-    roleName: "New Team Member",
-    department: "Recent Onboarding",
-    avatarColor: "bg-emerald-500",
-    question: "Where can I find our brand guidelines and vector logo files?",
-    knowledgeBase: "Company Onboarding & Brand Center",
-    sourceDoc: "Design_System_Brand_Asset_Guidelines_v4.pdf",
-    answer:
-      "Approved brand guidelines, typography standards, hex color palettes, and vector logo files are located in the Brand Center folder in Google Drive.",
-  },
-];
+const deptIconMap: Record<string, React.ElementType> = {
+  Users,
+  TrendingUp,
+  Briefcase,
+  Code2,
+  Sparkles,
+};
 
 export const TeamAssistanceHero: React.FC = () => {
   const { hero } = teamAssistanceData;
-  const [activeRole, setActiveRole] = useState<TeamRoleScenario>(
-    teamRoleScenarios[0]
+  const [activeTab, setActiveTab] = useState<DepartmentWorkspaceTab>(
+    hero.departmentTabs[0]
   );
 
   return (
     <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 overflow-hidden">
       {/* Background ambient lighting in Pingo brand colors */}
       <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] bg-[#635BFF]/10 dark:bg-[#635BFF]/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-10 right-0 w-[600px] h-[600px] bg-[#3984FF]/10 dark:bg-[#3984FF]/15 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
+      <div className="absolute top-10 right-0 w-[600px] h-[600px] bg-[#3984FF]/10 dark:bg-[#3984FF]/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 w-[420px] h-[420px] bg-[#20C5D8]/8 dark:bg-[#20C5D8]/12 rounded-full blur-[110px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 sm:px-8 relative z-10">
@@ -142,7 +91,9 @@ export const TeamAssistanceHero: React.FC = () => {
                         ? "text-[#635BFF]"
                         : idx === 1
                         ? "text-[#3984FF]"
-                        : "text-[#20C5D8]"
+                        : idx === 2
+                        ? "text-[#20C5D8]"
+                        : "text-[#10B981]"
                     }`}
                   />
                   <span>{item}</span>
@@ -156,7 +107,7 @@ export const TeamAssistanceHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Team Collaboration & Shared Knowledge Hub Visual */}
+          {/* Right Column: Interactive Department Knowledge Workspace Mockup */}
           <div className="lg:col-span-6 xl:col-span-6 relative flex flex-col items-center justify-center w-full">
             {/* Ambient Aura */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[#3984FF]/15 via-[#635BFF]/20 to-[#20C5D8]/15 rounded-3xl filter blur-3xl transform scale-90 pointer-events-none" />
@@ -164,7 +115,7 @@ export const TeamAssistanceHero: React.FC = () => {
             {/* Main Visual Composition Container */}
             <div className="relative w-full max-w-lg rounded-2xl bg-white/95 dark:bg-[#100D1E]/95 border border-[#E5E7F0] dark:border-[#28223D] shadow-2xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] backdrop-blur-xl overflow-hidden transition-all duration-300">
               
-              {/* Header: Shared Team Knowledge Center */}
+              {/* Header: Company Knowledge Center */}
               <div className="px-5 py-3.5 border-b border-[#E5E7F0] dark:border-white/[0.08] bg-[#FAFAFE] dark:bg-[#15102A] flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#635BFF] to-[#3984FF] text-white flex items-center justify-center shadow-sm">
@@ -172,10 +123,10 @@ export const TeamAssistanceHero: React.FC = () => {
                   </div>
                   <div>
                     <h3 className="font-bold text-[#171B2E] dark:text-white leading-tight text-xs sm:text-sm">
-                      Company Knowledge Hub
+                      Pingo Team Workspace
                     </h3>
                     <span className="text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
-                      Single source of truth for all departments
+                      Connected Department Knowledge Bases
                     </span>
                   </div>
                 </div>
@@ -185,32 +136,34 @@ export const TeamAssistanceHero: React.FC = () => {
                 </span>
               </div>
 
-              {/* Team Role Switcher Tabs */}
+              {/* Department Switcher Tabs (5 Tabs: HR, Sales, Ops, Tech, Onboarding) */}
               <div className="p-3 bg-[#F5F6FA] dark:bg-[#16122C] border-b border-[#E5E7F0] dark:border-white/[0.06]">
                 <span className="text-[10px] font-mono uppercase tracking-wider text-[#62677D] dark:text-[#A5A1BF] font-semibold block mb-2 px-1">
-                  Select Team Member Role:
+                  Department Information Workspace:
                 </span>
-                <div className="grid grid-cols-4 gap-1.5">
-                  {teamRoleScenarios.map((role) => {
-                    const isSelected = activeRole.id === role.id;
+                <div className="grid grid-cols-5 gap-1">
+                  {hero.departmentTabs.map((dept) => {
+                    const isSelected = activeTab.id === dept.id;
+                    const IconComp = deptIconMap[dept.iconName] || Users;
+
                     return (
                       <button
-                        key={role.id}
+                        key={dept.id}
                         type="button"
-                        onClick={() => setActiveRole(role)}
-                        className={`p-2 rounded-xl text-center transition-all duration-200 cursor-pointer border ${
+                        onClick={() => setActiveTab(dept)}
+                        className={`p-1.5 rounded-xl text-center transition-all duration-200 cursor-pointer border ${
                           isSelected
                             ? "bg-white dark:bg-[#1F193D] border-[#3984FF] shadow-sm text-[#171B2E] dark:text-white"
                             : "bg-transparent border-transparent hover:bg-white/60 dark:hover:bg-white/[0.04] text-[#62677D] dark:text-[#A5A1BF]"
                         }`}
                       >
                         <div
-                          className={`w-6 h-6 rounded-full ${role.avatarColor} text-white flex items-center justify-center text-[10px] font-bold mx-auto mb-1`}
+                          className={`w-6 h-6 rounded-full ${dept.avatarColor} text-white flex items-center justify-center mx-auto mb-1`}
                         >
-                          {role.roleName.charAt(0)}
+                          <IconComp className="w-3 h-3 text-white" />
                         </div>
                         <span className="text-[10px] font-semibold truncate block leading-tight">
-                          {role.roleName.split(" ")[0]}
+                          {dept.deptName.split(" ")[0]}
                         </span>
                       </button>
                     );
@@ -218,19 +171,19 @@ export const TeamAssistanceHero: React.FC = () => {
                 </div>
               </div>
 
-              {/* Interactive Shared Inquiry & Response Display */}
+              {/* Active Department Natural-Language Inquiry & Grounded Answer */}
               <div className="p-5 space-y-4 text-xs sm:text-sm">
                 
-                {/* Active Role Meta */}
+                {/* Active Department Role Context */}
                 <div className="flex items-center justify-between pb-2 border-b border-[#E5E7F0] dark:border-white/[0.06]">
                   <div className="flex items-center gap-2">
-                    <div className={`w-2 h-2 rounded-full ${activeRole.avatarColor}`} />
+                    <div className={`w-2 h-2 rounded-full ${activeTab.avatarColor}`} />
                     <span className="font-bold text-[#171B2E] dark:text-white text-xs">
-                      {activeRole.roleName} ({activeRole.department})
+                      {activeTab.roleTitle} ({activeTab.deptName})
                     </span>
                   </div>
                   <span className="text-[10px] font-mono text-[#3984FF] dark:text-[#7EB5FF]">
-                    {activeRole.knowledgeBase}
+                    {activeTab.badge}
                   </span>
                 </div>
 
@@ -238,7 +191,7 @@ export const TeamAssistanceHero: React.FC = () => {
                 <div className="flex items-start gap-2.5 justify-end">
                   <div className="max-w-[85%] bg-gradient-to-r from-[#635BFF] to-[#3984FF] text-white p-3 rounded-2xl rounded-tr-xs shadow-md text-xs sm:text-sm">
                     <p className="leading-relaxed font-normal">
-                      &ldquo;{activeRole.question}&rdquo;
+                      &ldquo;{activeTab.question}&rdquo;
                     </p>
                   </div>
                   <div className="w-7 h-7 rounded-full bg-[#EAEBF0] dark:bg-[#1F1C36] flex items-center justify-center text-[#62677D] dark:text-[#A5A1BF] flex-shrink-0 mt-1">
@@ -253,13 +206,13 @@ export const TeamAssistanceHero: React.FC = () => {
                   </div>
                   <div className="max-w-[88%] bg-[#F5F6FA] dark:bg-[#16122C] border border-[#E5E7F0] dark:border-[#28223D] text-[#171B2E] dark:text-[#F8F7FF] p-3.5 rounded-2xl rounded-tl-xs space-y-2 text-xs sm:text-sm shadow-sm">
                     <p className="leading-relaxed font-normal">
-                      {activeRole.answer}
+                      {activeTab.answer}
                     </p>
 
                     <div className="pt-2 border-t border-[#E5E7F0] dark:border-white/[0.08] flex items-center justify-between text-[10px] text-[#62677D] dark:text-[#A5A1BF]">
                       <span className="flex items-center gap-1 font-mono truncate max-w-[240px]">
                         <FileText className="w-3 h-3 text-[#3984FF]" />
-                        {activeRole.sourceDoc}
+                        {activeTab.sourceDoc}
                       </span>
                       <span className="inline-flex items-center gap-1 text-[#10B981] font-semibold">
                         <ShieldCheck className="w-3 h-3" />
@@ -271,18 +224,19 @@ export const TeamAssistanceHero: React.FC = () => {
 
               </div>
 
-              {/* Bottom Reassurance Footer */}
+              {/* Bottom Reassurance Strip */}
               <div className="px-5 py-2.5 border-t border-[#E5E7F0] dark:border-white/[0.08] bg-[#FAFAFE] dark:bg-[#130E26] flex items-center justify-between text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
                 <span className="flex items-center gap-1.5 font-medium">
                   <Users className="w-3.5 h-3.5 text-[#3984FF]" />
-                  All team members access the same up-to-date documentation
+                  Employees find verified answers without interrupting teammates
                 </span>
                 <span className="font-mono text-[10px] text-emerald-500 font-semibold">
-                  Zero Misalignment
+                  Zero Delays
                 </span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -290,4 +244,3 @@ export const TeamAssistanceHero: React.FC = () => {
 };
 
 export default TeamAssistanceHero;
-

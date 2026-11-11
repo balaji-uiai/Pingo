@@ -2,22 +2,21 @@
 
 import React from "react";
 import {
-  FolderPlus,
-  Layers,
-  MessageSquare,
+  FolderDown,
+  FolderTree,
+  Database,
+  Search,
   CheckCircle,
   Workflow,
-  ArrowRight,
-  Database,
   Sparkles,
-  Share2,
 } from "lucide-react";
-import { businessKnowledgeData, WorkflowStep } from "@/data/businessKnowledgeAccess";
+import { businessKnowledgeData } from "@/data/businessKnowledgeAccess";
 
 const iconMap: Record<string, React.ElementType> = {
-  FolderPlus,
-  Layers,
-  MessageSquare,
+  FolderDown,
+  FolderTree,
+  Database,
+  Search,
   CheckCircle,
 };
 
@@ -52,12 +51,12 @@ export const BusinessKnowledgeWorkflow: React.FC = () => {
           </p>
         </div>
 
-        {/* 4-Step Knowledge Flow Timeline */}
+        {/* 5-Step Knowledge Flow Timeline */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Continuous connection track across desktop */}
-          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-[3px] bg-gradient-to-r from-[#635BFF] via-[#3984FF] to-[#20C5D8] opacity-30 dark:opacity-45 -z-0" />
+          {/* Continuous connection track across large screens */}
+          <div className="hidden xl:block absolute top-[44px] left-[8%] right-[8%] h-[3px] bg-gradient-to-r from-[#635BFF] via-[#3984FF] to-[#20C5D8] opacity-30 dark:opacity-45 -z-0" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 relative z-10">
             {workflow.steps.map((step, index) => {
               const IconComponent = iconMap[step.iconName] || Database;
 
@@ -97,28 +96,18 @@ export const BusinessKnowledgeWorkflow: React.FC = () => {
 
                   {/* Progress Indicator */}
                   <div className="pt-4 mt-5 border-t border-[#E5E7F0] dark:border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-[#62677D] dark:text-[#A5A1BF]">
-                    <span>Phase 0{index + 1} of 04</span>
-                    <span className="text-[#635BFF] dark:text-[#A5A0FF] font-semibold flex items-center gap-1">
-                      Ready <ArrowRight className="w-3 h-3" />
-                    </span>
+                    <span>Phase 0{index + 1} of 05</span>
+                    <span className="text-[#10B981] font-semibold">Active Hub</span>
                   </div>
                 </div>
               );
             })}
           </div>
-
-          {/* Bottom Hierarchy Guarantee */}
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F6FA] dark:bg-[#15102A] border border-[#E5E7F0] dark:border-[#28223D] text-xs text-[#62677D] dark:text-[#A5A1BF]">
-              <Database className="w-3.5 h-3.5 text-[#635BFF]" />
-              <span>Hierarchical architecture: Product → Dedicated Knowledge Center → Separate Knowledge Bases</span>
-            </div>
-          </div>
         </div>
+
       </div>
     </section>
   );
 };
 
 export default BusinessKnowledgeWorkflow;
-

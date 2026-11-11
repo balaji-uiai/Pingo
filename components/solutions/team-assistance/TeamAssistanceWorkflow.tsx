@@ -2,21 +2,22 @@
 
 import React from "react";
 import {
-  FolderPlus,
-  Layers,
-  MessageSquare,
+  HelpCircle,
+  Search,
+  Database,
+  FileCheck,
   CheckCircle,
   Workflow,
   ArrowRight,
   Users,
-  Sparkles,
 } from "lucide-react";
-import { teamAssistanceData, WorkflowStep } from "@/data/teamAssistance";
+import { teamAssistanceData } from "@/data/teamAssistance";
 
 const iconMap: Record<string, React.ElementType> = {
-  FolderPlus,
-  Layers,
-  MessageSquare,
+  HelpCircle,
+  Search,
+  Database,
+  FileCheck,
   CheckCircle,
 };
 
@@ -51,12 +52,12 @@ export const TeamAssistanceWorkflow: React.FC = () => {
           </p>
         </div>
 
-        {/* 4-Step Team Knowledge Setup Pipeline */}
+        {/* 5-Step Employee Workday Journey Pipeline */}
         <div className="relative max-w-6xl mx-auto">
-          {/* Continuous connection track across desktop */}
-          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-[3px] bg-gradient-to-r from-[#3984FF] via-[#635BFF] to-[#20C5D8] opacity-30 dark:opacity-45 -z-0" />
+          {/* Continuous connection track across xl screens */}
+          <div className="hidden xl:block absolute top-[44px] left-[8%] right-[8%] h-[3px] bg-gradient-to-r from-[#3984FF] via-[#635BFF] to-[#20C5D8] opacity-30 dark:opacity-45 -z-0" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 relative z-10">
             {workflow.steps.map((step, index) => {
               const IconComponent = iconMap[step.iconName] || Users;
 
@@ -96,28 +97,21 @@ export const TeamAssistanceWorkflow: React.FC = () => {
 
                   {/* Progress Indicator */}
                   <div className="pt-4 mt-5 border-t border-[#E5E7F0] dark:border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-[#62677D] dark:text-[#A5A1BF]">
-                    <span>Phase 0{index + 1} of 04</span>
+                    <span>Stage 0{index + 1} of 05</span>
                     <span className="text-[#3984FF] dark:text-[#7EB5FF] font-semibold flex items-center gap-1">
-                      Ready <ArrowRight className="w-3 h-3" />
+                      Verified
+                      <ArrowRight className="w-3 h-3" />
                     </span>
                   </div>
                 </div>
               );
             })}
           </div>
-
-          {/* Bottom Shared Access Guarantee */}
-          <div className="mt-8 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#F5F6FA] dark:bg-[#15102A] border border-[#E5E7F0] dark:border-[#28223D] text-xs text-[#62677D] dark:text-[#A5A1BF]">
-              <Users className="w-3.5 h-3.5 text-[#3984FF]" />
-              <span>Everyone on your team accesses the same unified, verified documentation</span>
-            </div>
-          </div>
         </div>
+
       </div>
     </section>
   );
 };
 
 export default TeamAssistanceWorkflow;
-

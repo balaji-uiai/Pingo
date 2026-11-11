@@ -6,19 +6,30 @@ export interface ChallengeItem {
   iconName: string;
 }
 
-export interface CapabilityItem {
+export interface HowPingoHelpsItem {
   id: string;
   title: string;
   description: string;
-  badge: string;
+  pillarBadge: string;
   iconName: string;
-  teamImpact: string;
+}
+
+export interface DepartmentWorkspaceTab {
+  id: string;
+  deptName: string;
+  roleTitle: string;
+  avatarColor: string;
+  badge: string;
+  question: string;
+  sourceDoc: string;
+  answer: string;
+  iconName: string;
 }
 
 export interface UseCaseItem {
   id: string;
   title: string;
-  roleContext: string;
+  department: string;
   description: string;
   sampleQuestion: string;
   groundedAnswer: string;
@@ -39,13 +50,13 @@ export interface BenefitItem {
   id: string;
   title: string;
   description: string;
-  tag: string;
+  impactTag: string;
   iconName: string;
 }
 
 export const teamAssistanceData = {
   hero: {
-    badge: "Team Knowledge Assistance",
+    badge: "Internal Team Assistance",
     headingPart1: "Give Your Team the Knowledge",
     headingPart2: "to Work Smarter.",
     description:
@@ -56,17 +67,80 @@ export const teamAssistanceData = {
     },
     secondaryCta: {
       text: "Explore Features",
-      href: "/features/customer-team-management",
+      href: "/features/ai-automation",
     },
     highlights: [
-      "Shared Team Knowledge Base",
-      "Natural Language Process Q&A",
-      "Instant Onboarding & Guideline Access",
+      "Department Information Access",
+      "Natural-Language Process Answers",
+      "Instant Onboarding & SOP Retrieval",
+      "Single Source of Truth",
     ],
+    departmentTabs: [
+      {
+        id: "hr",
+        deptName: "HR & People",
+        roleTitle: "People Partner",
+        avatarColor: "bg-[#635BFF]",
+        badge: "People & Policies",
+        question: "What is our leave rollover policy for untaken PTO at fiscal year-end?",
+        sourceDoc: "HR Guidelines / Employee Benefits Handbook 2026 (Section 3.4)",
+        answer:
+          "Full-time employees can roll over up to 5 unused PTO days into the following calendar year, which must be utilized within the first quarter (by March 31).",
+        iconName: "Users",
+      },
+      {
+        id: "sales",
+        deptName: "Sales & RevOps",
+        roleTitle: "Account Executive",
+        avatarColor: "bg-[#3984FF]",
+        badge: "Commercial Knowledge",
+        question: "What are the contractual storage limits for our Professional tier vs Enterprise?",
+        sourceDoc: "Sales Enablement / Commercial Pricing Matrix 2026",
+        answer:
+          "The Professional tier includes up to 50GB vector storage and 25 connected document sources. Enterprise tier provides unlimited vector storage, custom SLA, and dedicated onboarding.",
+        iconName: "TrendingUp",
+      },
+      {
+        id: "operations",
+        deptName: "Operations",
+        roleTitle: "Operations Specialist",
+        avatarColor: "bg-[#20C5D8]",
+        badge: "SOPs & Workflows",
+        question: "What is the mandatory approval threshold for external vendor software procurement?",
+        sourceDoc: "Finance & Operations / Procurement SOP (Clause 2.1)",
+        answer:
+          "Software purchases under $5,000 require Department Manager approval. Subscriptions exceeding $5,000 require formal sign-off from both Department Head and Finance Controller.",
+        iconName: "Briefcase",
+      },
+      {
+        id: "tech",
+        deptName: "Technical Teams",
+        roleTitle: "Systems Engineer",
+        avatarColor: "bg-indigo-600",
+        badge: "Engineering Architecture",
+        question: "What are the retry parameters and exponential backoff windows for webhook failures?",
+        sourceDoc: "Technical Specs / Platform Webhook Architecture v2.4",
+        answer:
+          "Webhooks perform 5 automated delivery attempts with exponential retry intervals (1m, 5m, 15m, 1h, and 6h) before moving the payload to the dead-letter queue.",
+        iconName: "Code2",
+      },
+      {
+        id: "onboarding",
+        deptName: "New Employees",
+        roleTitle: "New Hire",
+        avatarColor: "bg-emerald-500",
+        badge: "First 30 Days",
+        question: "Where can I find our brand identity guidelines and official typography font packs?",
+        sourceDoc: "Brand Center / Brand Guidelines & Design Tokens v4",
+        answer:
+          "All official logos, SVG vectors, color tokens, and approved Google Workspace fonts are centralized in Google Drive under Brand Center > Assets > Identity 2026.",
+        iconName: "Sparkles",
+      },
+    ] as DepartmentWorkspaceTab[],
   },
 
   challenges: {
-    badge: "Everyday Team Bottlenecks",
+    badge: "Team Knowledge Obstacles",
     heading: "Your Team Shouldn't Have to Search Everywhere for Answers.",
     subheading:
       "When internal processes and documentation are hard to find, team productivity stalls and valuable work is repeatedly interrupted.",
@@ -75,15 +149,15 @@ export const teamAssistanceData = {
         id: "search-struggles",
         title: "Team members struggle to find the right information",
         description:
-          "Important operational details are hidden inside lengthy guides and confusing folder structures, making daily information lookup frustrating.",
-        teamFriction: "Lost productivity during critical tasks",
+          "Important operational details are buried inside lengthy guides, outdated wikis, and confusing folder structures, making daily lookup frustrating.",
+        teamFriction: "Lost work hours and task delays",
         iconName: "SearchX",
       },
       {
         id: "scattered-documents",
         title: "Important documents are scattered across different sources",
         description:
-          "Process wikis, policy PDFs, project guidelines, and training decks live in different places, creating knowledge silos across departments.",
+          "Process documents, policy PDFs, project guidelines, and training decks live across separate drives, creating departmental knowledge silos.",
         teamFriction: "Disconnected versions and document drift",
         iconName: "FolderGit2",
       },
@@ -91,7 +165,7 @@ export const teamAssistanceData = {
         id: "repetitive-questions",
         title: "Employees repeatedly ask colleagues the same questions",
         description:
-          "Team members spend time answering the same routine operational inquiries over and over instead of focusing on their core deliverables.",
+          "Team members spend valuable hours answering the same routine operational inquiries on Slack and email instead of focusing on core deliverables.",
         teamFriction: "Continuous coworker interruptions",
         iconName: "MessageCircleOff",
       },
@@ -107,179 +181,183 @@ export const teamAssistanceData = {
         id: "work-interruptions",
         title: "Finding accurate information interrupts everyday work",
         description:
-          "Hunting down verified answers forces employees into constant context-switching, breaking flow state and slowing project velocity.",
-        teamFriction: "Context switching and delayed project execution",
+          "Hunting down verified answers forces employees into constant context-switching, breaking focus and slowing project execution.",
+        teamFriction: "Context switching and fragmented focus",
         iconName: "Clock",
       },
     ] as ChallengeItem[],
   },
 
-  capabilities: {
-    badge: "Team Empowerment Capabilities",
+  howPingoHelps: {
+    badge: "Knowledge Empowerment",
     heading: "Make Business Knowledge Work for Your Team.",
     subheading:
       "Equip everyone on your team with an assistant that delivers consistent, contextual answers from your connected business knowledge.",
     items: [
       {
         id: "easy-access",
-        title: "Easy Knowledge Access",
+        title: "Easy knowledge access",
         description:
-          "Help team members access connected business information quickly from one shared assistant without digging through complex directories.",
-        badge: "Unified Hub",
+          "Help team members access connected business information quickly from one unified assistant without digging through complex directories.",
+        pillarBadge: "Instant Access",
         iconName: "Compass",
-        teamImpact: "Instant availability of verified internal documentation",
       },
       {
         id: "natural-language",
-        title: "Natural Language Questions",
+        title: "Natural-language questions",
         description:
-          "Allow employees to ask questions in simple language without memorizing technical syntax or exact document filenames.",
-        badge: "Conversational",
+          "Allow employees to ask questions in plain, conversational language without needing to know specific file names, tags, or folder paths.",
+        pillarBadge: "Zero Syntax Required",
         iconName: "MessageSquare",
-        teamImpact: "Zero search friction for team members in any department",
       },
       {
         id: "contextual-answers",
-        title: "Contextual Answers",
+        title: "Contextual answers",
         description:
-          "Retrieve relevant information based on each question, synthesizing the exact steps or policy clauses needed for the task.",
-        badge: "Precision Matching",
+          "Retrieve relevant information based on the specific question, citing authoritative policy clauses and operating guidelines directly.",
+        pillarBadge: "Exact Paragraph Matches",
         iconName: "Target",
-        teamImpact: "Accurate answers tailored to the employee's inquiry",
       },
       {
         id: "organized-knowledge",
-        title: "Organized Knowledge",
+        title: "Organized knowledge",
         description:
-          "Keep information structured in dedicated knowledge bases by department, product, or workflow for orderly growth.",
-        badge: "Structured Bases",
+          "Keep information structured in dedicated knowledge bases by department, operational domain, or workflow for clear organizational boundaries.",
+        pillarBadge: "Domain Segregation",
         iconName: "FolderTree",
-        teamImpact: "Scalable knowledge architecture as team documentation expands",
       },
       {
         id: "consistent-information",
-        title: "Consistent Information",
+        title: "Consistent information",
         description:
-          "Help team members refer to the same connected business knowledge, eliminating conflicting versions or outdated instructions.",
-        badge: "Single Source of Truth",
+          "Help team members refer to consistent, verified business information across all teams, eliminating conflicting instructions and outdated copies.",
+        pillarBadge: "Single Source of Truth",
         iconName: "ShieldCheck",
-        teamImpact: "Cross-team alignment on verified policies and processes",
       },
-    ] as CapabilityItem[],
-  },
-
-  useCases: {
-    badge: "Everyday Team Scenarios",
-    heading: "Support Your Team at Every Step.",
-    subheading:
-      "Explore how team members across different roles use Pingo to find answers and understand workplace processes.",
-    items: [
-      {
-        id: "process-documentation",
-        title: "Finding internal process documentation",
-        roleContext: "Operations & Workflows",
-        description:
-          "Look up standard operating procedures, approval chains, release protocols, and deployment checklists.",
-        sampleQuestion: "What is the approved procedure for requesting production release approval?",
-        groundedAnswer:
-          "Production releases require peer review sign-off in Git, passing automated regression tests, and a scheduled maintenance window logged in Jira.",
-        sourceDoc: "Standard Operating Procedures / Release Governance v2.1",
-        iconName: "GitPullRequest",
-      },
-      {
-        id: "company-guidelines",
-        title: "Understanding company guidelines",
-        roleContext: "Company Policies",
-        description:
-          "Help employees understand remote work expectations, travel reimbursements, equipment allowances, and leave policies.",
-        sampleQuestion: "What is the policy for submitting professional development course expenses?",
-        groundedAnswer:
-          "Full-time team members can claim up to $1,000 annually for approved courses and certifications with receipts submitted to HR via the expense portal.",
-        sourceDoc: "Employee Handbook / Professional Development Benefits",
-        iconName: "FileCheck2",
-      },
-      {
-        id: "product-service-info",
-        title: "Accessing product and service information",
-        roleContext: "Sales & Support Teams",
-        description:
-          "Enable sales, customer success, and support teams to look up package specifications, feature limits, and SLAs on the fly.",
-        sampleQuestion: "What are the storage limits for the Professional tier compared to Enterprise?",
-        groundedAnswer:
-          "The Professional tier includes up to 50GB of vector storage and 25 connected documents. The Enterprise tier provides unlimited vector storage.",
-        sourceDoc: "Product Catalog & Service Specifications 2026",
-        iconName: "Layers",
-      },
-      {
-        id: "workplace-questions",
-        title: "Finding answers to common workplace questions",
-        roleContext: "Daily Workplace FAQs",
-        description:
-          "Resolve routine questions regarding IT hardware requests, Wi-Fi credentials, benefits enrollment, and office access.",
-        sampleQuestion: "How do I request a replacement security hardware token or keycard?",
-        groundedAnswer:
-          "Hardware token and keycard requests are submitted via the IT Helpdesk Portal under 'Security Credentials'. Replacements are issued within 24 hours.",
-        sourceDoc: "IT Operations & Workplace Access Guidelines",
-        iconName: "HelpCircle",
-      },
-      {
-        id: "onboarding-guidance",
-        title: "Helping new team members discover relevant information",
-        roleContext: "New Hire Onboarding",
-        description:
-          "Empower new hires to explore internal documentation independently, helping them get up to speed faster without constant supervision.",
-        sampleQuestion: "Where can I find our brand asset guidelines and logo vector files?",
-        groundedAnswer:
-          "Brand guidelines, approved hex colors, typography standards, and vector logo files are located in the Brand Center folder in Google Drive.",
-        sourceDoc: "Design System & Brand Asset Guidelines v4",
-        iconName: "UserPlus",
-      },
-    ] as UseCaseItem[],
+    ] as HowPingoHelpsItem[],
   },
 
   workflow: {
-    badge: "Four-Step Setup",
-    heading: "How It Works",
+    badge: "Employee Workday Journey",
+    heading: "How Teams Access Knowledge Throughout the Day",
     subheading:
-      "A straightforward workflow that connects team members directly with verified organizational knowledge.",
+      "A 5-stage experience that transforms everyday workplace questions into rapid, verified execution without team friction.",
     steps: [
       {
-        step: "01",
-        number: "Step 1",
-        title: "Connect Business Information",
-        description: "Add supported information sources.",
+        step: "Stage 01",
+        number: "01",
+        title: "Employee Encounters a Work-Related Question",
+        description: "An employee needs immediate clarification during an active task.",
         detail:
-          "Import internal manuals, company guidelines, process documentation, and FAQs into your secure workspace.",
-        iconName: "FolderPlus",
+          "Whether checking approval thresholds, client contract limits, HR policies, or system deployment steps, work requires authoritative guidance.",
+        iconName: "HelpCircle",
       },
       {
-        step: "02",
-        number: "Step 2",
-        title: "Organize Team Knowledge",
-        description: "Structure information into relevant knowledge bases.",
+        step: "Stage 02",
+        number: "02",
+        title: "Employee Searches for Relevant Information",
+        description: "The team member types a natural-language question into Pingo.",
         detail:
-          "Pingo segments materials into dedicated knowledge centers organized by department, project, or operational domain.",
-        iconName: "Layers",
+          "Instead of browsing endless nested folders or messaging busy teammates, the employee simply states what they need in plain English.",
+        iconName: "Search",
       },
       {
-        step: "03",
-        number: "Step 3",
-        title: "Ask Questions",
-        description: "Team members ask questions naturally.",
+        step: "Stage 03",
+        number: "03",
+        title: "Pingo Retrieves Relevant Internal Knowledge",
+        description: "The assistant searches across authorized department knowledge bases.",
         detail:
-          "Employees type natural-language questions in their own words without needing exact filenames or directory paths.",
-        iconName: "MessageSquare",
+          "High-precision semantic vector matching pinpoints the exact paragraph, policy clause, or procedure from verified company files.",
+        iconName: "Database",
       },
       {
-        step: "04",
-        number: "Step 4",
-        title: "Get Relevant Answers",
-        description: "Pingo retrieves useful information and provides contextual responses.",
+        step: "Stage 04",
+        number: "04",
+        title: "Employee Understands the Required Process",
+        description: "Pingo delivers a clear, concise answer with a direct source citation.",
         detail:
-          "The assistant pinpoints verified source documentation and delivers clear, cited answers in seconds.",
+          "The employee receives actionable guidance immediately, backed by transparent references to the verified company document.",
+        iconName: "FileCheck",
+      },
+      {
+        step: "Stage 05",
+        number: "05",
+        title: "Employee Continues the Task with Better Information",
+        description: "Work progresses smoothly without delay or team interruption.",
+        detail:
+          "Tasks are executed accurately on the first attempt, eliminating procedural rework and keeping colleagues focused on high-value priorities.",
         iconName: "CheckCircle",
       },
     ] as WorkflowStep[],
+  },
+
+  useCases: {
+    badge: "Department Knowledge Applications",
+    heading: "Support Every Team Across Your Organization",
+    subheading:
+      "Explore how Pingo powers everyday operational clarity across different functional departments.",
+    items: [
+      {
+        id: "hr-department",
+        title: "Human Resources (HR) & People Operations",
+        department: "Human Resources",
+        description:
+          "Help employees understand leave policies, remote work guidelines, healthcare benefits, and expense reimbursements without ticketing HR.",
+        sampleQuestion: "What is the policy for claiming professional development certifications?",
+        groundedAnswer:
+          "Full-time employees receive up to $1,000 annually for approved coursework. Expense claims with completion certificates should be submitted via the finance portal within 30 days.",
+        sourceDoc: "HR Knowledge Base > Employee Benefits Handbook 2026",
+        iconName: "Users",
+      },
+      {
+        id: "sales-department",
+        title: "Sales & Revenue Operations",
+        department: "Sales Teams",
+        description:
+          "Enable sales reps and account executives to check package specifications, pricing guidelines, feature limits, and competitor battlecards on demand.",
+        sampleQuestion: "What are the vector storage limits for our Professional plan compared to Enterprise?",
+        groundedAnswer:
+          "The Professional plan provides up to 50GB vector storage and 25 connected document sources. The Enterprise plan includes unlimited vector storage and custom SLAs.",
+        sourceDoc: "Commercial Base > Product Catalog & Pricing Specs 2026",
+        iconName: "TrendingUp",
+      },
+      {
+        id: "operations-department",
+        title: "Operations & Business Process Management",
+        department: "Operations",
+        description:
+          "Clarify cross-functional handoffs, software procurement procedures, approval matrix limits, and vendor onboarding requirements.",
+        sampleQuestion: "What is the required approval chain for hardware purchases above $2,500?",
+        groundedAnswer:
+          "Hardware purchases over $2,500 require submission of a requisition form signed by the Department Lead and IT Operations Manager prior to issuance of a purchase order.",
+        sourceDoc: "Operations Base > Procurement & Capital Expense SOP v3",
+        iconName: "Briefcase",
+      },
+      {
+        id: "technical-department",
+        title: "Technical & Engineering Teams",
+        department: "Technical Teams",
+        description:
+          "Provide engineers and developers with instant access to deployment protocols, platform architecture specifications, API references, and troubleshooting runbooks.",
+        sampleQuestion: "What is the rollback procedure if a canary deployment exceeds 2% error rate?",
+        groundedAnswer:
+          "Run 'make canary-rollback' in the deployment CLI, which triggers automated traffic drainage back to stable v1 and alerts the on-call engineer via PagerDuty.",
+        sourceDoc: "Engineering Base > Deployment & Incident Response Runbook",
+        iconName: "Code2",
+      },
+      {
+        id: "onboarding-department",
+        title: "New Employee Onboarding",
+        department: "New Employees",
+        description:
+          "Empower new hires to explore company guidelines, team directories, tool setups, and brand assets independently during their first weeks.",
+        sampleQuestion: "Where do I find the company Figma design system and brand logo assets?",
+        groundedAnswer:
+          "The official design tokens, typography styles, and SVG brand assets are available in the Figma Team Workspace under 'Pingo Design System v2' and in the Brand Center Drive.",
+        sourceDoc: "Onboarding Base > New Hire Starter Kit & Brand Guide",
+        iconName: "Sparkles",
+      },
+    ] as UseCaseItem[],
   },
 
   benefits: {
@@ -292,40 +370,40 @@ export const teamAssistanceData = {
         id: "less-time-searching",
         title: "Less time spent searching for information",
         description:
-          "Team members get straight to the answers they need instead of digging through deep document hierarchies.",
-        tag: "Time Recovered",
+          "Team members get straight to the verified answers they need instead of digging through deep document hierarchies and multiple cloud drives.",
+        impactTag: "Time Recovered",
         iconName: "Clock",
       },
       {
         id: "easier-access",
         title: "Easier access to internal knowledge",
         description:
-          "Institutional knowledge is centralized and made instantly accessible to everyone across the company.",
-        tag: "Universal Access",
+          "Institutional knowledge is centralized and made instantly accessible through natural-language questions for every team member.",
+        impactTag: "Universal Access",
         iconName: "Compass",
       },
       {
         id: "reduced-questions",
-        title: "Reduced repetitive questions",
+        title: "Reduced repetitive questions among team members",
         description:
-          "Free domain experts and team leads from constantly re-answering everyday questions on Slack or email.",
-        tag: "Zero Interruptions",
-        iconName: "CheckCheck",
+          "Free domain specialists, managers, and team leads from constantly answering recurring operational questions on Slack and email.",
+        impactTag: "Zero Interruptions",
+        iconName: "MessageSquare",
       },
       {
         id: "consistent-sharing",
-        title: "More consistent information sharing",
+        title: "More consistent information sharing across the team",
         description:
-          "Ensure every team member works from the same up-to-date documentation and single source of truth.",
-        tag: "Verified Accuracy",
+          "Ensure every employee references the same up-to-date documentation and single source of truth across all business units.",
+        impactTag: "Verified Accuracy",
         iconName: "ShieldCheck",
       },
       {
         id: "better-accessibility",
-        title: "Better knowledge accessibility for team members",
+        title: "Better knowledge accessibility for new team members",
         description:
-          "New hires and cross-functional partners can onboard and execute independently with immediate confidence.",
-        tag: "Fast Onboarding",
+          "Accelerate new hire onboarding and enable new employees to discover operational guidance independently from day one.",
+        impactTag: "Fast Onboarding",
         iconName: "Users",
       },
     ] as BenefitItem[],
@@ -335,11 +413,10 @@ export const teamAssistanceData = {
     badge: "Empower Your Team",
     heading: "Help Your Team Find Answers With Confidence.",
     description:
-      "Bring your business knowledge closer to the people who need it every day.",
+      "Bring your business knowledge closer to the people who need it every day. Create a shared knowledge assistant that keeps your organization informed and moving forward.",
     buttonText: "Get Started",
     buttonHref: "/contact",
-    secondaryText: "Explore Features",
-    secondaryHref: "/features/customer-team-management",
+    secondaryText: "Explore Support Management",
+    secondaryHref: "/solutions/support-management",
   },
 };
-

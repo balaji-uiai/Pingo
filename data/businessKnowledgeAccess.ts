@@ -6,19 +6,26 @@ export interface ChallengeItem {
   iconName: string;
 }
 
-export interface CapabilityItem {
+export interface HowPingoHelpsItem {
   id: string;
   title: string;
   description: string;
-  badge: string;
-  iconName: string;
   architecturePoint: string;
+  iconName: string;
+}
+
+export interface ArchitectureDomain {
+  name: string;
+  iconName: string;
+  docCount: string;
+  status: string;
+  sampleDocs: string[];
 }
 
 export interface UseCaseItem {
   id: string;
   title: string;
-  domain: string;
+  category: string;
   description: string;
   userPrompt: string;
   sourceBase: string;
@@ -45,11 +52,11 @@ export interface BenefitItem {
 
 export const businessKnowledgeData = {
   hero: {
-    badge: "Business Knowledge Access",
-    headingPart1: "Your Business Knowledge.",
-    headingPart2: "Just a Question Away.",
+    badge: "Organizational Knowledge Architecture",
+    headingPart1: "Bring Your Business Knowledge",
+    headingPart2: "Within Reach.",
     description:
-      "Bring your business information together and make it easier for people to find the answers they need with an AI-powered knowledge assistant.",
+      "Organize important business information and make it easier to access the knowledge your organization depends on.",
     primaryCta: {
       text: "Get Started",
       href: "/contact",
@@ -58,288 +65,317 @@ export const businessKnowledgeData = {
       text: "Explore Features",
       href: "/features/knowledge-management",
     },
+    architectureDemo: {
+      domains: [
+        {
+          name: "Company Policies & Governance",
+          iconName: "ShieldCheck",
+          docCount: "32 Verified Policies",
+          status: "Isolated Hub",
+          sampleDocs: ["Data Retention Policy v4", "Code of Conduct", "Travel & Expense Guidelines"],
+        },
+        {
+          name: "Standard Operating Procedures",
+          iconName: "FileSpreadsheet",
+          docCount: "48 Active SOPs",
+          status: "Isolated Hub",
+          sampleDocs: ["Vendor Procurement SOP", "Incident Escalation Matrix", "Client Offboarding SOP"],
+        },
+        {
+          name: "Product & Engineering Specs",
+          iconName: "Code2",
+          docCount: "124 Technical Specs",
+          status: "Isolated Hub",
+          sampleDocs: ["API Reference v3", "Security Architecture Whitepaper", "Deployment Topology"],
+        },
+        {
+          name: "Business Reference Materials",
+          iconName: "BookOpen",
+          docCount: "65 Reference Guides",
+          status: "Isolated Hub",
+          sampleDocs: ["Pricing Rate Card 2026", "Legal Master Services Agreement", "Brand Style Guide"],
+        },
+      ],
+      sampleQuery: {
+        question: "What is our mandatory data retention policy for EU financial transaction records?",
+        sourceMatch: "Company Policies & Governance > Section 7.2 (Data Retention)",
+        answer:
+          "Under Section 7.2, financial records associated with EU transactions must be archived in encrypted, immutable cold storage for exactly 7 years following contract conclusion.",
+      },
+    },
     highlights: [
-      "Centralized Knowledge Bases",
-      "Semantic Information Structuring",
-      "Instant Natural Language Retrieval",
+      "Structured Domain Separation",
+      "Unified Organizational Access",
+      "Natural-Language Information Retrieval",
+      "Single Source of Truth",
     ],
   },
 
   challenges: {
-    badge: "Knowledge Silos & Search Friction",
+    badge: "The Information Fragmentation Problem",
     heading: "Business Knowledge Shouldn't Be Hard to Find.",
     subheading:
-      "When internal information lives in disconnected folders and conflicting versions, teams waste hours searching for verified facts.",
+      "As businesses scale, critical knowledge scatters across disparate folders, buried wikis, and outdated document repositories.",
     items: [
       {
         id: "scattered-sources",
-        title: "Business information is scattered across different sources",
+        title: "Business information is spread across different sources",
         description:
-          "Important documentation is fragmented across cloud drives, email threads, PDF exports, and local files with no centralized index.",
-        consequence: "Fragmented knowledge silos across departments",
+          "Company guidelines, product briefs, and operating procedures live scattered across cloud drives, email threads, and forgotten wikis.",
+        consequence: "Severe knowledge fragmentation across tools",
         iconName: "FolderGit2",
       },
       {
-        id: "time-searching",
-        title: "Employees spend time searching for relevant documents",
+        id: "hard-to-locate",
+        title: "Important documents are difficult to locate",
         description:
-          "Workers spend valuable hours navigating complex directory trees and guessing file names just to locate standard company procedures.",
-        consequence: "Productivity loss on repetitive file searching",
-        iconName: "FileSearch",
+          "Finding an authoritative procedure often requires guessing file names, searching through obsolete subdirectories, or asking three colleagues.",
+        consequence: "Excessive search friction and lost hours",
+        iconName: "SearchX",
       },
       {
-        id: "hard-to-discover",
-        title: "Important knowledge is difficult to discover",
+        id: "folder-reliance",
+        title: "Employees rely on multiple folders and resources",
         description:
-          "Crucial insights, guidelines, and technical nuances remain buried deep inside multi-page manuals where few team members can find them.",
-        consequence: "Valuable organizational expertise goes underutilized",
-        iconName: "EyeOff",
+          "Without a unified access layer, staff bookmark contradictory local copies or work from outdated drafts that do not reflect current policies.",
+        consequence: "Version discrepancies and procedural errors",
+        iconName: "FileWarning",
       },
       {
-        id: "workflow-interruptions",
-        title: "Repeated questions interrupt everyday workflows",
+        id: "maintenance-decay",
+        title: "Knowledge becomes difficult to maintain as the organization grows",
         description:
-          "Senior team members and domain experts are constantly interrupted on messaging channels to re-answer routine questions.",
-        consequence: "Continuous context-switching and operational drag",
-        iconName: "BellOff",
+          "Onboarding new divisions or revising operational standards creates maintenance overhead that overwhelms traditional static directories.",
+        consequence: "Stale documentation and compliance risk",
+        iconName: "TrendingDown",
       },
       {
-        id: "unnecessary-effort",
-        title: "Finding accurate information takes unnecessary effort",
+        id: "latest-info-struggle",
+        title: "Teams struggle to find the latest relevant information",
         description:
-          "Without a unified retrieval engine, verifying whether a document is current or obsolete requires manual cross-checking.",
-        consequence: "Risk of relying on outdated or contradictory guidance",
-        iconName: "AlertTriangle",
+          "When policies or specifications change, ensuring that every department accesses the updated guidance rather than old guidelines is a persistent challenge.",
+        consequence: "Inconsistent execution across business units",
+        iconName: "Clock",
       },
-    ] as ChallengeItem[],
+    ],
   },
 
-  capabilities: {
-    badge: "Organized Knowledge Architecture",
-    heading: "Bring Your Business Knowledge Within Reach.",
+  howPingoHelps: {
+    badge: "Knowledge Architecture Layer",
+    heading: "A Structured Knowledge Architecture for Your Business.",
     subheading:
-      "Transform disorganized documents into structured, searchable knowledge bases that answer questions naturally and accurately.",
+      "Pingo organizes organizational information into structured, dedicated knowledge bases that can be queried naturally and updated seamlessly.",
     items: [
       {
-        id: "centralized-knowledge",
-        title: "Centralized Knowledge",
+        id: "organize-information",
+        title: "Organizes connected business information",
         description:
-          "Organize business information in dedicated knowledge bases, creating a single verified source of truth for your entire organization.",
-        badge: "Unified Repository",
-        iconName: "Database",
-        architecturePoint: "Product → Dedicated Knowledge Center → Separate Knowledge Base",
-      },
-      {
-        id: "structured-information",
-        title: "Structured Information",
-        description:
-          "Keep information organized by product, service area, or team domain so materials remain orderly as your business expands.",
-        badge: "Domain Segmentation",
+          "Brings documents, policies, operational procedures, and reference sheets into a structured, unified knowledge system.",
+        architecturePoint: "Centralized Knowledge Directory",
         iconName: "FolderTree",
-        architecturePoint: "Categorized by Department, Tier, and Document Type",
       },
       {
-        id: "natural-language-search",
-        title: "Natural Language Search",
+        id: "support-sources",
+        title: "Supports different knowledge sources",
         description:
-          "Ask questions instead of searching through multiple documents manually. Let the assistant parse meaning rather than exact keywords.",
-        badge: "Semantic Understanding",
+          "Connects corporate portals, document uploads, custom tables, and verified FAQ lists without forcing manual reformatting.",
+        architecturePoint: "Flexible Source Ingestion",
+        iconName: "Layers",
+      },
+      {
+        id: "dedicated-bases",
+        title: "Structures information into dedicated knowledge bases",
+        description:
+          "Partitions organizational information by product, department, or business unit so domains remain distinct and do not bleed together.",
+        architecturePoint: "Domain Isolation & Governance",
+        iconName: "Database",
+      },
+      {
+        id: "easier-retrieval",
+        title: "Makes relevant information easier to retrieve",
+        description:
+          "High-dimensional vector indexing matches inquiries to the exact authoritative paragraph rather than returning dozens of irrelevant files.",
+        architecturePoint: "Precise Semantic Matching",
+        iconName: "Search",
+      },
+      {
+        id: "natural-language-access",
+        title: "Helps users access organizational knowledge through natural-language questions",
+        description:
+          "Staff and stakeholders simply ask questions in plain language and receive concise, verified answers cited directly from source material.",
+        architecturePoint: "Conversational Accessibility",
         iconName: "MessageSquare",
-        architecturePoint: "Intent-based semantic embeddings with zero keyword guesswork",
+      },
+    ],
+  },
+
+  workflow: {
+    badge: "Business Knowledge Lifecycle",
+    heading: "How Organizational Knowledge Stays Organized",
+    subheading:
+      "A structured 5-stage information-management lifecycle that transforms scattered documentation into an accessible, maintained organizational resource.",
+    steps: [
+      {
+        step: "Step 01",
+        number: "01",
+        title: "Collect Business Information",
+        description: "Gather documents, guidelines, spreadsheets, and policies from across your business.",
+        detail: "Ingest authoritative PDFs, Word docs, tables, and intranet resources into the central knowledge environment.",
+        iconName: "FolderDown",
       },
       {
-        id: "relevant-retrieval",
-        title: "Relevant Retrieval",
-        description:
-          "Retrieve information related to the user's question, extracting the precise paragraph or policy clause needed in seconds.",
-        badge: "Precision Matching",
-        iconName: "Target",
-        architecturePoint: "Top-ranked vector search with explicit source citations",
+        step: "Step 02",
+        number: "02",
+        title: "Organize Information by Business Area",
+        description: "Categorize documentation into logical business domains and functional scopes.",
+        detail: "Structure content by governance, operations, technical architecture, and client reference materials.",
+        iconName: "FolderTree",
       },
+      {
+        step: "Step 03",
+        number: "03",
+        title: "Maintain Dedicated Knowledge Bases",
+        description: "Keep each domain's knowledge isolated in clean, dedicated partitions.",
+        detail: "Strict domain boundaries prevent cross-contamination and guarantee that policies remain authoritative.",
+        iconName: "Database",
+      },
+      {
+        step: "Step 04",
+        number: "04",
+        title: "Retrieve Relevant Information",
+        description: "Users ask questions and Pingo retrieves the exact verified context in milliseconds.",
+        detail: "Semantic vector search pinpoints the exact section without requiring exact keyword matching.",
+        iconName: "Search",
+      },
+      {
+        step: "Step 05",
+        number: "05",
+        title: "Make Knowledge Accessible to the Organization",
+        description: "Verified answers empower team members across departments to work with certainty.",
+        detail: "Organizational knowledge becomes an active operational asset that drives consistent, accurate decisions.",
+        iconName: "CheckCircle",
+      },
+    ],
+  },
+
+  useCases: {
+    badge: "Organizational Resources",
+    heading: "Core Organizational Knowledge Use Cases",
+    subheading:
+      "Explore the key categories of business information that organizations centralize and query through Pingo.",
+    items: [
+      {
+        id: "company-policies",
+        title: "Company Policies and Guidelines",
+        category: "Corporate Governance",
+        description:
+          "Employee codes of conduct, remote work allowances, data privacy guidelines, and travel reimbursement rules.",
+        userPrompt: "'What is the daily per-diem allowance for international client travel?'",
+        sourceBase: "Corporate Governance > Travel Policy 2026",
+        retrievedSnippet:
+          "Section 4.3: International travel per-diem is capped at $95/day for Tier-1 cities and $75/day for Tier-2 cities, covering meals and incidental expenses.",
+        iconName: "ShieldCheck",
+      },
+      {
+        id: "internal-process-docs",
+        title: "Internal Process Documentation",
+        category: "Operations & Workflows",
+        description:
+          "Step-by-step instructions for cross-department handoffs, software procurement, and budget approval thresholds.",
+        userPrompt: "'What is the approval threshold for departmental software licenses exceeding $10,000?'",
+        sourceBase: "Finance & Operations > Procurement SOP",
+        retrievedSnippet:
+          "Procurement SOP § 3.1: All software subscriptions above $10,000 annual spend require formal sign-off from both the Department Head and the VP of Finance.",
+        iconName: "FileSpreadsheet",
+      },
+      {
+        id: "product-documentation",
+        title: "Product Documentation",
+        category: "Technical & Offering Specs",
+        description:
+          "System architecture diagrams, release changelogs, data dictionary sheets, and API integration guides.",
+        userPrompt: "'What are the webhook retry intervals when an endpoint returns HTTP 500?'",
+        sourceBase: "Product Architecture > Webhook Specification v2.4",
+        retrievedSnippet:
+          "Webhook Engine v2.4: Failed deliveries undergo exponential backoff retries at 1m, 5m, 15m, 1h, and 6h before marking the event as dead-lettered.",
+        iconName: "Code2",
+      },
+      {
+        id: "standard-operating-procedures",
+        title: "Standard Operating Procedures (SOPs)",
+        category: "Quality Assurance",
+        description:
+          "Rigorous operational checklists for customer onboarding, security incident response, and equipment maintenance.",
+        userPrompt: "'What are the immediate containment steps required during a suspected credential compromise?'",
+        sourceBase: "Security Operations > Incident Response SOP",
+        retrievedSnippet:
+          "Security Incident Response SOP #14: 1) Revoke active session tokens immediately; 2) Enforce password reset and multi-factor re-enrollment; 3) Review 48h audit logs.",
+        iconName: "CheckSquare",
+      },
+      {
+        id: "business-reference-materials",
+        title: "Business Reference Materials",
+        category: "Commercial & Legal",
+        description:
+          "Brand identity assets, standard Master Services Agreement clauses, partner tiers, and pricing lookup tables.",
+        userPrompt: "'What is the standard SLA penalty clause in our enterprise enterprise tier agreement?'",
+        sourceBase: "Legal & Commercial > Enterprise MSA Template",
+        retrievedSnippet:
+          "Enterprise MSA Clause 9.4: Downtime exceeding 99.9% uptime commitments yields a 5% monthly fee credit per hour of outage, up to a maximum 30% monthly cap.",
+        iconName: "BookOpen",
+      },
+    ],
+  },
+
+  benefits: {
+    badge: "Knowledge Advantage",
+    heading: "The Business Value of Organized Knowledge",
+    subheading:
+      "When business knowledge is structured, accessible, and maintained, organizations eliminate search waste and maintain high operational standards.",
+    items: [
       {
         id: "knowledge-accessibility",
         title: "Knowledge Accessibility",
         description:
-          "Make connected business information easier to access across teams, reducing bottlenecks and enabling faster internal execution.",
-        badge: "Instant Access",
-        iconName: "Sparkles",
-        architecturePoint: "24/7 grounded access for employees and stakeholders",
-      },
-    ] as CapabilityItem[],
-  },
-
-  useCases: {
-    badge: "Everyday Knowledge Applications",
-    heading: "Make Knowledge Useful Across Your Business.",
-    subheading:
-      "Explore practical ways teams retrieve instant, verified answers from connected business documentation.",
-    items: [
-      {
-        id: "company-process",
-        title: "Finding company process information",
-        domain: "Operations & HR",
-        description:
-          "Quickly retrieve travel policies, expense approvals, remote work rules, and vendor onboarding requirements.",
-        userPrompt: "What is our company policy on expense reimbursement for travel meals?",
-        sourceBase: "HR & Internal Operations Knowledge Base",
-        retrievedSnippet:
-          "Meals during business travel are reimbursed up to $75/day with itemized receipts submitted within 14 business days.",
-        iconName: "Building2",
-      },
-      {
-        id: "product-documentation",
-        title: "Accessing product documentation",
-        domain: "Engineering & Product",
-        description:
-          "Help product managers, engineers, and support staff look up API schemas, release notes, and architecture diagrams.",
-        userPrompt: "What is the timeout threshold configured for our webhook retries?",
-        sourceBase: "Product Architecture & API Documentation Base",
-        retrievedSnippet:
-          "Webhooks retry up to 5 times using exponential backoff with a hard timeout of 10 seconds per attempt.",
-        iconName: "FileCode2",
-      },
-      {
-        id: "internal-guidelines",
-        title: "Understanding internal guidelines",
-        domain: "Compliance & Security",
-        description:
-          "Clarify data retention schedules, password management standards, and role-based access protocols.",
-        userPrompt: "How long are customer chat transcripts retained under our data governance policy?",
-        sourceBase: "Compliance & Security Governance Base",
-        retrievedSnippet:
-          "Customer interaction transcripts are encrypted and retained for 90 days by default, unless extended by compliance rules.",
-        iconName: "ShieldCheck",
-      },
-      {
-        id: "service-information",
-        title: "Retrieving service-related information",
-        domain: "Client Services",
-        description:
-          "Look up service tier inclusions, scope boundaries, and SLA response targets for customer projects.",
-        userPrompt: "What are the escalation response windows for tier 2 support tickets?",
-        sourceBase: "Client Services & SLA Guidelines Base",
-        retrievedSnippet:
-          "Tier 2 escalations require initial response within 2 business hours and a mitigation update within 6 hours.",
-        iconName: "Briefcase",
-      },
-      {
-        id: "connected-resources",
-        title: "Finding answers from connected business resources",
-        domain: "Cross-Functional",
-        description:
-          "Synthesize answers across connected spreadsheets, training decks, and technical manuals without manual cross-referencing.",
-        userPrompt: "Which cloud regions currently host our backup database clusters?",
-        sourceBase: "Infrastructure Specifications & Cloud Topology Base",
-        retrievedSnippet:
-          "Secondary backup clusters are distributed across US-East (N. Virginia) and EU-Central (Frankfurt) with AES-256 replication.",
-        iconName: "Layers",
-      },
-    ] as UseCaseItem[],
-  },
-
-  workflow: {
-    badge: "Knowledge Flow",
-    heading: "How It Works",
-    subheading:
-      "A clear four-step visual workflow that transforms raw business documents into instant answers.",
-    steps: [
-      {
-        step: "01",
-        number: "Step 1",
-        title: "Connect Information Sources",
-        description: "Add supported business content sources.",
-        detail:
-          "Connect internal manuals, standard operating procedures, policies, and product documentation into your workspace.",
-        iconName: "FolderPlus",
-      },
-      {
-        step: "02",
-        number: "Step 2",
-        title: "Organize Knowledge",
-        description: "Structure information into dedicated knowledge bases.",
-        detail:
-          "Pingo segments your materials by product or business domain into dedicated knowledge centers for organized retrieval.",
-        iconName: "Layers",
-      },
-      {
-        step: "03",
-        number: "Step 3",
-        title: "Ask Questions",
-        description: "Users ask questions in natural language.",
-        detail:
-          "Team members simply type questions in conversational language without needing exact filenames or directory locations.",
-        iconName: "MessageSquare",
-      },
-      {
-        step: "04",
-        number: "Step 4",
-        title: "Retrieve Answers",
-        description: "Pingo finds relevant information and provides contextual responses.",
-        detail:
-          "The assistant pinpoints verified paragraphs from your knowledge base and delivers clear, cited answers in seconds.",
-        iconName: "CheckCircle",
-      },
-    ] as WorkflowStep[],
-  },
-
-  benefits: {
-    badge: "Organizational Value",
-    heading: "Less Searching. More Understanding.",
-    subheading:
-      "Empower your teams with instant access to verified business information, eliminating repetitive searches and knowledge bottlenecks.",
-    items: [
-      {
-        id: "easier-access",
-        title: "Easier access to business knowledge",
-        description:
-          "Team members locate relevant information in seconds, removing reliance on memory or colleagues' availability.",
-        impactTag: "Instant Discovery",
+          "Important business knowledge is placed at the fingertips of every authorized team member, eliminating information gatekeepers.",
+        impactTag: "Universal Access",
         iconName: "Compass",
       },
       {
-        id: "better-organization",
-        title: "Better information organization",
+        id: "information-organization",
+        title: "Information Organization",
         description:
-          "Structure business knowledge into clean, dedicated knowledge bases segmented by product, department, or function.",
-        impactTag: "Structured Bases",
+          "Content is structured into dedicated knowledge bases by business unit, creating clarity and clear domain governance.",
+        impactTag: "Structured Architecture",
         iconName: "FolderTree",
       },
       {
-        id: "faster-discovery",
-        title: "Faster information discovery",
+        id: "reduced-search-effort",
+        title: "Reduced Search Effort",
         description:
-          "Eliminate manual searches through multi-page documents with intelligent semantic vector retrieval.",
-        impactTag: "Zero Lag",
-        iconName: "Zap",
-      },
-      {
-        id: "reduced-searches",
-        title: "Reduced repetitive information searches",
-        description:
-          "Stop asking senior staff repetitive procedural questions—answers are available on demand 24/7.",
+          "Employees find answers in seconds through natural-language questions rather than digging through dozens of nested cloud folders.",
         impactTag: "Time Recovered",
         iconName: "Clock",
       },
       {
-        id: "consistent-access",
-        title: "More consistent access to relevant knowledge",
+        id: "useful-knowledge",
+        title: "Maintaining Useful Knowledge",
         description:
-          "Ensure every employee accesses the single, verified version of company policies and guidelines.",
-        impactTag: "Factual Alignment",
-        iconName: "ShieldCheck",
+          "Centralized knowledge bases make updating, retiring, and expanding company documentation manageable as your organization grows.",
+        impactTag: "Continuous Accuracy",
+        iconName: "CheckCircle",
       },
-    ] as BenefitItem[],
+    ],
   },
 
   cta: {
-    badge: "Centralize Your Knowledge",
-    heading: "Make Your Business Knowledge More Accessible.",
+    badge: "Business Knowledge Architecture",
+    heading: "Make Your Business Knowledge an Active Operational Asset.",
     description:
-      "Connect your information and help your people find meaningful answers with Pingo.",
+      "Bring scattered policies, SOPs, and documentation into organized, searchable knowledge bases that keep your entire organization informed and aligned.",
     buttonText: "Get Started",
     buttonHref: "/contact",
-    secondaryText: "Explore Features",
-    secondaryHref: "/features/knowledge-management",
+    secondaryText: "Explore Team Assistance",
+    secondaryHref: "/solutions/team-assistance",
   },
 };
-

@@ -6,27 +6,38 @@ export interface ChallengeItem {
   iconName: string;
 }
 
-export interface CapabilityItem {
+export interface HowPingoHelpsItem {
   id: string;
   title: string;
   description: string;
-  badge: string;
+  benefitTag: string;
   iconName: string;
-  example: {
-    category: "Product" | "Service";
-    inquiry: string;
-    source: string;
-    guidance: string;
+}
+
+export interface ProductComparisonDemo {
+  userQuestion: string;
+  productA: {
+    name: string;
+    tagline: string;
+    targetTeam: string;
+    features: { label: string; value: string }[];
   };
+  productB: {
+    name: string;
+    tagline: string;
+    targetTeam: string;
+    features: { label: string; value: string }[];
+  };
+  guidanceSummary: string;
 }
 
 export interface UseCaseItem {
   id: string;
   title: string;
-  type: string;
+  category: string;
   description: string;
-  sampleQuestion: string;
-  guidancePoints: string[];
+  customerPrompt: string;
+  pingoGuidance: string;
   iconName: string;
 }
 
@@ -43,17 +54,17 @@ export interface BenefitItem {
   id: string;
   title: string;
   description: string;
-  metricLabel: string;
+  highlight: string;
   iconName: string;
 }
 
 export const productServiceData = {
   hero: {
-    badge: "Product & Service Guidance",
-    headingPart1: "Help Customers Understand",
-    headingPart2: "What You Offer.",
+    badge: "Product Discovery & Purchase Decision Support",
+    headingPart1: "Help Customers Discover",
+    headingPart2: "the Right Product or Service.",
     description:
-      "Give your customers clear product and service information through an AI-powered assistant that understands your business and guides them to the answers they need.",
+      "Make it easier for customers to explore your offerings, understand their features, and find the information they need to make confident decisions.",
     primaryCta: {
       text: "Get Started",
       href: "/contact",
@@ -62,320 +73,301 @@ export const productServiceData = {
       text: "Explore Features",
       href: "/features/ai-automation",
     },
+    comparisonDemo: {
+      userQuestion: "What is the difference between the Starter and Professional packages for a 15-person design team?",
+      productA: {
+        name: "Starter Package",
+        tagline: "Essential foundations for small teams",
+        targetTeam: "Up to 5 team members",
+        features: [
+          { label: "Team Seats", value: "5 Included" },
+          { label: "Knowledge Bases", value: "1 Shared Hub" },
+          { label: "Custom Branding", value: "Standard Templates" },
+          { label: "Integrations", value: "Web Chat Only" },
+        ],
+      },
+      productB: {
+        name: "Professional Package",
+        tagline: "Advanced capabilities for growing agencies",
+        targetTeam: "Unlimited team members",
+        features: [
+          { label: "Team Seats", value: "Unlimited Seats" },
+          { label: "Knowledge Bases", value: "Up to 5 Isolated Hubs" },
+          { label: "Custom Branding", value: "Full White-Label & CSS" },
+          { label: "Integrations", value: "Web, Mobile SDK & API" },
+        ],
+      },
+      guidanceSummary:
+        "For a 15-person agency managing multiple client brands, the Professional Package is the recommended choice because it supports unlimited seats, white-label branding, and dedicated isolated knowledge centers.",
+    },
     highlights: [
-      "Product Specifications & Usage",
-      "Service Tiers & Deliverables",
-      "Grounded Option Comparisons",
+      "Side-by-Side Feature Comparisons",
+      "Tailored Offering Recommendations",
+      "Transparent Specification Clarity",
+      "Confident Buying Decisions",
     ],
   },
 
   challenges: {
-    badge: "Information Complexity",
-    heading: "Finding the Right Information Should Be Easy.",
+    badge: "The Buyer Friction",
+    heading: "Choosing the Right Product Shouldn't Be Complicated.",
     subheading:
-      "When customers cannot quickly find or understand product details and service offerings, uncertainty stalls their decision-making process.",
+      "When customers struggle to differentiate offerings or find critical specifications, buying momentum stalls and potential deals are lost.",
     items: [
       {
-        id: "complex-details",
-        title: "Customers struggle to understand product or service details",
+        id: "product-differences",
+        title: "Customers struggle to understand product differences",
         description:
-          "Dense technical jargon, ambiguous feature lists, and complex package descriptions leave buyers unsure which offering matches their needs.",
-        impactTag: "Decision Hesitation",
-        iconName: "HelpCircle",
+          "Similar product tiers, overlapping feature lists, and complex technical jargon leave buyers unsure which offering actually fits their needs.",
+        impactTag: "Purchase Hesitation",
+        iconName: "SplitSquareVertical",
       },
       {
-        id: "fragmented-sources",
-        title: "Important information is spread across multiple sources",
+        id: "scattered-details",
+        title: "Product details are spread across multiple pages",
         description:
-          "Specs reside in product sheets, service terms sit in contracts, and pricing tiers live in slide decks—forcing customers to hunt across disconnected tabs.",
-        impactTag: "Scattered Context",
-        iconName: "Layers",
-      },
-      {
-        id: "repeated-questions",
-        title: "Customers repeatedly ask similar questions",
-        description:
-          "Sales and support personnel spend hours answering repetitive basic inquiries about package limits, compatibility, and implementation timelines.",
-        impactTag: "Team Inefficiency",
-        iconName: "Clock",
-      },
-      {
-        id: "unclear-decision-making",
-        title: "Unclear information makes decision-making difficult",
-        description:
-          "Without clear, immediate clarification on key differences and prerequisites, prospective buyers postpone purchases or abandon their evaluation.",
-        impactTag: "Lost Conversions",
-        iconName: "FileWarning",
-      },
-    ] as ChallengeItem[],
-  },
-
-  capabilities: {
-    badge: "Knowledge-Driven Clarity",
-    heading: "Turn Complex Information Into Clear Guidance.",
-    subheading:
-      "Pingo bridges the gap between raw business information and customer comprehension, offering instant, grounded explanations in everyday language.",
-    items: [
-      {
-        id: "product-information",
-        title: "Product Information",
-        description:
-          "Help customers understand product details using connected knowledge—from technical specs and hardware compatibility to supported formats.",
-        badge: "Product Depth",
-        iconName: "Box",
-        example: {
-          category: "Product",
-          inquiry: "What file formats does the platform export for client reports?",
-          source: "Platform Specifications / Export & Reporting v2",
-          guidance:
-            "Pingo exports reports in CSV, PDF, and JSON formats. Automated daily summaries can also be synced directly into Google Sheets or webhook endpoints.",
-        },
-      },
-      {
-        id: "service-explanation",
-        title: "Service Explanation",
-        description:
-          "Explain business services in a clear and accessible way, breaking down deliverables, milestone expectations, and scope boundaries.",
-        badge: "Service Clarity",
-        iconName: "Briefcase",
-        example: {
-          category: "Service",
-          inquiry: "What is included in the Professional Implementation service?",
-          source: "Services Directory / Onboarding & Migration Scope",
-          guidance:
-            "Professional Implementation includes custom schema mapping, knowledge base ingestion of up to 50 documents, and 2 live staff training workshops.",
-        },
-      },
-      {
-        id: "natural-language-questions",
-        title: "Natural Language Questions",
-        description:
-          "Let customers ask questions naturally in conversational phrasing without needing exact keywords or complex menu navigation.",
-        badge: "Conversational Flow",
-        iconName: "MessageCircle",
-        example: {
-          category: "Product",
-          inquiry: "Will this work if our team uses both Windows laptops and MacBooks?",
-          source: "Hardware & Platform Compatibility Matrix",
-          guidance:
-            "Yes! Pingo is completely browser-based and works seamlessly across macOS, Windows, Linux, and all major modern web browsers.",
-        },
-      },
-      {
-        id: "contextual-guidance",
-        title: "Contextual Guidance",
-        description:
-          "Provide relevant answers based on the information available, adapting explanations to the customer's specific industry and stage.",
-        badge: "Smart Adaptation",
-        iconName: "Compass",
-        example: {
-          category: "Service",
-          inquiry: "We have 15 agents. Which service tier fits our team best?",
-          source: "Subscription Tiers / Seat Allocations",
-          guidance:
-            "For teams with 10–25 agents, the Team Workspace tier provides shared knowledge management, role-based controls, and centralized billing.",
-        },
-      },
-      {
-        id: "knowledge-based-responses",
-        title: "Knowledge-Based Responses",
-        description:
-          "Use connected business information to answer customer questions, ensuring every response is strictly factual and verifiable.",
-        badge: "Grounded Accuracy",
-        iconName: "ShieldCheck",
-        example: {
-          category: "Product",
-          inquiry: "Are customer interactions encrypted while stored in Pingo?",
-          source: "Security Architecture / Data Governance Whitepaper",
-          guidance:
-            "Yes. All customer interactions are encrypted at rest using AES-256 and transmitted securely using TLS 1.3 protocol standards.",
-        },
-      },
-    ] as CapabilityItem[],
-  },
-
-  useCases: {
-    badge: "Versatile Guidance",
-    heading: "One Assistant. Multiple Ways to Guide Customers.",
-    subheading:
-      "From technical specifications to service tiers, see how Pingo provides clear explanations across real-world customer inquiries.",
-    items: [
-      {
-        id: "features-specs",
-        title: "Explaining product features and specifications",
-        type: "Product Specifications",
-        description:
-          "Provide clear, instant explanations of technical capabilities, system requirements, and integration limits.",
-        sampleQuestion: "What are the rate limits for the conversational API?",
-        guidancePoints: [
-          "Standard tiers support 100 requests per minute with automatic burst handling.",
-          "Enterprise plans offer dedicated throughput and custom rate allocations.",
-          "Real-time usage metrics are viewable inside the developer dashboard.",
-        ],
-        iconName: "Cpu",
-      },
-      {
-        id: "available-services",
-        title: "Describing available services",
-        type: "Service Catalog",
-        description:
-          "Clarify service tiers, package inclusions, and ongoing support agreements so clients know exactly what to expect.",
-        sampleQuestion: "What ongoing maintenance is provided with the Managed Service plan?",
-        guidancePoints: [
-          "Includes weekly knowledge base re-indexing and document synchronization.",
-          "Quarterly model prompt reviews to optimize answer accuracy.",
-          "Dedicated Slack channel access with priority 2-hour response SLA.",
-        ],
-        iconName: "Compass",
-      },
-      {
-        id: "service-processes",
-        title: "Clarifying service processes",
-        type: "Process Transparency",
-        description:
-          "Walk customers step-by-step through onboarding timelines, audit stages, or project kickoff sequences.",
-        sampleQuestion: "How does the onboarding process work after we sign up?",
-        guidancePoints: [
-          "Day 1: Account setup and invitation of designated workspace admins.",
-          "Days 2–3: Uploading and structuring initial knowledge sources.",
-          "Day 4: Live team walkthrough and test query validation.",
-        ],
-        iconName: "GitMerge",
-      },
-      {
-        id: "product-usage",
-        title: "Answering questions about product usage",
-        type: "Usage Guidance",
-        description:
-          "Help customers get the most out of their products by explaining best practices, shortcuts, and setup instructions.",
-        sampleQuestion: "What is the best way to organize documents before uploading?",
-        guidancePoints: [
-          "Group related files by topic (e.g., Billing, Technical Specs, Policies).",
-          "Ensure headers and table formats are clear and up to date.",
-          "Remove redundant legacy drafts to maintain high retrieval precision.",
-        ],
-        iconName: "BookOpen",
-      },
-      {
-        id: "compare-options",
-        title: "Helping customers compare available options",
-        type: "Objective Comparison",
-        description:
-          "Help customers compare different plans, products, or service packages based strictly on verified documentation.",
-        sampleQuestion: "How does the Starter plan compare to the Professional plan?",
-        guidancePoints: [
-          "Starter includes 5 connected documents and single-seat admin access.",
-          "Professional unlocks unlimited knowledge sources and multi-user seats.",
-          "Professional also adds custom domain support and advanced analytics.",
-        ],
-        iconName: "Columns",
-      },
-    ] as UseCaseItem[],
-  },
-
-  workflow: {
-    badge: "Step-by-Step Guidance",
-    heading: "How It Works",
-    subheading:
-      "A seamless four-step workflow from connected knowledge to confident customer guidance.",
-    steps: [
-      {
-        step: "01",
-        number: "Step 1",
-        title: "Add Product & Service Information",
-        description: "Connect supported information sources.",
-        detail:
-          "Upload product catalogs, specification sheets, service agreements, and FAQ documents directly into your secure workspace.",
-        iconName: "FolderPlus",
-      },
-      {
-        step: "02",
-        number: "Step 2",
-        title: "Organize Your Knowledge",
-        description: "Structure product and service information.",
-        detail:
-          "Pingo classifies and vectors your offerings into an indexed knowledge base ready for pinpoint contextual search.",
+          "Visitors have to jump back and forth between pricing grids, feature pages, and technical documentation to assemble a complete picture.",
+        impactTag: "High Bounce Rate",
         iconName: "FileSpreadsheet",
       },
       {
-        step: "03",
-        number: "Step 3",
-        title: "Customer Asks a Question",
-        description: "Customers ask in natural language.",
-        detail:
-          "Prospects and customers type questions in everyday language on your website, app, or customer portal.",
-        iconName: "MessageSquare",
+        id: "buried-features",
+        title: "Visitors cannot easily find specific features or service information",
+        description:
+          "Important constraints, compatibility requirements, or service inclusions are buried in footnotes, preventing swift validation.",
+        impactTag: "Information Blindspots",
+        iconName: "SearchX",
       },
       {
-        step: "04",
-        number: "Step 4",
-        title: "Receive Clear Guidance",
-        description: "Pingo retrieves relevant knowledge and provides an answer.",
-        detail:
-          "The assistant provides clear, accurate guidance with references to the exact product or service specifications.",
-        iconName: "CheckCircle",
+        id: "pre-purchase-questions",
+        title: "Customers have questions before choosing a product",
+        description:
+          "Buyers need immediate clarification on sizing, implementation steps, and support levels right at the decision-making point.",
+        impactTag: "Delayed Conversion",
+        iconName: "HelpCircle",
       },
-    ] as WorkflowStep[],
+      {
+        id: "unclear-loss",
+        title: "Businesses lose potential customers when information is unclear",
+        description:
+          "Instead of submitting an enquiry or digging through confusing catalogs, frustrated shoppers abandon the site for clearer competitors.",
+        impactTag: "Lost Revenue",
+        iconName: "TrendingDown",
+      },
+    ],
   },
 
-  benefits: {
-    badge: "Measurable Impact",
-    heading: "Make Every Product and Service Easier to Understand.",
+  howPingoHelps: {
+    badge: "Clear Product Guidance",
+    heading: "Guiding Customers From Discovery to Decision.",
     subheading:
-      "Empower your customers with transparent, accurate details that remove ambiguity and inspire purchase confidence.",
+      "Pingo turns static product catalogs and complex service tables into conversational guidance that answers questions and clarifies differences.",
     items: [
       {
-        id: "clearer-info",
-        title: "Clearer product information",
+        id: "explain-features",
+        title: "Explains product features and specifications using connected information",
         description:
-          "Transform dense technical specifications into clear, digestible answers that any customer can understand.",
-        metricLabel: "Transparent Specs",
-        iconName: "Sparkles",
+          "Directly answers technical questions on compatibility, dimensions, integrations, and deliverables using your verified documentation.",
+        benefitTag: "Accurate Specifications",
+        iconName: "SlidersHorizontal",
       },
       {
-        id: "service-understanding",
-        title: "Better service understanding",
+        id: "understand-services",
+        title: "Helps customers understand available services",
         description:
-          "Communicate package inclusions, scopes of work, and service boundaries with absolute clarity.",
-        metricLabel: "Explicit Deliverables",
-        iconName: "CheckCheck",
+          "Breaks down complex service scopes, turnaround times, prerequisites, and milestone deliverables into clear, digestible explanations.",
+        benefitTag: "Scope Transparency",
+        iconName: "Briefcase",
       },
       {
-        id: "easier-access",
-        title: "Easier access to relevant details",
+        id: "answers-differences",
+        title: "Answers questions about product differences",
         description:
-          "Save customers from combing through multi-page brochures—answers are delivered instantly on demand.",
-        metricLabel: "Zero Friction",
+          "Delivers side-by-side comparative analysis highlighting key distinctions between plans, packages, or equipment models.",
+        benefitTag: "Direct Comparison",
+        iconName: "Scale",
+      },
+      {
+        id: "tailored-details",
+        title: "Provides relevant details based on customer requirements",
+        description:
+          "Listens to customer team size, technical environment, and usage volume to surface the exact package details relevant to their situation.",
+        benefitTag: "Contextual Relevance",
+        iconName: "Target",
+      },
+      {
+        id: "guided-exploration",
+        title: "Guides customers through product and service information",
+        description:
+          "Assists buyers through logical discovery steps, clarifying prerequisites and directing them toward confident purchasing decisions.",
+        benefitTag: "Seamless Journey",
+        iconName: "Compass",
+      },
+    ],
+  },
+
+  workflow: {
+    badge: "Product Discovery Journey",
+    heading: "How Pingo Guides Buyers to the Right Decision",
+    subheading:
+      "A structured 5-stage customer journey designed to remove buying confusion, explain specifications, and accelerate confident selections.",
+    steps: [
+      {
+        step: "Step 01",
+        number: "01",
+        title: "Customer Explores Products or Services",
+        description: "The visitor browses your website offerings, catalog, or pricing options.",
+        detail: "The customer reviews high-level offerings but requires clarity on specific capabilities and fit.",
+        iconName: "Compass",
+      },
+      {
+        step: "Step 02",
+        number: "02",
+        title: "Customer Asks About a Specific Offering",
+        description: "The customer asks a question about feature support, limits, or plan fit.",
+        detail: "Inquiries like 'Which plan includes custom API endpoints?' or 'Does this service cover migration?' are typed naturally.",
+        iconName: "HelpCircle",
+      },
+      {
+        step: "Step 03",
+        number: "03",
+        title: "Pingo Retrieves Relevant Product Information",
+        description: "Pingo searches connected product sheets, tables, and documentation.",
+        detail: "Verified specifications, pricing tables, and service inclusion docs are instantly referenced.",
         iconName: "Search",
       },
       {
-        id: "reduced-queries",
-        title: "Reduced repetitive questions",
+        step: "Step 04",
+        number: "04",
+        title: "Customer Understands Features and Differences",
+        description: "The customer receives a clear, transparent comparison tailored to their query.",
+        detail: "Pingo explains the exact trade-offs, inclusions, and distinctions without sales fluff or confusion.",
+        iconName: "CheckCircle",
+      },
+      {
+        step: "Step 05",
+        number: "05",
+        title: "Customer Makes a More Informed Decision",
+        description: "Equipped with verified answers, the customer moves forward with confidence.",
+        detail: "Buyers select the right tier, request a proposal, or complete purchase with zero lingering doubt.",
+        iconName: "Award",
+      },
+    ],
+  },
+
+  useCases: {
+    badge: "Real-World Scenarios",
+    heading: "Everyday Product Guidance Scenarios",
+    subheading:
+      "Explore how Pingo answers real-world buyer questions across features, comparisons, and service package selection.",
+    items: [
+      {
+        id: "feature-explanation",
+        title: "Explaining Product Features",
+        category: "Capability Deep-Dive",
         description:
-          "Automate routine inquiries so sales and support teams can dedicate time to high-value consulting.",
-        metricLabel: "Time Saved",
-        iconName: "Clock",
+          "Explaining technical capabilities such as data encryption, export formats, or API rate limits in accessible language.",
+        customerPrompt: "'Does the Business Plan support SSO with Okta and custom domain routing?'",
+        pingoGuidance:
+          "Verified against technical spec sheet: 'Yes, SAML SSO with Okta is natively supported on the Business Plan, along with custom CNAME domain routing.'",
+        iconName: "SlidersHorizontal",
+      },
+      {
+        id: "comparing-products",
+        title: "Comparing Two Products or Plans",
+        category: "Side-by-Side Analysis",
+        description:
+          "Breaking down the trade-offs between two tiers or adjacent models to help the buyer choose without guesswork.",
+        customerPrompt: "'What is the main difference between Model Pro and Model Enterprise?'",
+        pingoGuidance:
+          "Highlights team seat limits, SLA response guarantees (4h vs 1h), and dedicated knowledge base quotas side-by-side.",
+        iconName: "Scale",
+      },
+      {
+        id: "service-packages",
+        title: "Understanding Service Packages",
+        category: "Scope of Work",
+        description:
+          "Clarifying what is included in consulting, implementation, or creative packages and what counts as an add-on.",
+        customerPrompt: "'Does the Onboarding Service include data migration from our legacy CRM?'",
+        pingoGuidance:
+          "References scope doc: 'The Standard Onboarding covers schema setup and up to 50k customer records. Additional records can be added via the Data Migration add-on.'",
+        iconName: "Briefcase",
+      },
+      {
+        id: "availability-specifications",
+        title: "Answering Availability or Specification Questions",
+        category: "Technical Verification",
+        description:
+          "Validating operating system compatibility, regional availability, or hardware prerequisites.",
+        customerPrompt: "'Is the desktop client compatible with macOS Sonoma on Apple Silicon M-series chips?'",
+        pingoGuidance:
+          "Checks release notes: 'Yes, full native Apple Silicon compatibility is supported on macOS 14.0 Sonoma and higher.'",
+        iconName: "Cpu",
+      },
+      {
+        id: "how-service-works",
+        title: "Explaining How a Service Works",
+        category: "Process Walkthrough",
+        description:
+          "Walking potential clients through the step-by-step engagement workflow from booking to deliverable handover.",
+        customerPrompt: "'What are the phases and timelines involved in the SEO Audit Service?'",
+        pingoGuidance:
+          "Outlines Phase 1 (technical crawl, days 1-3), Phase 2 (content gap analysis, days 4-7), and Phase 3 (executive presentation on day 10).",
+        iconName: "Route",
+      },
+    ],
+  },
+
+  benefits: {
+    badge: "Buyer Decision Impact",
+    heading: "Why Clear Product Guidance Drives Better Decisions",
+    subheading:
+      "When product information is clear, accessible, and easily compared, customers choose faster and with greater confidence.",
+    items: [
+      {
+        id: "product-understanding",
+        title: "Deeper Product Understanding",
+        description:
+          "Customers comprehend feature sets, capabilities, and technical specifications accurately without wading through fragmented manuals.",
+        highlight: "Clear Comprehension",
+        iconName: "BookOpen",
       },
       {
         id: "informed-decisions",
-        title: "More informed customer decisions",
+        title: "More Informed Decisions",
         description:
-          "Eliminate doubt by providing accurate comparisons and prerequisites, leading to confident, informed purchases.",
-        metricLabel: "High Confidence",
-        iconName: "TrendingUp",
+          "Buyers choose packages that genuinely match their operational scale, decreasing post-purchase regret and early churn.",
+        highlight: "High Confidence",
+        iconName: "Award",
       },
-    ] as BenefitItem[],
+      {
+        id: "easier-discovery",
+        title: "Easier Information Discovery",
+        description:
+          "Visitors ask direct questions in natural language and receive immediate answers instead of browsing through dozens of subpages.",
+        highlight: "Frictionless Search",
+        iconName: "Compass",
+      },
+      {
+        id: "reduced-confusion",
+        title: "Reduced Buyer Confusion",
+        description:
+          "Eliminating ambiguous terminology and hidden trade-offs creates transparent purchasing conversations and speeds up selection.",
+        highlight: "Zero Ambiguity",
+        iconName: "CheckCircle",
+      },
+    ],
   },
 
   cta: {
-    badge: "Start Clarifying Today",
-    heading: "Help Customers Discover More About Your Business.",
+    badge: "Product Discovery Guidance",
+    heading: "Help Customers Make Confident Product Decisions.",
     description:
-      "Make your product and service information easier to understand with Pingo.",
+      "Give your website visitors and buyers the transparent product and service answers they need to understand your offerings and choose with confidence.",
     buttonText: "Get Started",
     buttonHref: "/contact",
-    secondaryText: "Explore Features",
-    secondaryHref: "/features/ai-automation",
+    secondaryText: "Explore Website Assistant",
+    secondaryHref: "/solutions/website-ai-assistant",
   },
 };
-

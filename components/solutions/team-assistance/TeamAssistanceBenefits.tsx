@@ -4,19 +4,18 @@ import React from "react";
 import {
   Clock,
   Compass,
-  CheckCheck,
+  MessageSquare,
   ShieldCheck,
   Users,
   TrendingUp,
   CheckCircle2,
-  Sparkles,
 } from "lucide-react";
-import { teamAssistanceData, BenefitItem } from "@/data/teamAssistance";
+import { teamAssistanceData } from "@/data/teamAssistance";
 
 const iconMap: Record<string, React.ElementType> = {
   Clock,
   Compass,
-  CheckCheck,
+  MessageSquare,
   ShieldCheck,
   Users,
 };
@@ -69,7 +68,7 @@ export const TeamAssistanceBenefits: React.FC = () => {
                 <div className="md:col-span-8 space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3984FF]/10 text-[#3984FF] dark:text-[#7EB5FF] text-xs font-bold font-mono">
                     <Users className="w-3.5 h-3.5" />
-                    <span>Primary Advantage: {heroBenefit.tag}</span>
+                    <span>Primary Advantage: {heroBenefit.impactTag}</span>
                   </div>
 
                   <h3 className="text-xl sm:text-2xl font-extrabold text-[#171B2E] dark:text-[#FFFFFF] leading-snug">
@@ -114,7 +113,7 @@ export const TeamAssistanceBenefits: React.FC = () => {
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <span className="text-[11px] font-mono px-2.5 py-1 rounded-md bg-[#EEF4FF] dark:bg-[#152238] text-[#3984FF] dark:text-[#7EB5FF] font-semibold">
-                        {item.tag}
+                        {item.impactTag}
                       </span>
                     </div>
 
@@ -143,4 +142,3 @@ export const TeamAssistanceBenefits: React.FC = () => {
 };
 
 export default TeamAssistanceBenefits;
-

@@ -3,19 +3,19 @@ import type { Metadata } from "next";
 import CustomerSupportHero from "@/components/solutions/customer-support/CustomerSupportHero";
 import CustomerSupportChallenge from "@/components/solutions/customer-support/CustomerSupportChallenge";
 import CustomerSupportCapabilities from "@/components/solutions/customer-support/CustomerSupportCapabilities";
-import CustomerSupportUseCases from "@/components/solutions/customer-support/CustomerSupportUseCases";
 import CustomerSupportWorkflow from "@/components/solutions/customer-support/CustomerSupportWorkflow";
+import CustomerSupportUseCases from "@/components/solutions/customer-support/CustomerSupportUseCases";
 import CustomerSupportBenefits from "@/components/solutions/customer-support/CustomerSupportBenefits";
 import CustomerSupportCta from "@/components/solutions/customer-support/CustomerSupportCta";
 
 export const metadata: Metadata = {
-  title: "Customer Support That Understands Your Customers | Pingo Solutions",
+  title: "Support Every Customer, Beyond Every Conversation | Pingo Solutions",
   description:
-    "Help your customers find the answers they need with an AI-powered assistant that understands your business information and provides relevant guidance.",
+    "Give customers timely assistance with AI-powered responses and human support when personal attention is needed.",
   openGraph: {
-    title: "Customer Support That Understands Your Customers | Pingo Solutions",
+    title: "Support Every Customer, Beyond Every Conversation | Pingo Solutions",
     description:
-      "Help your customers find the answers they need with an AI-powered assistant that understands your business information and provides relevant guidance.",
+      "Give customers timely assistance with AI-powered responses and human support when personal attention is needed.",
   },
 };
 
@@ -25,11 +25,10 @@ export default function CustomerSupportSolutionPage() {
       <CustomerSupportHero />
       <CustomerSupportChallenge />
       <CustomerSupportCapabilities />
-      <CustomerSupportUseCases />
       <CustomerSupportWorkflow />
+      <CustomerSupportUseCases />
       <CustomerSupportBenefits />
       <CustomerSupportCta />
     </div>
   );
 }
-

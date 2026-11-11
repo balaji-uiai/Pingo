@@ -6,17 +6,12 @@ export interface ChallengeItem {
   iconName: string;
 }
 
-export interface CapabilityItem {
+export interface HowPingoHelpsItem {
   id: string;
   title: string;
   description: string;
   highlight: string;
   iconName: string;
-  preview: {
-    query: string;
-    source: string;
-    response: string;
-  };
 }
 
 export interface UseCaseItem {
@@ -24,8 +19,8 @@ export interface UseCaseItem {
   title: string;
   category: string;
   description: string;
-  sampleQuestion: string;
-  sampleAnswer: string;
+  scenario: string;
+  resolutionPath: "AI Automated" | "Human Agent" | "AI + Human Handover";
   iconName: string;
 }
 
@@ -35,6 +30,7 @@ export interface WorkflowStep {
   title: string;
   description: string;
   detail: string;
+  actor: "Customer" | "AI Assistant" | "Human Agent";
   iconName: string;
 }
 
@@ -48,11 +44,11 @@ export interface BenefitItem {
 
 export const customerSupportData = {
   hero: {
-    badge: "AI-Powered Customer Support",
-    headingPart1: "Customer Support That Understands",
-    headingPart2: "Your Customers.",
+    badge: "AI + Human Collaborative Support",
+    headingPart1: "Support Every Customer,",
+    headingPart2: "Beyond Every Conversation.",
     description:
-      "Help your customers find the answers they need with an AI-powered assistant that understands your business information and provides relevant guidance.",
+      "Give customers timely assistance with AI-powered responses and human support when personal attention is needed.",
     primaryCta: {
       text: "Get Started",
       href: "/contact",
@@ -61,300 +57,284 @@ export const customerSupportData = {
       text: "Explore Features",
       href: "/features/ai-automation",
     },
+    handoverDemo: {
+      customerName: "David Miller",
+      customerCompany: "Apex Logistics",
+      initialQuery: "We upgraded to the Team Plan today, but two of our dispatchers still see a 'Seat Limit Reached' error when logging in.",
+      aiResponse: "I verified that your workspace upgraded to the Team Plan (10 seats). For security verification of dispatcher permissions and manual seat reassignment, I am connecting you with Sarah from our customer support team.",
+      handoverNotice: "Handover in progress • Full conversation history and plan details attached",
+      agentName: "Sarah Jenkins",
+      agentRole: "Customer Support Specialist",
+      agentResponse: "Hi David! I have your account details and ticket history right in front of me. I just released the cached seat locks for both dispatcher emails. Could you ask them to log in again?",
+    },
     highlights: [
-      "Natural Language Understanding",
-      "Connected Knowledge Retrieval",
-      "Consistent & Verified Answers",
+      "AI for Routine Questions",
+      "Human Support for Complex Issues",
+      "Zero Repetitive Explanations",
+      "Seamless Context Continuity",
     ],
   },
 
   challenges: {
-    badge: "The Support Dilemma",
-    heading: "Customer Support Shouldn't Be Complicated.",
+    badge: "The Customer Support Dilemma",
+    heading: "Support Teams Shouldn't Have to Choose Between Speed and Personal Care.",
     subheading:
-      "Traditional support channels often force customers into long wait times and repetitive searches across fragmented documentation.",
+      "Modern customer support requires immediate answers for simple questions, but complex and sensitive situations demand the empathy and problem-solving skills of real human agents.",
     items: [
       {
-        id: "information-search",
-        title: "Customers struggle to find the right information",
+        id: "expect-timely",
+        title: "Customers expect timely responses",
         description:
-          "Sifting through endless FAQ directories and lengthy documentation leaves customers frustrated when they need immediate, actionable answers.",
-        impact: "High customer friction and delayed resolutions",
-        iconName: "SearchX",
-      },
-      {
-        id: "repetitive-queries",
-        title: "Repeated questions consume support teams' time",
-        description:
-          "Support agents spend countless hours manually answering identical routine inquiries instead of focusing on complex customer needs.",
-        impact: "Agent burnout and escalating operational overhead",
+          "When customers reach out with immediate questions, long queue times and delayed email threads lead to frustration and churn.",
+        impact: "Customer dissatisfaction during critical moments",
         iconName: "Clock",
       },
       {
-        id: "scattered-sources",
-        title: "Information is scattered across different sources",
+        id: "repetitive-questions",
+        title: "Support teams receive repetitive questions",
         description:
-          "Product specs, policy guides, release notes, and team files live in disconnected silos, making accurate verification slow and difficult.",
-        impact: "Knowledge fragmentation and information gaps",
-        iconName: "FolderGit2",
+          "Valuable support team members spend much of their day manually answering the same recurring policy, pricing, and FAQ questions.",
+        impact: "Operational fatigue and reduced capacity for complex cases",
+        iconName: "RotateCcw",
       },
       {
-        id: "inconsistent-guidance",
-        title: "Customers need clear and consistent guidance",
+        id: "complex-issues-human",
+        title: "Complex customer issues require human attention",
         description:
-          "Varying explanations from different agents or outdated web articles lead to confusion and degrade trust in the brand.",
-        impact: "Misaligned communication and diminished user trust",
-        iconName: "FileWarning",
+          "Account discrepancies, technical edge cases, and emotionally charged situations cannot be solved by automated rules or generic chatbots alone.",
+        impact: "Automated-only bots frustrate users when problems get difficult",
+        iconName: "UserCheck",
       },
-    ] as ChallengeItem[],
+      {
+        id: "repeating-problems",
+        title: "Customers may need to explain their problems multiple times",
+        description:
+          "When conversations bounce between tools or get transferred between staff, customers are forced to restart their story from the beginning.",
+        impact: "Broken context and poor customer experience",
+        iconName: "MessageSquareWarning",
+      },
+      {
+        id: "balancing-support",
+        title: "Support teams need a better way to balance routine queries and personal assistance",
+        description:
+          "Businesses struggle to provide 24/7 availability for basic questions while still preserving human agent time for high-value relationships.",
+        impact: "Inability to scale support operations sustainably",
+        iconName: "Scale",
+      },
+    ],
   },
 
-  capabilities: {
-    badge: "Core Support Capabilities",
-    heading: "Make Every Customer Interaction More Helpful.",
+  howPingoHelps: {
+    badge: "The Collaborative Approach",
+    heading: "AI and Human Agents Working Together, Not Competing.",
     subheading:
-      "Equip your customers with an AI assistant that delivers accurate, context-aware answers directly grounded in your verified business knowledge.",
+      "Pingo is designed around the principle that AI and human agents complement each other rather than replacing one another.",
     items: [
       {
-        id: "instant-answers",
-        title: "Instant Answers",
+        id: "ai-routine",
+        title: "AI handles common and knowledge-based questions",
         description:
-          "Provide relevant answers using connected business knowledge without keeping customers waiting in support queues.",
-        highlight: "Real-time responses verified against your source documents",
-        iconName: "Zap",
-        preview: {
-          query: "What is your refund policy for annual subscriptions?",
-          source: "Knowledge Base / Billing & Subscriptions / Policy_v3.pdf",
-          response:
-            "Annual subscriptions can be refunded within 14 days of purchase. After 14 days, prorated credits are applied to your workspace balance.",
-        },
+          "Immediate answers for business hours, product specifications, standard policies, and recurring documentation queries — available 24/7.",
+        highlight: "Instant 24/7 self-service for standard inquiries",
+        iconName: "Bot",
       },
       {
-        id: "natural-conversations",
-        title: "Natural Conversations",
+        id: "connected-knowledge",
+        title: "Customers receive relevant answers from connected business information",
         description:
-          "Allow customers to ask questions in their own words, avoiding rigid menu trees, keyword guesswork, or confusing form fields.",
-        highlight: "Understands customer intent, phrasing, and conversational context",
-        iconName: "MessageSquareQuote",
-        preview: {
-          query: "Can I bring my team in without losing what we already set up?",
-          source: "Workspace Administration / Team Management Guide",
-          response:
-            "Yes! Inviting team members preserves all existing knowledge bases and custom conversation history in your workspace.",
-        },
-      },
-      {
-        id: "context-aware-guidance",
-        title: "Context-Aware Guidance",
-        description:
-          "Understand customer questions in detail and provide relevant information tailored to their specific journey and inquiries.",
-        highlight: "Maintains multi-turn conversational context seamlessly",
-        iconName: "Sparkles",
-        preview: {
-          query: "How do I connect that with our Slack channel?",
-          source: "Integrations & Channels / Collaboration Tools",
-          response:
-            "Navigate to Workspace Settings > Integrations > Slack. Click 'Connect' and select the target channel to receive live notifications.",
-        },
-      },
-      {
-        id: "organized-knowledge",
-        title: "Organized Knowledge",
-        description:
-          "Keep business information structured and accessible, ensuring answers reflect the most current policies and product details.",
-        highlight: "Centralized repository with automated index synchronization",
+          "Pingo grounds its responses in your verified documentation, FAQs, and product guides, avoiding generic or inaccurate AI hallucinations.",
+        highlight: "Grounded strictly in verified business documentation",
         iconName: "Database",
-        preview: {
-          query: "Are there storage limits on uploaded knowledge files?",
-          source: "Platform Specifications / Resource Allocation",
-          response:
-            "Standard accounts include 10GB of structured vector storage, expandable anytime from your admin dashboard.",
-        },
       },
       {
-        id: "consistent-responses",
-        title: "Consistent Responses",
+        id: "handover-support",
+        title: "Complex or sensitive queries are directed to human support",
         description:
-          "Help customers receive clear and consistent guidance across every channel, maintaining brand voice and factual accuracy.",
-        highlight: "Guaranteed consistency across all customer touchpoints",
-        iconName: "CheckCircle2",
-        preview: {
-          query: "What security compliance standards does Pingo meet?",
-          source: "Security & Compliance Overview / SOC2_Compliance.pdf",
-          response:
-            "Pingo adheres to SOC 2 Type II controls and implements AES-256 encryption for data at rest and TLS 1.3 for data in transit.",
-        },
-      },
-    ] as CapabilityItem[],
-  },
-
-  useCases: {
-    badge: "Real-World Scenarios",
-    heading: "Customer Support in Action",
-    subheading:
-      "Explore practical ways Pingo assists customers with immediate, accurate resolution across common support touchpoints.",
-    items: [
-      {
-        id: "product-questions",
-        title: "Answering Product-Related Questions",
-        category: "Product Knowledge",
-        description:
-          "Help prospective and existing customers understand feature capabilities, system requirements, and technical specifications.",
-        sampleQuestion: "Does Pingo support multi-language customer queries?",
-        sampleAnswer:
-          "Yes, Pingo automatically detects and responds in over 40 languages based on the customer's input language.",
-        iconName: "Package",
+          "When a customer inquiry requires account discretion, negotiation, or technical troubleshooting, the conversation can be transitioned to human agents where supported.",
+        highlight: "Smooth escalation path when personal attention is needed",
+        iconName: "UserPlus",
       },
       {
-        id: "service-explanation",
-        title: "Explaining Business Services",
-        category: "Service Guidance",
+        id: "human-assistance",
+        title: "Human agents understand the customer's issue with full context",
         description:
-          "Clarify service tiers, package inclusions, and implementation options without requiring sales intervention.",
-        sampleQuestion: "What is included with the Enterprise onboarding package?",
-        sampleAnswer:
-          "Enterprise onboarding includes dedicated knowledge ingestion, customized workflow setup, and a dedicated support lead.",
-        iconName: "Briefcase",
+          "Support team members receive the complete transcript and customer inquiry details upfront, eliminating the frustration of asking customers to re-explain themselves.",
+        highlight: "Context preservation ensures support continuity",
+        iconName: "FileText",
       },
       {
-        id: "process-guidance",
-        title: "Guiding Customers Through Processes",
-        category: "Step-by-Step",
+        id: "complementary-model",
+        title: "AI and human support complement each other",
         description:
-          "Walk users through multi-step onboarding, configuration settings, or checkout procedures with concise, structured steps.",
-        sampleQuestion: "How do I generate an API key for custom webhooks?",
-        sampleAnswer:
-          "Go to Developer Settings > API Keys, click 'Generate New Key', assign read/write permissions, and copy your token securely.",
-        iconName: "Route",
+          "AI removes the burden of repetitive routine questions so support specialists have the time, energy, and context to deliver empathetic, personalized care.",
+        highlight: "Balanced customer experience combining speed with personal care",
+        iconName: "Sparkles",
       },
-      {
-        id: "information-lookup",
-        title: "Helping Customers Find Relevant Information",
-        category: "Knowledge Lookup",
-        description:
-          "Retrieve specific clauses, policy sections, or product manuals from large repositories instantly.",
-        sampleQuestion: "Where can I find your service uptime SLA document?",
-        sampleAnswer:
-          "Our 99.95% uptime SLA is detailed in Section 4 of the Master Service Agreement, accessible via your billing portal.",
-        iconName: "FileSearch",
-      },
-      {
-        id: "faq-resolution",
-        title: "Responding to Frequently Asked Questions",
-        category: "Instant FAQ",
-        description:
-          "Instantly resolve high-volume everyday queries regarding hours, return windows, password resets, and account access.",
-        sampleQuestion: "What happens if our payment method fails during renewal?",
-        sampleAnswer:
-          "We offer a 7-day grace period with automatic retry attempts before any workspace services are temporarily paused.",
-        iconName: "HelpCircle",
-      },
-    ] as UseCaseItem[],
+    ],
   },
 
   workflow: {
-    badge: "Simple Implementation",
-    heading: "How It Works",
+    badge: "AI + Human Support Workflow",
+    heading: "How Customer Support Conversations Flow",
     subheading:
-      "From connected information to confident customer responses in four straightforward steps.",
+      "A clear 5-stage customer journey designed to resolve simple questions instantly while ensuring human care is always within reach.",
     steps: [
       {
-        step: "01",
-        number: "Step 1",
-        title: "Connect Your Knowledge",
-        description: "Add supported business information sources.",
-        detail:
-          "Import documentation, FAQs, product sheets, and policy manuals directly into your secure Pingo environment.",
-        iconName: "Share2",
+        step: "Step 01",
+        number: "01",
+        title: "Customer Starts a Conversation",
+        description: "The customer opens chat on your website or support portal with a question or request.",
+        detail: "Customers type their question naturally without needing to navigate complex phone menus or rigid decision trees.",
+        actor: "Customer",
+        iconName: "MessageSquare",
       },
       {
-        step: "02",
-        number: "Step 2",
-        title: "Organize Information",
-        description: "Structure the information into a knowledge base.",
-        detail:
-          "Pingo parses, indexes, and organizes your materials into semantic vectors for rapid, pinpoint retrieval.",
-        iconName: "Layers",
+        step: "Step 02",
+        number: "02",
+        title: "AI Understands the Question",
+        description: "Pingo analyzes the customer's question against your connected business knowledge.",
+        detail: "Natural-language processing identifies the core topic, checks verified documentation, and assesses question complexity.",
+        actor: "AI Assistant",
+        iconName: "BrainCircuit",
       },
       {
-        step: "03",
-        number: "Step 3",
-        title: "Ask Questions",
-        description: "Customers interact with the Pingo assistant.",
-        detail:
-          "Customers inquire naturally on your website or support portal in conversational language without specialized phrasing.",
-        iconName: "MessagesSquare",
-      },
-      {
-        step: "04",
-        number: "Step 4",
-        title: "Get Relevant Answers",
-        description: "Pingo retrieves relevant information and responds.",
-        detail:
-          "The assistant synthesizes verified source context to deliver clear, precise guidance within seconds.",
+        step: "Step 03",
+        number: "03",
+        title: "AI Provides an Answer for Common Queries",
+        description: "Routine and knowledge-based questions receive an immediate, accurate response.",
+        detail: "If the inquiry is covered in your connected documentation, the customer gets the exact answer within seconds.",
+        actor: "AI Assistant",
         iconName: "CheckCircle",
       },
-    ] as WorkflowStep[],
+      {
+        step: "Step 04",
+        number: "04",
+        title: "Human Agent Assists When Personal Support Is Needed",
+        description: "If an issue is complex or sensitive, it is directed to a human support agent.",
+        detail: "Where handover workflows are supported, human agents receive the full conversation context without making the customer repeat their issue.",
+        actor: "Human Agent",
+        iconName: "UserCheck",
+      },
+      {
+        step: "Step 05",
+        number: "05",
+        title: "Customer Receives Further Assistance",
+        description: "The support specialist provides personal care, verifies resolution, and completes the case.",
+        detail: "The customer experiences a cohesive, supportive interaction that combines instant speed with genuine human care.",
+        actor: "Customer",
+        iconName: "HeartHandshake",
+      },
+    ],
+  },
+
+  useCases: {
+    badge: "Real Support Scenarios",
+    heading: "Practical Customer Support Scenarios",
+    subheading:
+      "From high-volume routine inquiries to delicate account conversations, see how AI and human support work together in practice.",
+    items: [
+      {
+        id: "common-questions",
+        title: "Common Product and Service Questions",
+        category: "Routine Self-Service",
+        description:
+          "Customers frequently ask about business hours, return policies, feature availability, and pricing tiers.",
+        scenario: "AI instantly answers standard policy and product questions using your verified FAQ knowledge.",
+        resolutionPath: "AI Automated",
+        iconName: "HelpCircle",
+      },
+      {
+        id: "order-service-enquiries",
+        title: "Order or Service-Related Enquiries",
+        category: "Information Lookup",
+        description:
+          "Customers inquiring about delivery timelines, service milestones, or documentation requirements where information is connected.",
+        scenario: "Pingo references connected guidelines to give clear status and process details without queue delays.",
+        resolutionPath: "AI Automated",
+        iconName: "PackageCheck",
+      },
+      {
+        id: "complex-issues",
+        title: "Complex Customer Issues Requiring Human Attention",
+        category: "Human Escalation",
+        description:
+          "Multi-step billing investigations, bespoke configuration requests, or sensitive service complaints.",
+        scenario: "Directed to an experienced support specialist with full background context already gathered.",
+        resolutionPath: "Human Agent",
+        iconName: "ShieldAlert",
+      },
+      {
+        id: "follow-up-conversations",
+        title: "Follow-Up Conversations",
+        category: "Contextual Continuity",
+        description:
+          "Customers returning after an earlier interaction who need clarification on next steps or ongoing service.",
+        scenario: "Previous context is retained so agents can pick up immediately without restarting the conversation.",
+        resolutionPath: "AI + Human Handover",
+        iconName: "History",
+      },
+      {
+        id: "personalized-guidance",
+        title: "Customers Needing Personalized Guidance",
+        category: "Tailored Support",
+        description:
+          "High-value clients seeking customized onboarding recommendations or tailored solution advice.",
+        scenario: "Human specialists provide dedicated consultative attention with AI providing instant document references in the background.",
+        resolutionPath: "Human Agent",
+        iconName: "UserHeart",
+      },
+    ],
   },
 
   benefits: {
-    badge: "Measured Value",
-    heading: "Better Guidance. Better Customer Experiences.",
+    badge: "Balanced Support Impact",
+    heading: "A Better Experience for Customers and Support Teams",
     subheading:
-      "Provide modern, frictionless customer support that strengthens satisfaction while reducing repetitive manual effort.",
+      "By balancing immediate automated answers with thoughtful human assistance, businesses improve support continuity and build deeper customer trust.",
     items: [
       {
-        id: "access",
-        title: "Easier access to business information",
+        id: "customer-experience",
+        title: "Better Customer Experience",
         description:
-          "Customers find accurate answers in seconds without navigating complicated menus or waiting on hold.",
-        tag: "Instant Discovery",
-        iconName: "Compass",
-      },
-      {
-        id: "reduction",
-        title: "Reduced repetitive queries",
-        description:
-          "Automate high-volume everyday questions so your support team can focus on nuanced, high-touch inquiries.",
-        tag: "Support Efficiency",
-        iconName: "Clock",
-      },
-      {
-        id: "consistency",
-        title: "Consistent customer guidance",
-        description:
-          "Eliminate conflicting information by grounding every response in verified, up-to-date business documentation.",
-        tag: "Verified Accuracy",
-        iconName: "ShieldCheck",
-      },
-      {
-        id: "accessibility",
-        title: "Improved information accessibility",
-        description:
-          "Make deep product documentation easily digestible and understandable for customers of all technical levels.",
-        tag: "Clear Communication",
-        iconName: "BookOpenCheck",
-      },
-      {
-        id: "experience",
-        title: "A smoother customer experience",
-        description:
-          "Deliver immediate, friendly, and respectful assistance that turns routine questions into positive brand impressions.",
-        tag: "Delightful Support",
+          "Customers receive instant answers for common questions without waiting, and empathetic personal care when situations demand it.",
+        tag: "Speed & Empathy",
         iconName: "Smile",
       },
-    ] as BenefitItem[],
+      {
+        id: "human-assistance",
+        title: "Empowered Human Agents",
+        description:
+          "Support agents are freed from answering repetitive basic queries, allowing them to focus on high-impact customer relationships.",
+        tag: "Agent Fulfillment",
+        iconName: "Users",
+      },
+      {
+        id: "reduced-repetitive-work",
+        title: "Reduced Repetitive Work",
+        description:
+          "Routine questions are resolved automatically from verified documentation, significantly decreasing support team backlog.",
+        tag: "Operational Relief",
+        iconName: "TrendingDown",
+      },
+      {
+        id: "support-continuity",
+        title: "Better Support Continuity",
+        description:
+          "Context is preserved during transitions, preventing customers from having to explain their situation over and over again.",
+        tag: "Zero Context Loss",
+        iconName: "GitMerge",
+      },
+    ],
   },
 
   cta: {
-    badge: "Get Started Today",
-    heading: "Make Customer Support More Accessible.",
+    badge: "Collaborative Customer Support",
+    heading: "Support Customers Better with AI and Human Care Working Together.",
     description:
-      "Give your customers a smarter way to discover information and understand your services.",
+      "Deliver instant answers for common questions while ensuring your support team has the time and context to provide personal care when it matters most.",
     buttonText: "Get Started",
     buttonHref: "/contact",
-    secondaryText: "Explore Features",
-    secondaryHref: "/features/ai-automation",
+    secondaryText: "Explore Product Guidance",
+    secondaryHref: "/solutions/product-service-guidance",
   },
 };
-

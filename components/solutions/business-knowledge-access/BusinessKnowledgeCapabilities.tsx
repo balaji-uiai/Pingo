@@ -2,28 +2,25 @@
 
 import React from "react";
 import {
-  Database,
   FolderTree,
-  MessageSquare,
-  Target,
-  Sparkles,
-  CheckCircle2,
   Layers,
-  ShieldCheck,
-  ArrowRight,
+  Database,
+  Search,
+  MessageSquare,
+  CheckCircle2,
 } from "lucide-react";
-import { businessKnowledgeData, CapabilityItem } from "@/data/businessKnowledgeAccess";
+import { businessKnowledgeData } from "@/data/businessKnowledgeAccess";
 
 const iconMap: Record<string, React.ElementType> = {
-  Database,
   FolderTree,
+  Layers,
+  Database,
+  Search,
   MessageSquare,
-  Target,
-  Sparkles,
 };
 
 export const BusinessKnowledgeCapabilities: React.FC = () => {
-  const { capabilities } = businessKnowledgeData;
+  const { howPingoHelps } = businessKnowledgeData;
 
   return (
     <section
@@ -41,21 +38,21 @@ export const BusinessKnowledgeCapabilities: React.FC = () => {
         <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#635BFF]/30 dark:border-[#635BFF]/50 bg-[#F0EDFF] dark:bg-[#1D1B3A] text-[#635BFF] dark:text-[#A5A0FF] text-xs font-bold tracking-wider uppercase shadow-xs">
             <Layers className="w-3.5 h-3.5 text-[#635BFF] dark:text-[#A5A0FF]" />
-            <span>{capabilities.badge}</span>
+            <span>{howPingoHelps.badge}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#171B2E] dark:text-[#FFFFFF] leading-[1.15]">
-            {capabilities.heading}
+            {howPingoHelps.heading}
           </h2>
 
           <p className="text-base sm:text-lg text-[#62677D] dark:text-[#B5BAD0] leading-relaxed max-w-2xl mx-auto font-normal">
-            {capabilities.subheading}
+            {howPingoHelps.subheading}
           </p>
         </div>
 
         {/* 5-Card Layered Knowledge Architecture Cards */}
         <div className="max-w-6xl mx-auto space-y-4">
-          {capabilities.items.map((item, index) => {
+          {howPingoHelps.items.map((item, index) => {
             const IconComponent = iconMap[item.iconName] || Database;
 
             return (
@@ -74,10 +71,7 @@ export const BusinessKnowledgeCapabilities: React.FC = () => {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white dark:bg-[#1A1435] border border-[#E5E7F0] dark:border-white/[0.08] text-[#635BFF] dark:text-[#A5A0FF] font-semibold">
-                          Layer 0{index + 1}
-                        </span>
-                        <span className="text-[10px] font-mono text-[#62677D] dark:text-[#A5A1BF]">
-                          {item.badge}
+                          Capability 0{index + 1}
                         </span>
                       </div>
                       <h3 className="text-base sm:text-lg font-bold text-[#171B2E] dark:text-white leading-tight">
@@ -113,4 +107,3 @@ export const BusinessKnowledgeCapabilities: React.FC = () => {
 };
 
 export default BusinessKnowledgeCapabilities;
-

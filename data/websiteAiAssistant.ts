@@ -6,27 +6,22 @@ export interface ChallengeItem {
   iconName: string;
 }
 
-export interface CapabilityItem {
+export interface HowPingoHelpsItem {
   id: string;
   title: string;
   description: string;
-  tag: string;
+  interactiveTag: string;
   iconName: string;
-  demonstration: {
-    visitorQuery: string;
-    assistantGuidance: string;
-    sourceRef: string;
-  };
 }
 
 export interface UseCaseItem {
   id: string;
   title: string;
-  scenario: string;
+  category: string;
   description: string;
   visitorQuestion: string;
   assistantResponse: string;
-  destinationPage: string;
+  suggestedAction: string;
   iconName: string;
 }
 
@@ -49,11 +44,11 @@ export interface BenefitItem {
 
 export const websiteAiAssistantData = {
   hero: {
-    badge: "Website AI Assistant",
-    headingPart1: "Turn Your Website Into an",
-    headingPart2: "Intelligent Assistant.",
+    badge: "Interactive Website Experience",
+    headingPart1: "Make Your Website",
+    headingPart2: "More Interactive and Helpful.",
     description:
-      "Help website visitors discover information, understand your services, and get relevant answers through an AI assistant powered by your business knowledge.",
+      "Turn website visits into meaningful interactions by helping visitors explore your business information through an intelligent website assistant.",
     primaryCta: {
       text: "Get Started",
       href: "/contact",
@@ -62,305 +57,288 @@ export const websiteAiAssistantData = {
       text: "Explore Features",
       href: "/features/ai-automation",
     },
+    browserDemo: {
+      url: "https://yourcompany.com",
+      pageTitle: "Enterprise Cloud Platforms & Consulting",
+      visitorQuery: "I'm looking for enterprise compliance certifications and data residency options.",
+      assistantAnswer:
+        "We maintain SOC 2 Type II, ISO 27001, and HIPAA compliance with isolated data residency options across the US, EU, and Asia-Pacific regions.",
+      suggestedPill: "View Compliance & Security Hub →",
+      suggestedUrl: "/security-overview",
+    },
     highlights: [
-      "Natural Language Visitor Queries",
-      "Grounded In Your Business Knowledge",
-      "Instant On-Site Guidance",
+      "Dynamic On-Page Guidance",
+      "Direct Link Navigation",
+      "Interactive Content Discovery",
+      "Zero Website Dead-Ends",
     ],
   },
 
   challenges: {
-    badge: "Visitor Navigation Friction",
-    heading: "Your Website Has Information. Can Visitors Find It?",
+    badge: "The Static Website Problem",
+    heading: "Traditional Websites Make Visitors Do All the Heavy Lifting.",
     subheading:
-      "Static web pages often require extensive clicking and reading. When visitors cannot find quick answers, they leave without engaging.",
+      "Most corporate websites are static brochures where visitors must dig through layers of menus, subpages, and text blocks just to find answers to specific questions.",
     items: [
       {
-        id: "locating-information",
-        title: "Visitors struggle to locate specific information",
+        id: "lost-info",
+        title: "Website visitors may not know where to find specific information",
         description:
-          "Traditional navigation menus and keyword search boxes require visitors to know exact terminology, leading to dead-end searches.",
-        visitorFriction: "Visitors give up after 2–3 unfruitful clicks",
-        iconName: "SearchX",
-      },
-      {
-        id: "spread-across-pages",
-        title: "Important details are spread across multiple website pages",
-        description:
-          "Pricing notes, service deliverables, and onboarding steps live on separate subpages, forcing visitors to synthesize fragmented details manually.",
-        visitorFriction: "Fragmented context stalls buyer momentum",
-        iconName: "Split",
-      },
-      {
-        id: "bounce-on-confusion",
-        title: "Customers leave when they cannot find clear answers",
-        description:
-          "When prospective clients hit an information barrier with no instant way to clarify questions, they navigate away to competitors.",
-        visitorFriction: "High bounce rate on high-intent service pages",
-        iconName: "LogOut",
-      },
-      {
-        id: "repetitive-inquiries",
-        title: "Support teams repeatedly handle common questions",
-        description:
-          "Frontline staff spend substantial time answering questions that are already documented on the website but were hard for visitors to find.",
-        visitorFriction: "Overburdened support queues with routine queries",
-        iconName: "Clock",
-      },
-    ] as ChallengeItem[],
-  },
-
-  capabilities: {
-    badge: "Conversational Website Intelligence",
-    heading: "Make Your Website More Helpful With AI.",
-    subheading:
-      "Transform passive browsing into an interactive experience where visitors receive immediate, accurate guidance grounded in your business knowledge.",
-    items: [
-      {
-        id: "ai-assistance",
-        title: "AI-Powered Assistance",
-        description:
-          "Let visitors interact with an intelligent assistant embedded directly into their browsing experience for immediate answers.",
-        tag: "Interactive AI",
-        iconName: "Bot",
-        demonstration: {
-          visitorQuery: "Can your team help us migrate our existing knowledge base?",
-          assistantGuidance:
-            "Yes! Our Professional Onboarding service includes complete document migration, schema structuring, and test validation for your team.",
-          sourceRef: "Website / Services / Migration & Setup",
-        },
-      },
-      {
-        id: "natural-language",
-        title: "Natural Language Interaction",
-        description:
-          "Allow visitors to ask questions in their own words without needing exact keywords, complex filters, or rigid menu selections.",
-        tag: "Conversational",
-        iconName: "MessageSquare",
-        demonstration: {
-          visitorQuery: "Do you have something for smaller agencies with just 5 people?",
-          assistantGuidance:
-            "Our Starter Workspace is tailored for teams under 10 members, offering shared document retrieval, 5 connected knowledge sources, and full web chat access.",
-          sourceRef: "Website / Pricing / Starter Plan",
-        },
-      },
-      {
-        id: "website-knowledge",
-        title: "Website Knowledge",
-        description:
-          "Use connected business information to provide relevant answers, ensuring guidance accurately reflects your published products and terms.",
-        tag: "Connected Sources",
-        iconName: "Database",
-        demonstration: {
-          visitorQuery: "Where are our uploaded files stored and are they encrypted?",
-          assistantGuidance:
-            "Files are stored in secure vector storage encrypted at rest with AES-256 and transmitted using TLS 1.3 encryption protocols.",
-          sourceRef: "Website / Security & Compliance",
-        },
-      },
-      {
-        id: "contextual-responses",
-        title: "Contextual Responses",
-        description:
-          "Retrieve information relevant to each question, understanding multi-turn conversational context to give personalized guidance.",
-        tag: "Context Aware",
-        iconName: "Sparkles",
-        demonstration: {
-          visitorQuery: "How does that compare to the Enterprise option you mentioned?",
-          assistantGuidance:
-            "Unlike Starter, Enterprise includes unlimited document connections, custom security SLAs, dedicated account management, and custom domain white-labeling.",
-          sourceRef: "Website / Pricing / Plan Comparison",
-        },
-      },
-      {
-        id: "customer-guidance",
-        title: "Customer Guidance",
-        description:
-          "Help visitors understand products, services, and business processes step-by-step so they can take the next step with confidence.",
-        tag: "Actionable Guidance",
-        iconName: "Compass",
-        demonstration: {
-          visitorQuery: "What is the first step to test this out on our site?",
-          assistantGuidance:
-            "You can start by booking an onboarding consultation or connecting your primary FAQ document to test natural language answers immediately.",
-          sourceRef: "Website / Getting Started Guide",
-        },
-      },
-    ] as CapabilityItem[],
-  },
-
-  useCases: {
-    badge: "Visitor Touchpoints",
-    heading: "Give Every Website Visitor a Better Experience.",
-    subheading:
-      "See how Pingo engages website visitors with immediate answers across common exploration stages.",
-    items: [
-      {
-        id: "service-answers",
-        title: "Answering questions about business services",
-        scenario: "Service Discovery",
-        description:
-          "Clarify service packages, consulting deliverables, and ongoing support terms without forcing visitors to submit a contact form for basic facts.",
-        visitorQuestion: "What is included with your Managed Services package?",
-        assistantResponse:
-          "Managed Services includes weekly knowledge base updates, automated source re-indexing, dedicated SLA monitoring, and a designated customer success manager.",
-        destinationPage: "View Managed Services Overview",
-        iconName: "Briefcase",
-      },
-      {
-        id: "product-info",
-        title: "Explaining product information",
-        scenario: "Product Specifications",
-        description:
-          "Provide immediate technical details, format compatibilities, and integration possibilities directly within the browser.",
-        visitorQuestion: "Does Pingo work with PDF files containing multi-column tables?",
-        assistantResponse:
-          "Yes. Pingo's ingestion parser extracts structured tables and text across multi-column PDF layouts to preserve factual context for queries.",
-        destinationPage: "Explore Supported Formats",
-        iconName: "Box",
-      },
-      {
-        id: "page-guidance",
-        title: "Guiding visitors to relevant information",
-        scenario: "Navigation Assistance",
-        description:
-          "Point visitors to the exact case study, documentation article, or pricing calculator they are seeking with direct links.",
-        visitorQuestion: "Where can I read about your SOC 2 compliance report?",
-        assistantResponse:
-          "You can review our compliance overview and request our SOC 2 Type II summary report on our Security & Administration page.",
-        destinationPage: "Go to Security Overview",
+          "Visitors arrive with specific intent but struggle to figure out which navigation dropdown or sub-menu contains the exact details they need.",
+        visitorFriction: "Confusing Navigation",
         iconName: "Compass",
       },
       {
-        id: "faq-responses",
-        title: "Responding to frequently asked questions",
-        scenario: "Instant FAQ",
+        id: "multi-page-hopping",
+        title: "Visitors navigate through multiple pages to understand a business",
         description:
-          "Instantly resolve high-frequency questions about hours, billing models, cancellations, and setup timelines.",
-        visitorQuestion: "Can we cancel our subscription at any time without fees?",
-        assistantResponse:
-          "Yes, subscriptions can be canceled anytime from your account dashboard with zero cancellation penalties or hidden fees.",
-        destinationPage: "Review Billing Terms",
-        iconName: "HelpCircle",
-      },
-      {
-        id: "process-understanding",
-        title: "Helping visitors understand business processes",
-        scenario: "Process Clarity",
-        description:
-          "Walk potential clients through how your team operates, what onboarding entails, and expected delivery turnaround times.",
-        visitorQuestion: "How long does typical implementation take from start to launch?",
-        assistantResponse:
-          "Standard implementations typically take 3 to 5 business days, including knowledge ingestion, admin review, and verification testing.",
-        destinationPage: "Read Implementation Guide",
-        iconName: "Route",
-      },
-    ] as UseCaseItem[],
-  },
-
-  workflow: {
-    badge: "Four-Step Setup",
-    heading: "How It Works",
-    subheading:
-      "A straightforward workflow to transform your website with an intelligent knowledge assistant.",
-    steps: [
-      {
-        step: "01",
-        number: "Step 1",
-        title: "Connect Business Information",
-        description: "Add supported knowledge sources.",
-        detail:
-          "Import your product guides, FAQs, service sheets, and policy documentation into your secure workspace.",
-        iconName: "FolderPlus",
-      },
-      {
-        step: "02",
-        number: "Step 2",
-        title: "Build Your Knowledge Base",
-        description: "Organize the information for retrieval.",
-        detail:
-          "Pingo structures your content into indexed vector embeddings to enable rapid semantic search and factual synthesis.",
+          "Prospective clients have to click through 'About Us', 'Solutions', 'Case Studies', and 'Pricing' just to grasp what the business actually provides.",
+        visitorFriction: "Click Fatigue",
         iconName: "Layers",
       },
       {
-        step: "03",
-        number: "Step 3",
-        title: "Add Pingo to Your Website",
-        description: "Deploy the assistant interface to your web pages.",
-        detail:
-          "Integrate the assistant directly onto your website using supported embed or script methods for visitors to access.",
-        iconName: "Globe",
+        id: "unnoticed-content",
+        title: "Important website content may go unnoticed",
+        description:
+          "Valuable case studies, whitepapers, service differentiators, and FAQ answers remain hidden deep within website architecture.",
+        visitorFriction: "Hidden Value",
+        iconName: "EyeOff",
       },
       {
-        step: "04",
-        number: "Step 4",
-        title: "Assist Website Visitors",
-        description: "Let visitors ask questions and receive relevant answers.",
-        detail:
-          "Visitors receive instant, verified answers to their questions 24/7 without waiting for email responses.",
-        iconName: "MessageCircle",
+        id: "early-drop-off",
+        title: "Visitors leave without exploring relevant services or information",
+        description:
+          "When users cannot find immediate answers within 10 to 15 seconds, they bounce away and seek competitors with clearer answers.",
+        visitorFriction: "Visitor Abandonment",
+        iconName: "LogOut",
       },
-    ] as WorkflowStep[],
+      {
+        id: "static-inability",
+        title: "Static website pages cannot always answer individual visitor questions",
+        description:
+          "A static web page cannot tailor its messaging or answer unique scenario questions based on a specific visitor's industry or scale.",
+        visitorFriction: "One-Size-Fits-None",
+        iconName: "HelpCircle",
+      },
+    ],
   },
 
-  benefits: {
-    badge: "Measurable Impact",
-    heading: "Make Your Website Work Smarter.",
+  howPingoHelps: {
+    badge: "Conversational Website Layer",
+    heading: "Turning Passive Web Browsing Into Active Discovery.",
     subheading:
-      "Turn your static web presence into an interactive guide that delivers immediate clarity and builds buyer confidence.",
+      "Pingo adds an intelligent interactive layer to your web presence, answering visitor questions and guiding them directly to relevant content.",
     items: [
       {
-        id: "discovery",
-        title: "Easier information discovery",
+        id: "interactive-experience",
+        title: "Provides an interactive assistant experience on the website",
         description:
-          "Visitors get straight to the answers they need without navigating complex dropdown menus or pagination.",
-        highlight: "Frictionless Discovery",
+          "Where supported, visitors can open an on-site assistant widget to converse in natural language instead of hunting through site maps.",
+        interactiveTag: "Live Engagement",
+        iconName: "MessageSquare",
+      },
+      {
+        id: "discover-information",
+        title: "Helps visitors discover relevant website information",
+        description:
+          "Instantly highlights case studies, documentation, service tiers, and policy guidelines tailored to what the visitor asks.",
+        interactiveTag: "Content Surfacing",
         iconName: "Search",
       },
       {
-        id: "interactions",
-        title: "More helpful website interactions",
+        id: "explains-services",
+        title: "Explains business services and offerings",
         description:
-          "Turn passive readers into engaged visitors through responsive, natural conversations tailored to their questions.",
-        highlight: "Engaged Visitors",
+          "Translates complex offerings into accessible summaries, explaining how your services work and who they are designed for.",
+        interactiveTag: "Clear Messaging",
         iconName: "Sparkles",
       },
       {
-        id: "accessibility",
-        title: "Accessible business knowledge",
+        id: "answers-connected-content",
+        title: "Answers questions based on connected website content",
         description:
-          "Deep technical specs and service documentation are made instantly understandable in plain everyday language.",
-        highlight: "Instant Clarity",
-        iconName: "BookOpen",
+          "Extracts answers directly from your published website copy, ensuring every response aligns with your official brand messaging.",
+        interactiveTag: "Verified Grounding",
+        iconName: "Database",
       },
       {
-        id: "consistency",
-        title: "Consistent answers to common questions",
+        id: "guides-relevant-pages",
+        title: "Guides visitors towards relevant information and pages",
         description:
-          "Ensure every visitor receives accurate, verified guidance that strictly matches your current documentation.",
-        highlight: "Reliable Accuracy",
+          "Supplies direct deep-links to specific product pages, calculators, booking calendars, or whitepapers within the conversational flow.",
+        interactiveTag: "Assisted Navigation",
+        iconName: "Navigation",
+      },
+    ],
+  },
+
+  workflow: {
+    badge: "Website Visitor Journey",
+    heading: "From Landing Page to Actionable Discovery",
+    subheading:
+      "A natural 5-step visitor interaction flow that makes exploring website information fast, intuitive, and engaging.",
+    steps: [
+      {
+        step: "Step 01",
+        number: "01",
+        title: "Visitor Opens the Website",
+        description: "A prospective customer lands on any page across your web domain.",
+        detail: "The visitor observes your page content and is greeted by a subtle, unobtrusive assistant launcher.",
+        iconName: "Globe",
+      },
+      {
+        step: "Step 02",
+        number: "02",
+        title: "Visitor Notices the Pingo Assistant",
+        description: "The visitor sees the interactive assistant ready to answer questions.",
+        detail: "Suggested inquiry pills and a welcoming prompt indicate that help is immediately accessible on-page.",
+        iconName: "Sparkles",
+      },
+      {
+        step: "Step 03",
+        number: "03",
+        title: "Visitor Asks About a Service or Website Topic",
+        description: "The visitor types an inquiry regarding capabilities, pricing, or company background.",
+        detail: "Instead of searching through headers or footers, the visitor asks in natural plain language.",
+        iconName: "MessageSquare",
+      },
+      {
+        step: "Step 04",
+        number: "04",
+        title: "Pingo Retrieves Relevant Website Information",
+        description: "Pingo scans connected website knowledge to pull verified details.",
+        detail: "Relevant content snippets, feature specifications, and direct page references are retrieved within milliseconds.",
+        iconName: "Search",
+      },
+      {
+        step: "Step 05",
+        number: "05",
+        title: "Visitor Discovers the Information They Need",
+        description: "The visitor receives a tailored answer and navigates to the relevant page.",
+        detail: "Equipped with verified answers and direct deep-links, the visitor explores further or initiates contact.",
+        iconName: "CheckCircle",
+      },
+    ],
+  },
+
+  useCases: {
+    badge: "Visitor Engagement Scenarios",
+    heading: "Practical Website Assistant Scenarios",
+    subheading:
+      "See how an intelligent website assistant answers varied visitor intents across discovery, navigation, and service education.",
+    items: [
+      {
+        id: "what-business-offers",
+        title: "Explaining What the Business Offers",
+        category: "Company Overview",
+        description:
+          "Helping visitors who land on blog posts or secondary pages quickly understand your core business value proposition.",
+        visitorQuestion: "'Can you give me a 2-minute summary of what your company actually does?'",
+        assistantResponse:
+          "We provide enterprise AI knowledge infrastructure that connects internal documents and websites to automated customer and team assistants.",
+        suggestedAction: "View Solutions Overview →",
+        iconName: "Briefcase",
+      },
+      {
+        id: "find-service-info",
+        title: "Helping Visitors Find Relevant Service Information",
+        category: "Service Discovery",
+        description:
+          "Surfacing specific service packages, SLAs, or technical prerequisites without forcing visitors through complex menus.",
+        visitorQuestion: "'Do you offer managed implementation for healthcare clinics subject to HIPAA?'",
+        assistantResponse:
+          "Yes, our Healthcare Implementation Tier includes signed BAAs, dedicated audit logging, and HIPAA-compliant data routing.",
+        suggestedAction: "Explore Healthcare Tier Details →",
         iconName: "ShieldCheck",
       },
       {
-        id: "experience",
-        title: "Better visitor experience",
+        id: "answer-website-content",
+        title: "Answering Questions About Website Content",
+        category: "Content Clarification",
         description:
-          "Provide immediate 24/7 support that leaves a modern, professional impression on prospective customers.",
-        highlight: "Superior Experience",
-        iconName: "Smile",
+          "Clarifying terms, methodology steps, or case study statistics published across your site.",
+        visitorQuestion: "'In your FinTech case study, what was the average deployment timeframe?'",
+        assistantResponse:
+          "According to the Meridian Bank case study, deployment across 4 branch regions was completed in 18 business days.",
+        suggestedAction: "Read Full Meridian Case Study →",
+        iconName: "FileText",
       },
-    ] as BenefitItem[],
+      {
+        id: "guide-sections",
+        title: "Guiding Visitors to Relevant Website Sections",
+        category: "Interactive Navigation",
+        description:
+          "Acting as a digital concierge that directs visitors straight to pricing, careers, docs, or partner registration.",
+        visitorQuestion: "'Where can I submit a partner application or read agency commission terms?'",
+        assistantResponse:
+          "Our Agency Partner Program portal outlines tier commissions (up to 25%) and includes the application form.",
+        suggestedAction: "Go to Agency Partner Portal →",
+        iconName: "Navigation",
+      },
+      {
+        id: "first-time-visitors",
+        title: "Helping First-Time Visitors Understand the Business",
+        category: "Onboarding Guidance",
+        description:
+          "Providing gentle conversational orientation for new visitors who are exploring the platform for the very first time.",
+        visitorQuestion: "'I'm new here. Where should I start if I want to automate customer FAQs?'",
+        assistantResponse:
+          "Start by exploring our 3-minute interactive demo or review the Customer Support Solution page to see the workflow in action.",
+        suggestedAction: "Watch 3-Minute Platform Demo →",
+        iconName: "Compass",
+      },
+    ],
+  },
+
+  benefits: {
+    badge: "Engagement Impact",
+    heading: "Why an Interactive Website Delivers Better Results",
+    subheading:
+      "Transforming static web pages into interactive conversations increases dwell time, eliminates navigation friction, and helps visitors understand your offerings.",
+    items: [
+      {
+        id: "website-engagement",
+        title: "Higher Website Engagement",
+        description:
+          "Visitors actively interact with your content instead of passively skimming and bouncing after 15 seconds.",
+        highlight: "Active Interaction",
+        iconName: "MousePointerClick",
+      },
+      {
+        id: "easier-discovery",
+        title: "Easier Information Discovery",
+        description:
+          "Users find exact answers to niche questions immediately without clicking through dozens of nested subpages.",
+        highlight: "Frictionless Lookup",
+        iconName: "Search",
+      },
+      {
+        id: "interactive-experiences",
+        title: "Interactive Experiences",
+        description:
+          "Conversational prompts and guided deep-links turn static documentation into a responsive digital concierge.",
+        highlight: "Dynamic Navigation",
+        iconName: "Sparkles",
+      },
+      {
+        id: "visitor-understanding",
+        title: "Better Visitor Understanding",
+        description:
+          "Prospective buyers leave with a clear comprehension of your services, increasing conversion likelihood.",
+        highlight: "Clear Comprehension",
+        iconName: "CheckCircle",
+      },
+    ],
   },
 
   cta: {
-    badge: "Transform Your Site",
-    heading: "Give Your Website an Intelligent Voice.",
+    badge: "Interactive Website Assistant",
+    heading: "Make Your Website a Helpful Guide for Every Visitor.",
     description:
-      "Help visitors find answers and understand your business with Pingo.",
+      "Equip your web domain with an intelligent assistant that engages visitors, answers questions from your content, and guides them directly to the information they need.",
     buttonText: "Get Started",
     buttonHref: "/contact",
-    secondaryText: "Explore Features",
-    secondaryHref: "/features/ai-automation",
+    secondaryText: "Explore Business Knowledge",
+    secondaryHref: "/solutions/business-knowledge-access",
   },
 };
-

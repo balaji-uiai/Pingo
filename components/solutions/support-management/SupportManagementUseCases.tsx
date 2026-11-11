@@ -3,24 +3,24 @@
 import React, { useState } from "react";
 import {
   HelpCircle,
-  FileCode2,
-  Route,
+  Zap,
+  Users,
   ShieldCheck,
-  Layers,
+  FolderTree,
   CheckCircle2,
   User,
   Bot,
   FileText,
   SlidersHorizontal,
 } from "lucide-react";
-import { supportManagementData, UseCaseItem } from "@/data/supportManagement";
+import { supportManagementData } from "@/data/supportManagement";
 
 const iconMap: Record<string, React.ElementType> = {
   HelpCircle,
-  FileCode2,
-  Route,
+  Zap,
+  Users,
   ShieldCheck,
-  Layers,
+  FolderTree,
 };
 
 export const SupportManagementUseCases: React.FC = () => {
@@ -60,7 +60,7 @@ export const SupportManagementUseCases: React.FC = () => {
           </p>
         </div>
 
-        {/* Top Operational Area Pills Switcher */}
+        {/* Support Scenario Pills Switcher */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-10 max-w-4xl mx-auto">
           {useCases.items.map((item) => {
             const IconComponent = iconMap[item.iconName] || HelpCircle;
@@ -84,14 +84,14 @@ export const SupportManagementUseCases: React.FC = () => {
           })}
         </div>
 
-        {/* Selected Workstation Detailed Showcase Card */}
+        {/* Selected Use Case Detailed Display Card */}
         <div className="rounded-3xl p-6 sm:p-10 lg:p-12 bg-white dark:bg-[#120E24] border border-[#E5E7F0] dark:border-[#28223D] shadow-2xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.7)] max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
-            {/* Left Column: Context & Knowledge Source */}
+            {/* Left Column: Scope & Description */}
             <div className="lg:col-span-5 space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#635BFF]/10 text-[#635BFF] dark:text-[#A5A0FF] font-mono text-xs font-semibold">
-                <span>Support Area: {selectedItem.supportArea}</span>
+                <span>Operation Scope: {selectedItem.supportArea}</span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[#171B2E] dark:text-[#FFFFFF] leading-tight">
@@ -102,67 +102,70 @@ export const SupportManagementUseCases: React.FC = () => {
                 {selectedItem.description}
               </p>
 
-              <div className="pt-2">
-                <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#F5F6FA] dark:bg-[#171A2E] border border-[#E5E7F0] dark:border-[#292D45] text-xs font-mono text-[#171B2E] dark:text-white">
-                  <FileText className="w-3.5 h-3.5 text-[#635BFF]" />
-                  <span className="truncate max-w-[260px]">{selectedItem.sourceDoc}</span>
+              <div className="p-4 rounded-xl bg-[#FAFBFE] dark:bg-[#181432] border border-[#E5E7F0] dark:border-white/[0.08] space-y-1.5">
+                <span className="text-[11px] font-mono uppercase text-[#635BFF] dark:text-[#A5A0FF] font-bold block">
+                  Authoritative Support Doc:
                 </span>
+                <p className="text-xs font-mono text-[#171B2E] dark:text-[#E2E0F4]">
+                  {selectedItem.sourceDoc}
+                </p>
               </div>
             </div>
 
-            {/* Right Column: Live Simulated Support Interaction */}
-            <div className="lg:col-span-7">
-              <div className="rounded-2xl p-5 sm:p-7 bg-[#F7F8FD] dark:bg-[#0D0A1B] border border-[#E5E7F0] dark:border-white/[0.08] space-y-4">
-                
-                {/* Header status bar */}
-                <div className="flex items-center justify-between pb-3 border-b border-[#E5E7F0] dark:border-white/[0.08] text-xs text-[#62677D] dark:text-[#A5A1BF]">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#10B981]" />
-                    <span className="font-semibold text-[#171B2E] dark:text-white">
-                      Support Inquiry & Verification
-                    </span>
-                  </div>
-                  <span className="font-mono text-[11px] text-[#635BFF] dark:text-[#A5A0FF]">Grounded Output</span>
+            {/* Right Column: Simulated Pingo Query Retrieval Box */}
+            <div className="lg:col-span-7 bg-[#FAFBFE] dark:bg-[#181432] border border-[#E5E7F0] dark:border-[#28223D] rounded-2xl p-6 sm:p-7 shadow-inner space-y-4">
+              
+              {/* Customer Inquiry Header */}
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2 text-xs font-semibold text-[#62677D] dark:text-[#A5A1BF]">
+                  <User className="w-3.5 h-3.5 text-[#635BFF]" />
+                  <span>Incoming Customer Inquiry:</span>
                 </div>
-
-                {/* Customer Inquiry Bubble */}
-                <div className="flex items-start gap-3 justify-end pt-2">
-                  <div className="max-w-[85%] bg-gradient-to-r from-[#635BFF] to-[#3984FF] text-white p-3.5 rounded-2xl rounded-tr-xs text-xs sm:text-sm shadow-md">
-                    <p className="leading-relaxed font-normal">{selectedItem.customerInquiry}</p>
-                  </div>
-                  <div className="w-7 h-7 rounded-full bg-[#EAEBF0] dark:bg-[#1F1C36] flex items-center justify-center text-[#62677D] dark:text-[#A5A1BF] flex-shrink-0 mt-1">
-                    <User className="w-4 h-4" />
-                  </div>
-                </div>
-
-                {/* AI Assistant Grounded Response Bubble */}
-                <div className="flex items-start gap-3 pt-1">
-                  <div className="w-7 h-7 rounded-full bg-[#635BFF]/15 text-[#635BFF] dark:text-[#A5A0FF] flex items-center justify-center flex-shrink-0 mt-1 border border-[#635BFF]/25">
-                    <Bot className="w-4 h-4" />
-                  </div>
-                  <div className="max-w-[88%] bg-white dark:bg-[#16122C] border border-[#E5E7F0] dark:border-[#28223D] text-[#171B2E] dark:text-[#F8F7FF] p-4 rounded-2xl rounded-tl-xs space-y-2 text-xs sm:text-sm shadow-sm">
-                    <p className="leading-relaxed font-normal">
-                      {selectedItem.assistantGuidance}
-                    </p>
-                    <div className="pt-2 border-t border-[#E5E7F0] dark:border-white/[0.08] flex items-center justify-between text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
-                      <span className="font-mono text-[#635BFF] dark:text-[#A5A0FF] truncate max-w-[240px]">
-                        Source: {selectedItem.sourceDoc}
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-[#10B981] font-semibold">
-                        <ShieldCheck className="w-3.5 h-3.5" />
-                        Verified
-                      </span>
-                    </div>
-                  </div>
+                <div className="p-3.5 rounded-xl bg-white dark:bg-[#120E24] border border-[#E5E7F0] dark:border-white/[0.08] text-sm font-semibold text-[#171B2E] dark:text-[#FFFFFF]">
+                  &ldquo;{selectedItem.customerInquiry}&rdquo;
                 </div>
               </div>
+
+              {/* Matched Source Badge */}
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#3984FF]/10 text-[#3984FF] dark:text-[#7EB5FF] text-xs font-mono">
+                <FileText className="w-3.5 h-3.5" />
+                <span>Matched: {selectedItem.sourceDoc}</span>
+              </div>
+
+              {/* Grounded Resolution Guidance */}
+              <div className="space-y-1.5">
+                <div className="flex items-center justify-between text-xs font-semibold text-[#62677D] dark:text-[#A5A1BF]">
+                  <span className="flex items-center gap-1.5 text-[#10B981]">
+                    <Bot className="w-3.5 h-3.5" />
+                    Pingo Resolution Guidance:
+                  </span>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
+                    Direct Source Citation
+                  </span>
+                </div>
+
+                <div className="p-4 rounded-xl bg-white dark:bg-[#120E24] border border-[#10B981]/30 text-xs sm:text-sm text-[#171B2E] dark:text-[#E2E0F4] leading-relaxed shadow-xs">
+                  {selectedItem.assistantGuidance}
+                </div>
+              </div>
+
+              {/* Verification Footer */}
+              <div className="flex items-center justify-between pt-2 border-t border-[#E5E7F0] dark:border-white/[0.06] text-[11px] font-mono text-[#62677D] dark:text-[#A5A1BF]">
+                <span className="flex items-center gap-1 text-[#10B981]">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  Instant knowledge access for frontline agents
+                </span>
+                <span>Zero Hallucination</span>
+              </div>
+
             </div>
+
           </div>
         </div>
+
       </div>
     </section>
   );
 };
 
 export default SupportManagementUseCases;
-

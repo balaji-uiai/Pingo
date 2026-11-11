@@ -3,22 +3,21 @@
 import React from "react";
 import {
   FolderGit2,
-  FileSearch,
-  EyeOff,
-  BellOff,
+  SearchX,
+  FileWarning,
+  TrendingDown,
+  Clock,
   AlertTriangle,
   Database,
-  Sparkles,
-  CheckCircle2,
-  Clock,
 } from "lucide-react";
-import { businessKnowledgeData, ChallengeItem } from "@/data/businessKnowledgeAccess";
+import { businessKnowledgeData } from "@/data/businessKnowledgeAccess";
 
 const iconMap: Record<string, React.ElementType> = {
   FolderGit2,
-  FileSearch,
-  EyeOff,
-  BellOff,
+  SearchX,
+  FileWarning,
+  TrendingDown,
+  Clock,
   AlertTriangle,
 };
 
@@ -90,7 +89,7 @@ export const BusinessKnowledgeChallenge: React.FC = () => {
 
                   <div className="pt-4 mt-4 border-t border-[#E5E7F0] dark:border-white/[0.06] space-y-1">
                     <span className="text-[10px] font-mono uppercase text-amber-700 dark:text-amber-400 font-semibold block">
-                      Operational Drag:
+                      Operational Consequence:
                     </span>
                     <p className="text-xs text-[#171B2E] dark:text-[#E2E0F4] font-medium leading-tight">
                       {item.consequence}
@@ -132,7 +131,7 @@ export const BusinessKnowledgeChallenge: React.FC = () => {
 
                   <div className="pt-4 mt-4 border-t border-[#E5E7F0] dark:border-white/[0.06] space-y-1">
                     <span className="text-[10px] font-mono uppercase text-amber-700 dark:text-amber-400 font-semibold block">
-                      Operational Drag:
+                      Operational Consequence:
                     </span>
                     <p className="text-xs text-[#171B2E] dark:text-[#E2E0F4] font-medium leading-tight">
                       {item.consequence}
@@ -171,4 +170,3 @@ export const BusinessKnowledgeChallenge: React.FC = () => {
 };
 
 export default BusinessKnowledgeChallenge;
-

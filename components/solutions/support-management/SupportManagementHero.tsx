@@ -5,74 +5,23 @@ import Link from "next/link";
 import {
   ArrowRight,
   SlidersHorizontal,
-  Sparkles,
   CheckCircle2,
-  Database,
   FileText,
   ShieldCheck,
-  Bot,
   User,
-  ArrowDown,
+  Clock,
+  Zap,
+  TrendingDown,
+  Activity,
   Layers,
-  Search,
-  Send,
 } from "lucide-react";
-import { supportManagementData } from "@/data/supportManagement";
-
-interface SupportResolutionScenario {
-  id: string;
-  tabLabel: string;
-  customerName: string;
-  inquiryCategory: string;
-  customerQuestion: string;
-  sourceDoc: string;
-  sourceSection: string;
-  supportAnswer: string;
-}
-
-const supportResolutionScenarios: SupportResolutionScenario[] = [
-  {
-    id: "tier-upgrade",
-    tabLabel: "Tier Upgrade",
-    customerName: "Alex M. (Enterprise Client)",
-    inquiryCategory: "Billing & Workspace Transfer",
-    customerQuestion:
-      "Can we upgrade our workspace tier mid-billing cycle, and will our existing knowledge bases transfer?",
-    sourceDoc: "Subscription_Terms_2026.pdf",
-    sourceSection: "Section 3.2 — Mid-term Upgrades & Data Retention",
-    supportAnswer:
-      "Yes! Mid-cycle tier upgrades are automatically prorated on your invoice. All connected knowledge bases, vector embeddings, and conversation histories transfer instantly with zero downtime.",
-  },
-  {
-    id: "refund-auth",
-    tabLabel: "Refund Terms",
-    customerName: "Sarah K. (Starter Plan)",
-    inquiryCategory: "Cancellation & Refund Policy",
-    customerQuestion:
-      "What is the refund eligibility window if our team cancels within the first month?",
-    sourceDoc: "Customer_Agreement_Billing_v4.pdf",
-    sourceSection: "Section 5.1 — 14-Day Money-Back Guarantee",
-    supportAnswer:
-      "Full refunds are available within 14 calendar days of your initial subscription purchase. Beyond 14 days, prorated credits are automatically issued to your workspace account.",
-  },
-  {
-    id: "api-limits",
-    tabLabel: "API Rate Limits",
-    customerName: "David L. (DevOps Lead)",
-    inquiryCategory: "Technical Integration",
-    customerQuestion:
-      "What is the maximum query rate supported per second for custom API webhooks?",
-    sourceDoc: "Platform_Architecture_API_Specs.md",
-    sourceSection: "Section 8.4 — Rate Limiting & Burst Headers",
-    supportAnswer:
-      "Standard accounts support up to 25 queries per second with a burst buffer of 50 requests. Enterprise accounts feature dedicated throughput with custom SLA limits.",
-  },
-];
+import { supportManagementData, SupportTicketQueueItem } from "@/data/supportManagement";
 
 export const SupportManagementHero: React.FC = () => {
   const { hero } = supportManagementData;
-  const [activeScenario, setActiveScenario] =
-    useState<SupportResolutionScenario>(supportResolutionScenarios[0]);
+  const [activeTicket, setActiveTicket] = useState<SupportTicketQueueItem>(
+    hero.ticketQueue[0]
+  );
 
   return (
     <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 overflow-hidden">
@@ -123,7 +72,7 @@ export const SupportManagementHero: React.FC = () => {
               </Link>
             </div>
 
-            {/* Reassurance Highlights */}
+            {/* Highlights */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-4 pt-2 text-xs text-[#62677D] dark:text-[#A5A1BF]">
               {hero.highlights.map((item, idx) => (
                 <span key={item} className="inline-flex items-center gap-1.5">
@@ -133,7 +82,9 @@ export const SupportManagementHero: React.FC = () => {
                         ? "text-[#635BFF]"
                         : idx === 1
                         ? "text-[#3984FF]"
-                        : "text-[#20C5D8]"
+                        : idx === 2
+                        ? "text-[#20C5D8]"
+                        : "text-[#10B981]"
                     }`}
                   />
                   <span>{item}</span>
@@ -147,136 +98,171 @@ export const SupportManagementHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Support-Workflow Visual Concept (Question ➔ Retrieval ➔ Helpful Answer) */}
+          {/* Right Column: Support Operations & Request Queue Dashboard Mockup */}
           <div className="lg:col-span-6 xl:col-span-6 relative flex flex-col items-center justify-center w-full">
             {/* Ambient Aura */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[#635BFF]/15 via-[#3984FF]/20 to-[#20C5D8]/15 rounded-3xl filter blur-3xl transform scale-90 pointer-events-none" />
 
-            {/* Main Visual Composition Container */}
+            {/* Dashboard Container */}
             <div className="relative w-full max-w-lg rounded-2xl bg-white/95 dark:bg-[#100D1E]/95 border border-[#E5E7F0] dark:border-[#28223D] shadow-2xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.85)] backdrop-blur-xl overflow-hidden transition-all duration-300">
               
-              {/* Header: Support Workflow Console */}
-              <div className="px-5 pt-3.5 pb-2.5 border-b border-[#E5E7F0] dark:border-white/[0.08] bg-[#FAFAFE] dark:bg-[#15102A]">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#171B2E] dark:text-white font-bold">
-                      Support Knowledge Workflow Engine
+              {/* Dashboard Header Bar */}
+              <div className="px-5 py-3.5 border-b border-[#E5E7F0] dark:border-white/[0.08] bg-[#FAFAFE] dark:bg-[#15102A] flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#635BFF] to-[#3984FF] text-white flex items-center justify-center shadow-sm">
+                    <Activity className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#171B2E] dark:text-white leading-tight text-xs sm:text-sm">
+                      Support Operations Console
+                    </h3>
+                    <span className="text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
+                      Request Queue & Knowledge Triage
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono text-[#635BFF] dark:text-[#A5A0FF] font-semibold">
-                    Live Resolution
-                  </span>
                 </div>
 
-                {/* Scenario Switcher Tabs */}
-                <div className="grid grid-cols-3 gap-1.5">
-                  {supportResolutionScenarios.map((item) => {
-                    const isSelected = activeScenario.id === item.id;
+                <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-mono font-semibold border border-emerald-500/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <span>Queue Live</span>
+                </div>
+              </div>
+
+              {/* Operational Key Metrics Strip */}
+              <div className="grid grid-cols-3 divide-x divide-[#E5E7F0] dark:divide-white/[0.06] bg-[#F5F6FA] dark:bg-[#16122C] border-b border-[#E5E7F0] dark:border-white/[0.06] py-2 px-3 text-center">
+                {hero.operationsMetrics.map((metric, i) => (
+                  <div key={metric.label} className="px-1">
+                    <span className="text-[10px] text-[#62677D] dark:text-[#A5A1BF] block truncate">
+                      {metric.label}
+                    </span>
+                    <span
+                      className={`text-xs sm:text-sm font-bold font-mono ${
+                        i === 0
+                          ? "text-[#635BFF] dark:text-[#A5A0FF]"
+                          : i === 1
+                          ? "text-[#3984FF] dark:text-[#7EB5FF]"
+                          : "text-emerald-500"
+                      }`}
+                    >
+                      {metric.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Ticket Queue List (3 Tickets) */}
+              <div className="p-3 bg-white dark:bg-[#120E24] border-b border-[#E5E7F0] dark:border-white/[0.06] space-y-1.5">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#62677D] dark:text-[#A5A1BF] font-semibold block px-1">
+                  Active Request Queue:
+                </span>
+                <div className="space-y-1.5">
+                  {hero.ticketQueue.map((ticket) => {
+                    const isSelected = activeTicket.id === ticket.id;
+
                     return (
                       <button
-                        key={item.id}
+                        key={ticket.id}
                         type="button"
-                        onClick={() => setActiveScenario(item)}
-                        className={`px-2 py-1.5 rounded-lg text-[11px] font-medium transition-all duration-200 text-center truncate cursor-pointer ${
+                        onClick={() => setActiveTicket(ticket)}
+                        className={`w-full text-left p-2.5 rounded-xl border transition-all duration-200 cursor-pointer flex items-center justify-between gap-2 ${
                           isSelected
-                            ? "bg-[#635BFF] text-white shadow-sm"
-                            : "bg-white dark:bg-[#1A1435] text-[#171B2E] dark:text-[#A5A1BF] border border-[#E5E7F0] dark:border-[#28223D] hover:border-[#635BFF]/40"
+                            ? "bg-[#F0EDFF] dark:bg-[#1E193C] border-[#635BFF]/50 shadow-xs"
+                            : "bg-[#FAFAFE] dark:bg-[#16122C] border-transparent hover:border-[#E5E7F0] dark:hover:border-white/[0.08]"
                         }`}
                       >
-                        {item.tabLabel}
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2 mb-0.5">
+                            <span className="text-[11px] font-mono font-bold text-[#171B2E] dark:text-white">
+                              {ticket.ticketNumber}
+                            </span>
+                            <span className="text-[10px] text-[#62677D] dark:text-[#A5A1BF] truncate">
+                              • {ticket.customerName.split(" ")[0]}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-[#62677D] dark:text-[#B5BAD0] truncate font-medium">
+                            {ticket.category}
+                          </p>
+                        </div>
+
+                        <div className="flex items-center gap-2 flex-shrink-0">
+                          <span
+                            className={`text-[10px] font-mono px-2 py-0.5 rounded-full border font-semibold ${ticket.statusColor}`}
+                          >
+                            {ticket.status}
+                          </span>
+                          <span className="text-[10px] text-[#62677D] dark:text-[#A5A1BF] font-mono">
+                            {ticket.timeAgo}
+                          </span>
+                        </div>
                       </button>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Three-Stage Workflow Content */}
-              <div className="p-5 space-y-3.5 text-xs">
+              {/* Active Ticket Triage & Grounded Resolution Panel */}
+              <div className="p-4 bg-[#FAFAFE] dark:bg-[#15102A] space-y-3 text-xs">
                 
-                {/* 1. Customer Question Intake */}
-                <div className="p-3.5 rounded-xl bg-[#F5F6FA] dark:bg-[#16122C] border border-[#E5E7F0] dark:border-white/[0.06] space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#62677D] dark:text-[#A5A1BF] font-semibold flex items-center gap-1.5">
-                      <User className="w-3 h-3 text-[#3984FF]" />
-                      Customer Question Intake: {activeScenario.customerName}
+                {/* Customer Question Card */}
+                <div className="p-3 rounded-xl bg-white dark:bg-[#100D1E] border border-[#E5E7F0] dark:border-white/[0.08] space-y-1">
+                  <div className="flex items-center justify-between text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
+                    <span className="font-semibold text-[#171B2E] dark:text-white flex items-center gap-1">
+                      <User className="w-3 h-3 text-[#635BFF]" />
+                      Customer Issue:
                     </span>
-                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-600 dark:text-blue-400 font-semibold">
-                      {activeScenario.inquiryCategory}
-                    </span>
+                    <span className="font-mono text-[10px]">{activeTicket.category}</span>
                   </div>
-                  <p className="text-xs font-medium text-[#171B2E] dark:text-white italic leading-relaxed">
-                    &ldquo;{activeScenario.customerQuestion}&rdquo;
+                  <p className="text-xs text-[#171B2E] dark:text-[#E2E0F4] font-medium leading-relaxed">
+                    &ldquo;{activeTicket.customerQuestion}&rdquo;
                   </p>
                 </div>
 
-                {/* Arrow connector */}
-                <div className="flex justify-center -my-1 text-[#635BFF] dark:text-[#A5A0FF]">
-                  <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-                </div>
-
-                {/* 2. Semantic Knowledge Retrieval Bridge */}
-                <div className="p-3 rounded-xl bg-[#20C5D8]/8 dark:bg-[#20C5D8]/10 border border-[#20C5D8]/25 space-y-1">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#0E7A8A] dark:text-[#20C5D8] font-semibold flex items-center gap-1.5">
-                      <Search className="w-3 h-3" />
-                      Relevant Knowledge Retrieved
+                {/* Grounded Knowledge Citation */}
+                <div className="p-3 rounded-xl bg-gradient-to-r from-[#635BFF]/5 to-[#3984FF]/5 dark:from-[#635BFF]/10 dark:to-[#3984FF]/10 border border-[#635BFF]/25 space-y-1.5">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-[#635BFF] dark:text-[#A5A0FF]">
+                    <span className="flex items-center gap-1 font-bold">
+                      <FileText className="w-3 h-3 text-[#3984FF]" />
+                      Knowledge Source Matched:
                     </span>
-                    <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">
-                      99.8% Grounded
+                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                      98% Match
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#171B2E] dark:text-[#E2E0F4] truncate">
-                    <FileText className="w-3.5 h-3.5 text-[#20C5D8] flex-shrink-0" />
-                    <span className="truncate">{activeScenario.sourceDoc}</span>
-                    <span className="text-gray-400 dark:text-gray-600 text-[10px]">({activeScenario.sourceSection})</span>
-                  </div>
-                </div>
-
-                {/* Arrow connector */}
-                <div className="flex justify-center -my-1 text-[#20C5D8]">
-                  <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-                </div>
-
-                {/* 3. Helpful Grounded Answer Output */}
-                <div className="p-3.5 rounded-xl bg-gradient-to-r from-[#635BFF]/10 via-[#3984FF]/10 to-[#20C5D8]/10 border border-[#635BFF]/30 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#635BFF] dark:text-[#A5A0FF] font-semibold flex items-center gap-1.5">
-                      <Bot className="w-3.5 h-3.5" />
-                      Contextual Resolution Ready to Send
-                    </span>
-                    <span className="text-[10px] font-mono text-[#10B981] font-semibold flex items-center gap-1">
-                      <ShieldCheck className="w-3 h-3" />
-                      Verified
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-[#171B2E] dark:text-[#F8F7FF] leading-relaxed">
-                    {activeScenario.supportAnswer}
+                  <p className="text-[11px] font-mono text-[#171B2E] dark:text-[#FFFFFF] truncate">
+                    {activeTicket.matchedSource}
                   </p>
+                  <p className="text-xs text-[#62677D] dark:text-[#B5BAD0] leading-snug">
+                    {activeTicket.resolutionSummary}
+                  </p>
+                </div>
 
-                  <div className="pt-2 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-[10px] font-mono text-[#62677D] dark:text-[#A5A1BF]">
-                    <span>Citation: {activeScenario.sourceSection}</span>
-                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
-                      Consistent Standard
-                    </span>
-                  </div>
+                {/* Agent Assignment Footer */}
+                <div className="flex items-center justify-between pt-1 text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
+                  <span className="flex items-center gap-1.5 font-medium">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#10B981]" />
+                    Assigned: {activeTicket.agentName}
+                  </span>
+                  <span className="text-[10px] font-mono font-semibold text-[#635BFF] dark:text-[#A5A0FF]">
+                    Pingo Assisted
+                  </span>
                 </div>
 
               </div>
 
               {/* Bottom Reassurance Footer */}
-              <div className="px-5 py-2.5 border-t border-[#E5E7F0] dark:border-white/[0.08] bg-[#FAFAFE] dark:bg-[#130E26] flex items-center justify-between text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
-                <span className="flex items-center gap-1.5 font-medium">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-[#10B981]" />
-                  Support teams get instant answers without digging through multiple files
+              <div className="px-5 py-2.5 border-t border-[#E5E7F0] dark:border-white/[0.08] bg-white dark:bg-[#100D1E] flex items-center justify-between text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
+                <span className="flex items-center gap-1.5">
+                  <SlidersHorizontal className="w-3.5 h-3.5 text-[#635BFF]" />
+                  Operational clarity for support leadership & frontline staff
                 </span>
-                <span className="font-mono text-[10px] text-[#635BFF] dark:text-[#A5A0FF] font-semibold">
-                  Zero Inconsistency
+                <span className="font-mono text-[10px] text-emerald-500 font-semibold">
+                  Zero Hold Time
                 </span>
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -284,4 +270,3 @@ export const SupportManagementHero: React.FC = () => {
 };
 
 export default SupportManagementHero;
-

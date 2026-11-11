@@ -6,13 +6,26 @@ export interface ChallengeItem {
   iconName: string;
 }
 
-export interface CapabilityItem {
+export interface HowPingoHelpsItem {
   id: string;
   title: string;
   description: string;
-  badge: string;
+  pillarBadge: string;
   iconName: string;
-  workflowBenefit: string;
+}
+
+export interface SupportTicketQueueItem {
+  id: string;
+  ticketNumber: string;
+  customerName: string;
+  category: string;
+  status: "Open" | "In Review" | "Resolved";
+  statusColor: string;
+  timeAgo: string;
+  customerQuestion: string;
+  matchedSource: string;
+  resolutionSummary: string;
+  agentName: string;
 }
 
 export interface UseCaseItem {
@@ -39,13 +52,13 @@ export interface BenefitItem {
   id: string;
   title: string;
   description: string;
-  tag: string;
+  impactTag: string;
   iconName: string;
 }
 
 export const supportManagementData = {
   hero: {
-    badge: "Support Knowledge Management",
+    badge: "Support Operations & Knowledge Management",
     headingPart1: "Manage Customer Support",
     headingPart2: "With Better Knowledge.",
     description:
@@ -59,287 +72,332 @@ export const supportManagementData = {
       href: "/features/helpdesk-ticketing",
     },
     highlights: [
-      "Fast Support Knowledge Retrieval",
-      "Consistent Resolution Across Teams",
-      "Reduced Repetitive Query Effort",
+      "Support Request Queue Visibility",
+      "Instant Knowledge Retrieval for Agents",
+      "Consistent Cross-Channel Guidance",
+      "Faster Onboarding & Ticket Resolution",
     ],
+    operationsMetrics: [
+      { label: "Knowledge Match Rate", value: "96.4%" },
+      { label: "Average Handle Time", value: "2.1 min" },
+      { label: "Repetitive Escalations", value: "-48%" },
+    ],
+    ticketQueue: [
+      {
+        id: "ticket-1042",
+        ticketNumber: "TICK-1042",
+        customerName: "Alex Mercer (Enterprise)",
+        category: "Subscription & Invoicing",
+        status: "Resolved",
+        statusColor: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
+        timeAgo: "4m ago",
+        customerQuestion: "Can our organization add 15 additional seats mid-quarter without resetting our billing date?",
+        matchedSource: "Commercial Terms > Section 4.2 (Mid-Cycle Seat Additions)",
+        resolutionSummary:
+          "Confirmed mid-cycle additions are prorated until renewal date. Auto-calculated balance and sent updated payment receipt.",
+        agentName: "Sarah Jenkins (Lead Agent)",
+      },
+      {
+        id: "ticket-1043",
+        ticketNumber: "TICK-1043",
+        customerName: "David Lin (DevOps)",
+        category: "Webhook Retries",
+        status: "In Review",
+        statusColor: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
+        timeAgo: "12m ago",
+        customerQuestion: "What is the maximum retry limit and timeout window for custom endpoint webhooks?",
+        matchedSource: "Technical Architecture > Webhook Engine v2.4 (Clause 7.1)",
+        resolutionSummary:
+          "Pingo matched 5 retry windows (1m to 6h) with 10s timeout. Agent verifying customer IP whitelist status.",
+        agentName: "Marcus Vance (Technical Support)",
+      },
+      {
+        id: "ticket-1044",
+        ticketNumber: "TICK-1044",
+        customerName: "Elena Rostova (Growth Plan)",
+        category: "Custom Domain SSL",
+        status: "Open",
+        statusColor: "bg-[#3984FF]/10 text-[#3984FF] dark:text-[#7EB5FF] border-[#3984FF]/20",
+        timeAgo: "Just now",
+        customerQuestion: "Custom domain SSL certificate validation failed with CNAME record mismatch.",
+        matchedSource: "DNS Operations Manual > Cloudflare CNAME Propagation",
+        resolutionSummary:
+          "Recommended DNS check for CAA records. Waiting for initial agent triage.",
+        agentName: "Unassigned (Queue Priority)",
+      },
+    ] as SupportTicketQueueItem[],
   },
 
   challenges: {
-    badge: "Support Operations Friction",
+    badge: "Support Team Obstacles",
     heading: "Support Teams Need More Than Just Answers.",
     subheading:
-      "When support documentation is fragmented, agents waste valuable time searching while customers experience delays and inconsistent guidance.",
+      "When support documentation is scattered across multiple locations, agents spend excessive time searching while customers experience delays and inconsistent guidance.",
     items: [
       {
         id: "repetitive-questions",
         title: "Support teams repeatedly handle similar customer questions",
         description:
-          "High-volume, repetitive inquiries drain agent capacity and reduce time available for addressing complex customer situations.",
-        supportImpact: "Agent fatigue and delayed response times",
+          "High volumes of routine inquiries overwhelm support queues, consuming agent bandwidth that could be dedicated to complex client issues.",
+        supportImpact: "Agent fatigue and delayed response queues",
         iconName: "Clock",
       },
       {
         id: "slow-information-discovery",
         title: "Finding the right information takes time",
         description:
-          "Agents must manually navigate lengthy manuals, wikis, and policy guides while keeping customers waiting on hold.",
-        supportImpact: "Prolonged resolution cycles on routine issues",
+          "Support agents manually navigate through lengthy manuals, multiple open browser tabs, and disjointed wikis while customers wait.",
+        supportImpact: "Prolonged handle times on straightforward queries",
         iconName: "SearchX",
       },
       {
         id: "spread-across-sources",
-        title: "Important support knowledge is spread across different sources",
+        title: "Important support details are scattered across different sources",
         description:
-          "Critical product specs, return guidelines, and technical workarounds reside in separate team drives and disparate documents.",
-        supportImpact: "Information silos and fragmented resolution context",
+          "Return guidelines, pricing policies, and technical edge cases live in separate team drives, leading to information gaps.",
+        supportImpact: "Fragmented context during customer conversations",
         iconName: "FolderGit2",
       },
       {
-        id: "inconsistent-information",
-        title: "Inconsistent information can create confusing customer experiences",
+        id: "new-member-learning",
+        title: "New support team members take time to learn business information",
         description:
-          "Different agents provide slightly varied explanations or quote outdated policies, eroding customer confidence.",
-        supportImpact: "Conflicting guidance and diminished brand trust",
-        iconName: "FileWarning",
+          "Onboarding new support representatives requires months of shadowing and manual reference checks before they can resolve tickets independently.",
+        supportImpact: "Steep ramp-up curve and heavy supervisor dependency",
+        iconName: "UserCheck",
       },
       {
-        id: "access-barriers",
-        title: "Support teams need easier access to relevant business knowledge",
+        id: "inconsistent-answers",
+        title: "Inconsistent answers can create confusion for customers",
         description:
-          "Frontline teams lack a unified, natural-language interface to instantly pull up verified answers during customer interactions.",
-        supportImpact: "Operational drag during peak support volume",
+          "Variations in what different agents tell customers regarding refunds, features, or deadlines erode brand trust and customer satisfaction.",
+        supportImpact: "Customer frustration and avoidable escalations",
         iconName: "AlertTriangle",
       },
     ] as ChallengeItem[],
   },
 
-  capabilities: {
-    badge: "Intelligent Support Enablement",
-    heading: "Bring Better Knowledge Into Every Support Interaction.",
+  howPingoHelps: {
+    badge: "Knowledge-Driven Support Operations",
+    heading: "Better Knowledge for Better Support.",
     subheading:
-      "Equip your support operations with an assistant that surfaces verified business answers instantly, ensuring consistency across every ticket and conversation.",
+      "Give your support team immediate access to organized business knowledge, enabling faster ticket resolution and dependable customer guidance.",
     items: [
       {
-        id: "knowledge-based-answers",
-        title: "Knowledge-Based Answers",
+        id: "easy-access",
+        title: "Easy access to support information",
         description:
-          "Retrieve relevant information from connected business knowledge, ensuring guidance is grounded directly in verified company documentation.",
-        badge: "Grounded Accuracy",
-        iconName: "Database",
-        workflowBenefit: "100% verified against published source files",
+          "Help support teams retrieve verified business knowledge quickly through natural-language queries without leaving their support console.",
+        pillarBadge: "Rapid Retrieval",
+        iconName: "Compass",
       },
       {
-        id: "faster-information-access",
-        title: "Faster Information Access",
+        id: "consistent-answers",
+        title: "Consistent answers",
         description:
-          "Help support teams find answers without manually searching multiple sources, reducing lookup time from minutes to seconds.",
-        badge: "Rapid Discovery",
+          "Ensure every support team member delivers accurate, up-to-date guidance based on a single authoritative source of truth.",
+        pillarBadge: "Unified Standards",
+        iconName: "ShieldCheck",
+      },
+      {
+        id: "reduced-effort",
+        title: "Reduced repetitive effort",
+        description:
+          "Help teams resolve recurring customer inquiries in seconds, freeing valuable agent hours for high-touch customer conversations.",
+        pillarBadge: "Effort Reduction",
         iconName: "Zap",
-        workflowBenefit: "Instant paragraph extraction from complex documents",
       },
       {
-        id: "contextual-guidance",
-        title: "Contextual Guidance",
+        id: "structured-bases",
+        title: "Structured knowledge bases",
         description:
-          "Understand questions and provide relevant responses tailored to the specific customer scenario and operational details.",
-        badge: "Context Aware",
-        iconName: "Target",
-        workflowBenefit: "Accurate guidance synthesized from multi-page docs",
+          "Keep support documentation, troubleshooting matrices, and policy guidelines organized in clean, dedicated operational knowledge centers.",
+        pillarBadge: "Structured Organization",
+        iconName: "FolderTree",
       },
       {
-        id: "consistent-information",
-        title: "Consistent Information",
+        id: "faster-onboarding",
+        title: "Faster onboarding for support teams",
         description:
-          "Help support teams refer to organized business knowledge, ensuring every agent delivers identical, verified policy explanations.",
-        badge: "Unified Standard",
-        iconName: "ShieldCheck",
-        workflowBenefit: "Single source of truth across all support channels",
+          "Empower new support agents to handle real customer tickets confidently from week one by referencing verified company information.",
+        pillarBadge: "Accelerated Ramp-Up",
+        iconName: "Users",
       },
-      {
-        id: "customer-question-assistance",
-        title: "Customer Question Assistance",
-        description:
-          "Support customer-facing interactions with natural-language answers, allowing agents to draft clear, helpful responses immediately.",
-        badge: "Conversational Drafting",
-        iconName: "MessageSquare",
-        workflowBenefit: "Ready-to-use responses written in clear, natural prose",
-      },
-    ] as CapabilityItem[],
-  },
-
-  useCases: {
-    badge: "Day-to-Day Efficiency",
-    heading: "Make Everyday Support More Efficient.",
-    subheading:
-      "Explore practical ways Pingo streamlines daily support interactions and reduces manual information retrieval.",
-    items: [
-      {
-        id: "common-questions",
-        title: "Finding answers to common customer questions",
-        supportArea: "High-Volume FAQs",
-        description:
-          "Instantly resolve high-frequency queries about return windows, billing dates, subscription downgrades, and access permissions.",
-        customerInquiry: "Can a customer change their payment currency mid-billing cycle?",
-        assistantGuidance:
-          "Currency settings are locked during an active cycle. Customers can update billing currency during renewal by contacting billing or updating workspace settings.",
-        sourceDoc: "Subscription & Billing Policy v3.1 (Section 2.4)",
-        iconName: "HelpCircle",
-      },
-      {
-        id: "product-service-docs",
-        title: "Accessing product and service documentation",
-        supportArea: "Technical Specifications",
-        description:
-          "Enable agents to look up hardware compatibility, API endpoints, rate limits, and supported formats while assisting customers.",
-        customerInquiry: "What is the maximum file size for document uploads on our platform?",
-        assistantGuidance:
-          "Standard accounts support file uploads up to 100MB per document across PDF, DOCX, Markdown, and CSV formats.",
-        sourceDoc: "Product Architecture & Ingestion Limits 2026",
-        iconName: "FileCode2",
-      },
-      {
-        id: "business-processes",
-        title: "Understanding business processes",
-        supportArea: "Escalation & Policy",
-        description:
-          "Guide support representatives through refund authorization limits, account ownership transfers, and compliance verification protocols.",
-        customerInquiry: "What verification steps are required before transferring account ownership?",
-        assistantGuidance:
-          "Account ownership transfer requires written confirmation from the current primary owner and completion of two-factor identity verification.",
-        sourceDoc: "Account Administration & Security Protocols (Section 5)",
-        iconName: "Route",
-      },
-      {
-        id: "consistent-guidance",
-        title: "Providing consistent information to customers",
-        supportArea: "Quality & Alignment",
-        description:
-          "Ensure both novice and veteran support agents quote the exact same current policy terms, eliminating conflicting answers.",
-        customerInquiry: "What is the standard turnaround time for data export requests?",
-        assistantGuidance:
-          "Data exports are processed within 24 to 48 business hours and delivered via a secure, time-limited download link valid for 7 days.",
-        sourceDoc: "Data Governance & Export Guidelines v4.0",
-        iconName: "ShieldCheck",
-      },
-      {
-        id: "reduced-manual-searches",
-        title: "Reducing repetitive manual information searches",
-        supportArea: "Workflow Streamlining",
-        description:
-          "Save support teams from scouring separate shared drives, wikis, and chat threads for operational answers.",
-        customerInquiry: "Where can our team find the latest SLA performance report template?",
-        assistantGuidance:
-          "The monthly SLA report template is located in the Support Knowledge Base under 'Templates & Audits', formatted for quarterly reviews.",
-        sourceDoc: "Client Success & SLA Documentation Center",
-        iconName: "Layers",
-      },
-    ] as UseCaseItem[],
+    ] as HowPingoHelpsItem[],
   },
 
   workflow: {
-    badge: "Support Knowledge Workflow",
-    heading: "How It Works",
+    badge: "Support Operations Workflow",
+    heading: "How Support Operations Move From Inquiry to Resolution",
     subheading:
-      "A four-step workflow that brings connected business knowledge straight into daily support interactions.",
+      "A structured 5-stage support lifecycle that blends fast knowledge retrieval with human agent review for reliable customer assistance.",
     steps: [
       {
-        step: "01",
-        number: "Step 1",
-        title: "Connect Support Knowledge",
-        description: "Add supported business information sources.",
+        step: "Stage 01",
+        number: "01",
+        title: "Customer Raises a Support Request",
+        description: "The customer submits an inquiry across web chat, email, or ticketing channels.",
         detail:
-          "Connect resolution guides, product manuals, policy documentation, and standard operating procedures to Pingo.",
-        iconName: "FolderPlus",
-      },
-      {
-        step: "02",
-        number: "Step 2",
-        title: "Organize Information",
-        description: "Structure content into dedicated knowledge bases.",
-        detail:
-          "Organize materials into clear knowledge categories segmented by product, customer tier, or support domain.",
-        iconName: "Layers",
-      },
-      {
-        step: "03",
-        number: "Step 3",
-        title: "Ask Support Questions",
-        description: "Customers or support teams ask questions naturally.",
-        detail:
-          "Frontline agents or customer self-service users submit queries in plain, conversational language.",
+          "The customer describes an issue, asks a policy question, or requests technical assistance requiring business guidance.",
         iconName: "MessageSquare",
       },
       {
-        step: "04",
-        number: "Step 4",
-        title: "Get Relevant Answers",
-        description: "Pingo retrieves relevant information and provides contextual responses.",
+        step: "Stage 02",
+        number: "02",
+        title: "The Request Is Recorded or Routed Through the Supported Workflow",
+        description: "The request enters the support operations queue with automated topic categorization.",
         detail:
-          "Pingo extracts verified facts from your knowledge base and delivers clear, cited answers ready to use.",
+          "Pingo categorizes the inquiry, tags priority, and retrieves relevant knowledge base paragraphs ready for the support team.",
+        iconName: "GitPullRequest",
+      },
+      {
+        step: "Stage 03",
+        number: "03",
+        title: "A Support Team Member Reviews the Issue",
+        description: "The assigned agent examines the customer's request alongside Pingo's cited guidance.",
+        detail:
+          "The agent verifies the recommended policy section or troubleshooting procedure in seconds, avoiding lengthy manual searches.",
+        iconName: "UserCheck",
+      },
+      {
+        step: "Stage 04",
+        number: "04",
+        title: "The Team Provides Assistance and Updates the Request",
+        description: "The agent delivers accurate guidance to the customer and records operational notes.",
+        detail:
+          "The response is communicated clearly, with complete alignment to company standards and documented resolution steps.",
+        iconName: "Send",
+      },
+      {
+        step: "Stage 05",
+        number: "05",
+        title: "The Issue Is Resolved and Its Status Is Updated",
+        description: "The ticket is marked resolved and performance metrics are updated in the dashboard.",
+        detail:
+          "The customer receives prompt help, handle time is minimized, and any newly updated documentation updates the knowledge base.",
         iconName: "CheckCircle",
       },
     ] as WorkflowStep[],
   },
 
-  benefits: {
-    badge: "Operational Impact",
-    heading: "Better Information. More Effective Support.",
+  useCases: {
+    badge: "Support Operations Use Cases",
+    heading: "Everyday Support Operations Powered by Pingo",
     subheading:
-      "Equip your support operations with instant access to verified knowledge, saving time and delivering dependable customer experiences.",
+      "See how customer support teams use Pingo to access information, resolve requests, and maintain operational quality.",
     items: [
       {
-        id: "reduced-searches",
-        title: "Reduced repetitive information searches",
+        id: "common-questions",
+        title: "Handling Common Customer Questions",
+        supportArea: "High-Volume Resolution",
         description:
-          "Save frontline support teams countless hours spent hunting down verified answers across scattered document folders.",
-        tag: "Time Recovered",
-        iconName: "Clock",
+          "Retrieve verified troubleshooting steps, return policies, billing cycles, and access rules in seconds during active tickets.",
+        customerInquiry: "What is the policy for transferring subscription ownership between two company email domains?",
+        assistantGuidance:
+          "Ownership transfer requires written authorization from the primary administrator and completion of two-factor verification by the new owner.",
+        sourceDoc: "Account Administration & Security Protocols (Section 5.2)",
+        iconName: "HelpCircle",
       },
       {
-        id: "easier-access",
-        title: "Easier access to support knowledge",
+        id: "assisting-agents",
+        title: "Assisting Support Team Members",
+        supportArea: "Agent Productivity",
         description:
-          "Make internal documentation, technical specs, and policies accessible through natural language search.",
-        tag: "Universal Access",
-        iconName: "Compass",
+          "Equip frontline agents with instant answers to complex questions, reducing the need to put customers on hold or escalate to tier-2 engineers.",
+        customerInquiry: "What are the rate-limiting thresholds and retry intervals for API webhook endpoints?",
+        assistantGuidance:
+          "Standard tiers support 25 queries/sec with a burst buffer of 50 requests. Failed deliveries retry 5 times using exponential backoff.",
+        sourceDoc: "Platform Architecture & Integration Specifications 2026",
+        iconName: "Zap",
       },
       {
-        id: "consistent-guidance",
-        title: "More consistent customer guidance",
+        id: "onboarding-agents",
+        title: "Onboarding New Support Agents",
+        supportArea: "Team Enablement",
         description:
-          "Eliminate discrepancies between agent responses by anchoring every answer in the same up-to-date business documentation.",
-        tag: "Factual Alignment",
+          "Give new hires a conversational knowledge companion where they can look up company guidelines, escalation matrices, and SLA terms independently.",
+        customerInquiry: "Where do I find our approved template for handling enterprise outage status updates?",
+        assistantGuidance:
+          "Incident communication templates are stored in Support Knowledge Hub > Incident Response > Outage Communications v3.",
+        sourceDoc: "Incident Response & Support Operations Manual",
+        iconName: "Users",
+      },
+      {
+        id: "consistent-answers",
+        title: "Providing Consistent Answers Across Channels",
+        supportArea: "Quality & Compliance",
+        description:
+          "Ensure that whether a customer reaches out via chat, email, or ticketing, every support agent provides identical, verified guidance.",
+        customerInquiry: "What is our mandatory data retention duration for terminated customer workspaces?",
+        assistantGuidance:
+          "Terminated workspaces enter a 30-day grace period during which data can be restored, after which all databases are permanently purged.",
+        sourceDoc: "Data Privacy & Workspace Retention Policy v4.1",
         iconName: "ShieldCheck",
       },
       {
-        id: "improved-accessibility",
-        title: "Improved information accessibility",
+        id: "managing-support-info",
+        title: "Managing Support Information",
+        supportArea: "Knowledge Maintenance",
         description:
-          "Allow new and experienced support agents alike to retrieve accurate operational details with equal ease.",
-        tag: "Team Enablement",
-        iconName: "BookOpenCheck",
+          "Update policy documents and troubleshooting guides in one central knowledge base so every agent immediately references the latest guidance.",
+        customerInquiry: "How do we update the international shipping FAQ across all 20 active support reps?",
+        assistantGuidance:
+          "Uploading the revised shipping matrix updates the central knowledge base instantly; all subsequent agent queries reference the new rates.",
+        sourceDoc: "Knowledge Base Management & Publishing SOP",
+        iconName: "FolderTree",
+      },
+    ] as UseCaseItem[],
+  },
+
+  benefits: {
+    badge: "Support Excellence",
+    heading: "The Impact of Better Support Knowledge",
+    subheading:
+      "When support teams have immediate access to organized business information, resolution speed and customer confidence increase across every interaction.",
+    items: [
+      {
+        id: "faster-resolution",
+        title: "Faster resolution of customer questions",
+        description:
+          "Support agents pull up authoritative answers in seconds rather than minutes, substantially reducing customer hold times and overall ticket resolution cycles.",
+        impactTag: "Reduced Handle Time",
+        iconName: "Clock",
       },
       {
-        id: "better-experiences",
-        title: "Better support experiences",
+        id: "consistent-answers",
+        title: "More consistent answers across support interactions",
         description:
-          "Deliver fast, confident, and reliable answers that turn routine inquiries into positive customer interactions.",
-        tag: "Customer Trust",
-        iconName: "Smile",
+          "Eliminate contradictory explanations between agents by grounding every customer response in the same verified documentation.",
+        impactTag: "Factual Accuracy",
+        iconName: "ShieldCheck",
+      },
+      {
+        id: "less-search-time",
+        title: "Less time spent searching for information",
+        description:
+          "Frontline staff focus on thoughtful customer communication rather than navigating through messy folders and obsolete wikis.",
+        impactTag: "Productivity Boost",
+        iconName: "Search",
+      },
+      {
+        id: "easier-onboarding",
+        title: "Easier onboarding for new support team members",
+        description:
+          "Accelerate ramp-up times for new support representatives by giving them a reliable knowledge assistant that answers operational questions immediately.",
+        impactTag: "Rapid Ramp-Up",
+        iconName: "Users",
       },
     ] as BenefitItem[],
   },
 
   cta: {
-    badge: "Empower Support Today",
+    badge: "Empower Your Support Operations",
     heading: "Give Your Support Team Better Access to Knowledge.",
     description:
-      "Help your team and customers find the information they need with Pingo.",
+      "Empower your support team with organized business knowledge that turns routine queries into fast, consistent customer resolutions.",
     buttonText: "Get Started",
     buttonHref: "/contact",
-    secondaryText: "Explore Features",
-    secondaryHref: "/features/helpdesk-ticketing",
+    secondaryText: "Explore Customer Support",
+    secondaryHref: "/solutions/customer-support",
   },
 };
-

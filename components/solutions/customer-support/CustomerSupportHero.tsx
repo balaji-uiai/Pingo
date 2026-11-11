@@ -1,77 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import {
   ArrowRight,
   Headphones,
-  Sparkles,
   CheckCircle2,
-  Database,
-  Search,
-  ExternalLink,
   Bot,
   User,
   ShieldCheck,
-  FileText,
+  Sparkles,
+  ArrowDownRight,
+  UserCheck,
+  MessageSquare,
+  Clock,
+  Database,
+  ArrowRightLeft,
 } from "lucide-react";
 import { customerSupportData } from "@/data/customerSupport";
 
-interface SampleInteraction {
-  id: string;
-  label: string;
-  question: string;
-  sourceDoc: string;
-  sourceSection: string;
-  answer: string;
-  tag: string;
-}
-
-const sampleInteractions: SampleInteraction[] = [
-  {
-    id: "guest-access",
-    label: "Client Permissions",
-    question:
-      "How do we invite external clients to view project milestones without giving admin access?",
-    sourceDoc: "Workspace Roles & Permissions v2.4",
-    sourceSection: "Section 3.2 — Guest Viewer Provisioning",
-    answer:
-      "You can invite external clients as 'Viewer Guests'. Guests have secure, read-only access to assigned milestones and shared reports without viewing internal team notes or billing settings.",
-    tag: "Access Control",
-  },
-  {
-    id: "billing-refund",
-    label: "Refund Policy",
-    question:
-      "Can we request a refund if we downgrade from Team to Starter mid-cycle?",
-    sourceDoc: "Subscription & Billing Terms 2026",
-    sourceSection: "Section 5.1 — Mid-term Adjustments",
-    answer:
-      "Yes. Mid-cycle downgrades generate automatic prorated credits directly applied to your next billing statement. Full refunds are available within 14 days of initial plan activation.",
-    tag: "Billing Terms",
-  },
-  {
-    id: "knowledge-sync",
-    label: "Knowledge Sync",
-    question:
-      "How often does the assistant refresh information when our team updates internal docs?",
-    sourceDoc: "Data Synchronization Specs",
-    sourceSection: "Real-time Webhook Ingestion",
-    answer:
-      "Connected knowledge sources sync automatically via real-time webhooks. Document edits or uploads are re-indexed and available for customer queries within seconds.",
-    tag: "Live Ingestion",
-  },
-];
-
 export const CustomerSupportHero: React.FC = () => {
   const { hero } = customerSupportData;
-  const [activeSample, setActiveSample] = useState<SampleInteraction>(
-    sampleInteractions[0]
-  );
+  const demo = hero.handoverDemo;
 
   return (
     <section className="relative pt-32 sm:pt-36 lg:pt-40 pb-16 sm:pb-20 lg:pb-24 overflow-hidden">
-      {/* Background ambient lighting glows in Pingo brand colors */}
+      {/* Background ambient lighting */}
       <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] bg-[#635BFF]/10 dark:bg-[#635BFF]/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-10 right-0 w-[600px] h-[600px] bg-[#3984FF]/10 dark:bg-[#3984FF]/15 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute top-1/2 right-1/4 w-[420px] h-[420px] bg-[#20C5D8]/8 dark:bg-[#20C5D8]/12 rounded-full blur-[110px] pointer-events-none" />
@@ -142,128 +96,93 @@ export const CustomerSupportHero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Interactive Customer Support Assistant Preview */}
+          {/* Right Column: AI Assistant + Human Agent Handover Visual Direction */}
           <div className="lg:col-span-6 xl:col-span-6 relative flex flex-col items-center justify-center w-full">
-            {/* Ambient Aura */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#635BFF]/15 via-[#3984FF]/20 to-[#20C5D8]/15 rounded-3xl filter blur-3xl transform scale-90 pointer-events-none" />
-
-            {/* Main Interactive Assistant Mockup Card */}
-            <div className="relative w-full max-w-lg rounded-2xl bg-white/95 dark:bg-[#100D1E]/95 border border-[#E5E7F0] dark:border-[#28223D] shadow-2xl dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)] backdrop-blur-xl overflow-hidden transition-all duration-300">
+            <div className="relative w-full max-w-lg rounded-3xl bg-white dark:bg-[#121426] border border-[#E2E6EF] dark:border-[#272B43] shadow-2xl p-5 sm:p-6 space-y-4">
               
-              {/* Header Bar */}
-              <div className="px-5 py-3.5 border-b border-[#E5E7F0] dark:border-white/[0.08] flex items-center justify-between bg-gradient-to-r from-[#F5F6FF] to-white dark:from-[#171127] dark:to-[#100D1E]">
-                <div className="flex items-center gap-3">
-                  <div className="relative">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#635BFF] to-[#3984FF] flex items-center justify-center text-white shadow-sm">
-                      <Bot className="w-5 h-5" />
-                    </div>
-                    <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-[#10B981] border-2 border-white dark:border-[#100D1E] rounded-full" />
+              {/* Header Bar: Status */}
+              <div className="flex items-center justify-between pb-3 border-b border-[#EEF1F7] dark:border-[#22263E]">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#635BFF] to-[#3984FF] text-white flex items-center justify-center font-bold text-xs shadow-xs">
+                    <Headphones className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-sm font-bold text-[#171B2E] dark:text-[#FFFFFF]">
-                        Pingo Support Assistant
-                      </span>
-                      <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-[#635BFF]/10 text-[#635BFF] dark:text-[#A5A0FF]">
-                        AI
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1 text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
-                      <Database className="w-3 h-3 text-[#20C5D8]" />
-                      <span>Connected to 18 verified business docs</span>
-                    </div>
+                    <h3 className="text-xs sm:text-sm font-bold text-[#171B2E] dark:text-white">
+                      Support Session • {demo.customerCompany}
+                    </h3>
+                    <p className="text-[11px] text-[#8F94A8]">
+                      Tier-1 AI triage → Human Specialist Handover
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-medium">
-                    Online
-                  </span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/10 text-[#059669] dark:text-[#34D399] text-[11px] font-semibold border border-[#10B981]/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse" />
+                  Active Handover
+                </span>
               </div>
 
-              {/* Chat Conversation Content */}
-              <div className="p-5 space-y-4 text-xs sm:text-sm">
-                
-                {/* Customer Question Bubble */}
+              {/* Chat Thread */}
+              <div className="space-y-3 text-xs">
+                {/* 1. Customer Initial Message */}
                 <div className="flex items-start gap-2.5 justify-end">
-                  <div className="max-w-[85%] bg-gradient-to-r from-[#635BFF] to-[#3984FF] text-white p-3.5 rounded-2xl rounded-tr-xs shadow-md">
+                  <div className="max-w-[85%] rounded-2xl rounded-tr-xs bg-[#635BFF] text-white p-3 shadow-xs">
                     <p className="leading-relaxed font-normal">
-                      {activeSample.question}
+                      "{demo.initialQuery}"
                     </p>
                   </div>
-                  <div className="w-7 h-7 rounded-full bg-[#EAEBF0] dark:bg-[#1F1C36] flex items-center justify-center text-[#62677D] dark:text-[#A5A1BF] flex-shrink-0 mt-1">
-                    <User className="w-4 h-4" />
+                  <div className="w-6 h-6 rounded-full bg-[#E5E9F2] dark:bg-[#252945] flex items-center justify-center text-[10px] font-bold text-[#464B63] dark:text-white flex-shrink-0 mt-1">
+                    DM
                   </div>
                 </div>
 
-                {/* Grounded Retrieval Badge */}
-                <div className="flex items-center gap-2 pl-9">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#20C5D8]/10 dark:bg-[#20C5D8]/15 border border-[#20C5D8]/30 text-[11px] text-[#0E7A8A] dark:text-[#20C5D8]">
-                    <Search className="w-3 h-3 flex-shrink-0" />
-                    <span className="font-mono font-medium truncate max-w-[260px]">
-                      Retrieved from: {activeSample.sourceDoc}
-                    </span>
-                  </div>
-                </div>
-
-                {/* AI Assistant Answer Bubble */}
+                {/* 2. AI Assistant Response */}
                 <div className="flex items-start gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-[#635BFF]/15 text-[#635BFF] dark:text-[#A5A0FF] flex items-center justify-center flex-shrink-0 mt-1 border border-[#635BFF]/25">
-                    <Sparkles className="w-3.5 h-3.5" />
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#635BFF] to-[#3984FF] text-white flex items-center justify-center text-[10px] flex-shrink-0 mt-1 shadow-xs">
+                    <Bot className="w-3.5 h-3.5" />
                   </div>
-                  <div className="max-w-[88%] bg-[#F5F6FA] dark:bg-[#171329] border border-[#E5E7F0] dark:border-[#28223D] text-[#171B2E] dark:text-[#F8F7FF] p-3.5 rounded-2xl rounded-tl-xs space-y-2.5">
-                    <p className="leading-relaxed font-normal">
-                      {activeSample.answer}
-                    </p>
-
-                    {/* Source Citation Footer */}
-                    <div className="pt-2 border-t border-[#E5E7F0] dark:border-white/[0.08] flex items-center justify-between text-[11px] text-[#62677D] dark:text-[#A5A1BF]">
-                      <span className="flex items-center gap-1 font-mono">
-                        <FileText className="w-3 h-3 text-[#635BFF]" />
-                        {activeSample.sourceSection}
-                      </span>
-                      <span className="inline-flex items-center gap-1 text-[#10B981] font-semibold">
-                        <ShieldCheck className="w-3.5 h-3.5" />
-                        Verified
-                      </span>
+                  <div className="max-w-[85%] rounded-2xl rounded-tl-xs bg-[#F4F6FB] dark:bg-[#1A1D36] border border-[#E5E9F2] dark:border-[#272C4C] p-3 text-[#171B2E] dark:text-[#E2E6EF]">
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#635BFF] dark:text-[#A5A0FF] mb-1">
+                      <Sparkles className="w-3 h-3" />
+                      <span>Pingo AI Assistant</span>
                     </div>
+                    <p className="leading-relaxed">
+                      {demo.aiResponse}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 3. Handover Notification Banner */}
+                <div className="my-2 p-2.5 rounded-xl bg-gradient-to-r from-[#635BFF]/10 via-[#3984FF]/10 to-[#20C5D8]/10 border border-[#635BFF]/20 text-center flex items-center justify-center gap-2 text-[11px] font-medium text-[#635BFF] dark:text-[#A5A0FF]">
+                  <ArrowRightLeft className="w-3.5 h-3.5 flex-shrink-0" />
+                  <span>{demo.handoverNotice}</span>
+                </div>
+
+                {/* 4. Human Support Agent joins with context */}
+                <div className="flex items-start gap-2.5">
+                  <div className="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0 mt-1 shadow-xs">
+                    SJ
+                  </div>
+                  <div className="max-w-[85%] rounded-2xl rounded-tl-xs bg-[#F0FDF4] dark:bg-[#132822] border border-[#BBF7D0] dark:border-[#1E4D3E] p-3 text-[#171B2E] dark:text-[#E2E6EF]">
+                    <div className="flex items-center gap-1.5 text-[10px] font-bold text-[#059669] dark:text-[#34D399] mb-1">
+                      <UserCheck className="w-3 h-3" />
+                      <span>{demo.agentName} • {demo.agentRole}</span>
+                    </div>
+                    <p className="leading-relaxed">
+                      {demo.agentResponse}
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Sample Inquiries Switcher */}
-              <div className="px-5 py-3 border-t border-[#E5E7F0] dark:border-white/[0.08] bg-[#FAFAFE] dark:bg-[#0D0A1A]">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#62677D] dark:text-[#A5A1BF] font-semibold">
-                    Test Live Inquiry Scenarios
-                  </span>
-                  <span className="text-[10px] font-mono text-[#635BFF] dark:text-[#A5A0FF]">
-                    Click to switch:
-                  </span>
-                </div>
-                <div className="grid grid-cols-3 gap-1.5">
-                  {sampleInteractions.map((item) => {
-                    const isSelected = activeSample.id === item.id;
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => setActiveSample(item)}
-                        className={`px-2 py-1.5 rounded-lg text-[11px] font-medium transition-all duration-200 text-center truncate cursor-pointer ${
-                          isSelected
-                            ? "bg-[#635BFF] text-white shadow-sm"
-                            : "bg-white dark:bg-[#17122A] text-[#171B2E] dark:text-[#A5A1BF] border border-[#E5E7F0] dark:border-[#28223D] hover:border-[#635BFF]/40"
-                        }`}
-                      >
-                        {item.label}
-                      </button>
-                    );
-                  })}
-                </div>
+              {/* Footer reassurance note */}
+              <div className="pt-3 border-t border-[#EEF1F7] dark:border-[#22263E] flex items-center justify-between text-[11px] text-[#8F94A8]">
+                <span>Customer never repeats their problem</span>
+                <span className="text-[#10B981] font-semibold">100% Context Continuity</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
@@ -271,4 +190,3 @@ export const CustomerSupportHero: React.FC = () => {
 };
 
 export default CustomerSupportHero;
-
