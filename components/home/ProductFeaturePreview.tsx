@@ -55,7 +55,7 @@ export const ProductFeaturePreview: React.FC<ProductFeaturePreviewProps> = ({
     "Helpdesk & SLA Queue",
     "Team & Access Control",
     "Intelligence & CSAT",
-    "6 Channels Connected",
+    "4 Live Channels",
     "Enterprise Security Active",
   ];
 
@@ -608,19 +608,17 @@ export const ProductFeaturePreview: React.FC<ProductFeaturePreviewProps> = ({
                   <span>Omnichannel Integration Ecosystem</span>
                 </span>
                 <span className="text-[10px] font-mono text-[#782BFF] dark:text-[#B5FF45] bg-[#782BFF]/10 dark:bg-[#B5FF45]/10 px-2 py-0.5 rounded border border-[#782BFF]/20 dark:border-[#B5FF45]/20">
-                  6 Live Channels
+                  4 Live Channels
                 </span>
               </div>
 
               {/* Channels Grid */}
               <div className="grid grid-cols-2 gap-2.5">
                 {[
-                  { name: "JavaScript Web Widget", status: "Active (v2.4)", ok: true },
+                  { name: "JavaScript Web Widget", status: "Active", ok: true },
                   { name: "WhatsApp Business API", status: "Connected", ok: true },
                   { name: "Instagram Direct", status: "Connected", ok: true },
-                  { name: "REST API & Webhooks", status: "24k req/day", ok: true },
-                  { name: "Zendesk Connector", status: "Sync Active", ok: true },
-                  { name: "Jira Service Management", status: "Bi-directional", ok: true },
+                  { name: "WordPress Integration", status: "Available", ok: true },
                 ].map((item, i) => (
                   <div
                     key={i}
@@ -634,7 +632,13 @@ export const ProductFeaturePreview: React.FC<ProductFeaturePreviewProps> = ({
                         {item.status}
                       </div>
                     </div>
-                    <span className="w-2 h-2 rounded-full bg-[#10B981] dark:bg-[#B5FF45] shadow-[0_0_6px_#10B981] dark:shadow-[0_0_6px_#B5FF45]" />
+                    <span
+                      className={`w-2 h-2 rounded-full ${
+                        item.status === "Available"
+                          ? "bg-[#3984FF] dark:bg-[#20C5D8] shadow-[0_0_6px_#3984FF] dark:shadow-[0_0_6px_#20C5D8]"
+                          : "bg-[#10B981] dark:bg-[#B5FF45] shadow-[0_0_6px_#10B981] dark:shadow-[0_0_6px_#B5FF45]"
+                      }`}
+                    />
                   </div>
                 ))}
               </div>

@@ -35,7 +35,7 @@ export const howItWorksSetupData: HowItWorksSectionData = {
     {
       id: "connect-website",
       stepNumber: "01",
-      title: "Connect Your Website",
+      title: "Connect the Website",
       description: "Connect your business website to Pingo.",
       badge: "Discovery",
       statusText: "Connection successful ✓",
@@ -43,7 +43,7 @@ export const howItWorksSetupData: HowItWorksSectionData = {
     {
       id: "knowledge-centers",
       stepNumber: "02",
-      title: "Build Your Knowledge Centers",
+      title: "Build Knowledge Center",
       description:
         "Bring your business information together to create knowledge sources for your AI agent.",
       badge: "Knowledge",
@@ -52,7 +52,7 @@ export const howItWorksSetupData: HowItWorksSectionData = {
     {
       id: "develop-agent",
       stepNumber: "03",
-      title: "Develop Your AI Agent",
+      title: "Develop AI Agent",
       description:
         "Create and configure an AI agent using your business knowledge.",
       badge: "Configuration",
@@ -61,7 +61,7 @@ export const howItWorksSetupData: HowItWorksSectionData = {
     {
       id: "support-team",
       stepNumber: "04",
-      title: "Create Your Support Team",
+      title: "Create a Support Team",
       description:
         "Create your human support team to manage customer conversations.",
       badge: "Team",
@@ -70,7 +70,7 @@ export const howItWorksSetupData: HowItWorksSectionData = {
     {
       id: "customize-widget",
       stepNumber: "05",
-      title: "Customize Your Chat Widget",
+      title: "Customize the Chat Widget",
       description:
         "Generate a customizable chat widget that matches your brand identity.",
       badge: "Branding",

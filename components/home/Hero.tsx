@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
       <div className="absolute top-10 right-0 w-[650px] h-[650px] bg-[#3984FF]/12 rounded-full blur-[140px] pointer-events-none animate-pulse-glow" />
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-[#20C5D8]/10 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Floating animation & seamless background blending mask styles */}
+      {/* Floating animation */}
       <style>{`
         @keyframes pingoHeroFloat {
           0%, 100% {
@@ -31,15 +31,6 @@ export const Hero: React.FC = () => {
           .hero-floating-robot {
             animation: none;
           }
-        }
-        /* Radial edge feathering mask: removes rectangular image borders completely */
-        .hero-robot-mask {
-          mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.15) 80%, transparent 94%);
-          -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 50%, rgba(0, 0, 0, 0.6) 66%, rgba(0, 0, 0, 0.15) 80%, transparent 94%);
-        }
-        .dark .hero-robot-mask {
-          mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, #000 58%, rgba(0, 0, 0, 0.85) 74%, transparent 98%);
-          -webkit-mask-image: radial-gradient(ellipse 80% 78% at 50% 50%, #000 58%, rgba(0, 0, 0, 0.85) 74%, transparent 98%);
         }
       `}</style>
 
@@ -87,14 +78,14 @@ export const Hero: React.FC = () => {
               className="absolute inset-0 max-w-[420px] mx-auto bg-gradient-to-tr from-[#635BFF]/20 via-[#3984FF]/25 to-[#20C5D8]/25 rounded-full filter blur-3xl transform scale-90 pointer-events-none"
             />
 
-            {/* Mascot Image Container: Floating, zero card frame, zero border */}
+            {/* Mascot Image Container: Floating transparent mascot, zero card frame, zero border */}
             <div className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px] hero-floating-robot">
-              <div className="relative hero-robot-mask drop-shadow-[0_15px_35px_rgba(99,91,255,0.18)] dark:drop-shadow-[0_20px_45px_rgba(32,197,216,0.22)]">
+              <div className="relative drop-shadow-[0_15px_30px_rgba(99,91,255,0.12)] dark:drop-shadow-[0_20px_40px_rgba(32,197,216,0.18)]">
                 <Image
-                  src="/images/pingo-robot-hero.jpg"
+                  src="/images/pingo-robot.png"
                   alt="Pingo 3D Robot Mascot with Talk, Chat, Information, and Support badges"
-                  width={1024}
-                  height={768}
+                  width={1310}
+                  height={820}
                   className="w-full h-auto object-contain block"
                   priority
                 />

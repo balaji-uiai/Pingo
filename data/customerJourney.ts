@@ -25,7 +25,7 @@ export const customerJourneyData: CustomerJourneyData = {
     {
       id: "visitor-arrives",
       stepNumber: "01",
-      title: "Customer Visits Your Website",
+      title: "Customer Visits the Website",
       description:
         "When a visitor opens your website, the Pingo chat widget automatically appears.",
       badge: "Arrival",
